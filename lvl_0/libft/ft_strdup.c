@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/26 16:44:28 by jibanez-          #+#    #+#             */
-/*   Updated: 2020/11/26 16:44:28 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 17:14:30 by jibanez-          #+#    #+#             */
+/*   Updated: 2020/12/02 17:14:30 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strdup(char *src)
 {
-	unsigned char *s;
-	unsigned char *d;
+	int		i;
+	char	*dest;
 
-	s = (unsigned char *)src;
-	d = (unsigned char *)dest;
-	if (dest == 0 && src == 0)
+	i = 0;
+	dest = (malloc(ft_strlen(src) * sizeof(*dest + 1)));
+	if (dest == '\0')
 		return (0);
-	if (dest == src)
-		return (dest);
-	while (n--)
-		*d++ = *s++;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
 	return (dest);
 }
