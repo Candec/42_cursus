@@ -13,11 +13,14 @@
 #include "libft.h"
 char	*ft_strchr(const char *s, int c)
 {
-	size_t i;
+	char *ch;
 
-	i = 0;
-	while (s++)
-		if (s == c)
-			return (s);
-	return (0);
+	ch = (char *)s;
+	while (*ch != c)
+	{
+		if (!*ch)
+			return (0);
+		ch++;
+	}
+	return (ch);
 }

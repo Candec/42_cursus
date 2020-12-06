@@ -15,22 +15,23 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		size;
 	char	*a;
+	char	*b;
 
 	size = ft_strlen(s1) + ft_strlen(s2) - 1;
 	a = malloc(size);
-	while (*(s1++) != '\0')
-		*a++ = *s1++;
-	while (*(s2++) != '\0')
-		*a++ = *s2++;
-	*a++ = '\0';
-	return (a);
+	b = a;
+	while (*(s1) != '\0')
+	{
+		*a = *s1;
+		a++;
+		s1++;
+	}
+	while (*(s2) != '\0')
+	{
+		*a = *s2;
+		a++;
+		s2++;
+	}
+	a = '\0';
+	return (b);
 }
-
-
-int main()
-{
-	char a[19] = "El Tour de Francia";
-	char b[27] = "Es una prueba de cliclismo";
-
-	printf("%s\n", ft_strjoin(a, b));
- }

@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 17:14:30 by jibanez-          #+#    #+#             */
-/*   Updated: 2020/12/02 17:14:30 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 23:17:46 by jibanez-          #+#    #+#             */
+/*   Updated: 2020/12/02 23:17:46 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-char	*ft_strdup(char *src)
-{
-	int		i;
-	char	*dest;
 
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	i;
+	size_t	len;
+
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
-	dest = (malloc(ft_strlen(src) * sizeof(*dest + 1)));
-	if (*dest == '\0')
-		return (0);
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
+	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	len = ft_strlen(&s1[i]);
+	if (len != 0)
+		while (s1[i + len - 1] && ft_strchr(set, s1[i + len - 1]) != NULL)
+			len--;
+	return (ft_substr(s1, i, len));
+}
+
+int main()
+{
+	char a[19] = "La vuelta ciclista";
+	char b[9] = "ciclista";
+
+	printf("%s\n", ft_strtrim(a, b));
 }
