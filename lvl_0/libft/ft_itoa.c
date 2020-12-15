@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-int		ft_absolute_value(int nbr)
+static int	ft_absolute_value(int nbr)
 {
 	if (nbr < 0)
 		return (-nbr);
 	return (nbr);
 }
 
-int		ft_digitcount(int n)
+static int	ft_digitcount(int n)
 {
 	int		a;
 	int		i;
@@ -33,7 +33,7 @@ int		ft_digitcount(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*str;
 	int		a;

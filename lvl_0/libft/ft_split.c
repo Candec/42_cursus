@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-size_t	get_num(const char *str, char c)
+static size_t	get_num(const char *str, char c)
 {
 	size_t i;
 	size_t num;
@@ -30,6 +30,22 @@ size_t	get_num(const char *str, char c)
 			i++;
 	}
 	return (num);
+}
+
+static char	*ft_strcpy(char *dest, char const *src, int start, int last)
+{
+	int i;
+
+	i = 0;
+	while (start < last)
+	{
+		dest[i] = src[start];
+		i++;
+		start++;
+	}
+	dest[i] = 0;
+
+	return (dest);
 }
 
 static void	*free_mem(char **allocated_mem, size_t cnt)
@@ -74,7 +90,7 @@ static void	do_split(char const *s, char c, char **str)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char		**ft_split(char const *s, char c)
 {
 	char **str;
 	size_t n;
@@ -90,14 +106,4 @@ char	**ft_split(char const *s, char c)
 		return (str);
 	do_split(s, c, str);
 	return (str);
-}
-
-int main()
-{
-	const char b[35] = "/la /vuelta /ciclista /en /francia/";
-	char **a = ft_split(b, '/');
-	for (size_t i = 0; i < 7; i++)
-	{
-		printf("%s \n", a[i]);
-	}
 }
