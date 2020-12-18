@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 18:53:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2020/12/06 18:53:01 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/18 15:52:54 by jibanez-          #+#    #+#             */
+/*   Updated: 2020/12/18 15:52:54 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, char const *src, int start, int last)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (start < last)
+	while (s[i])
 	{
-		dest[i] = src[start];
+		if (s[i] == (char)c)
+			return ((char*)(s + i));
 		i++;
-		start++;
 	}
-	dest[i] = 0;
-
-	return (dest);
+	if (s[i] == (char)c)
+		return ((char*)(s + i));
+	return (NULL);
 }

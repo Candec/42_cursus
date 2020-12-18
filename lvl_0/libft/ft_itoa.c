@@ -37,9 +37,7 @@ char		*ft_itoa(int n)
 {
 	char	*str;
 	int		a;
-	int		i;
 
-	i = n;
 	a = ft_digitcount(n) + 1;
 	if (n < 0)
 	{

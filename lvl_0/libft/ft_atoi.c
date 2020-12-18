@@ -11,7 +11,14 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-int	ft_atoi(const char *str)
+static int	ft_isspace(char a)
+{
+	if ((a >= 9 && a <= 13) || a == 32)
+		return (1);
+	return (0);
+}
+
+int			ft_atoi(const char *str)
 {
 	long long int	i;
 	long long int	result;

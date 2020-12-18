@@ -13,11 +13,11 @@
 #include "libft.h"
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t i;
-
-	i = ft_strlen(s);
-	while (s[i--])
-		if (s == c)
-			return (s[i]);
-	return (0);
+	if (ft_strchr(s, c) == NULL)
+		return (NULL);
+	while (*s)
+		s++;
+	while (*s != c)
+		s--;
+	return ((char*)s);
 }
