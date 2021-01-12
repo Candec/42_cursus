@@ -61,10 +61,10 @@ This library is part of the 42 Cursus - Started on Feb 2021 at 42 Lisbon.
 ## Cheatsheet
 ### 1. Part One - Libc functions
 | 1 | ft_atoi       | Converts the initial portion of the string pointed to by nptr to int. | int ft_atoi(const char *str) |
-|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
+|:-:|:--------------|:----------------------------------------------------------------------|:-----------------------------|
 | 2 | ft_bzero      | Erases the data in the n bytes of the memory starting at the location pointed to by s, by writing zeros (bytes  containing'\0') to that area. | void ft_bzero(void *s, size_t n)|
-|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
-| 3 | ft_calloc     | Allocates size bytes and returns a pointer to the allocated memory. The memory is not initialized.|void *ft_calloc(size_t nmemb, size_t size)|
+|:-:|:--------------|:----------------------------------------------------------------------|:-----------------------------|
+| 3 | ft_calloc     | Allocates size bytes and returns a pointer to the allocated memory. The memory is not initialized. |void *ft_calloc(size_t nmemb, size_t size)|
 |:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 4 | ft_isalnum    | Checks  for an alphanumeric character |int ft_isalnum(int c)|
 |:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
