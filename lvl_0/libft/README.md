@@ -63,7 +63,7 @@ This library is part of the 42 Cursus - Started on Feb 2021 at 42 Lisbon.
 
 | # | Function | Description | Prototype |
 |:-:|:---------|:------------|:----------|
-| 1 | [ft_atoi](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_atoi.c){:target="_blank"}         | Converts the initial portion of the string pointed to by 'str' to int.| int ft_atoi(const char *str)             |
+| 1 | [ft_atoi](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_atoi.c)        | Converts the initial portion of the string pointed to by 'str' to int.| int ft_atoi(const char *str)             |
 | 2 | [ft_bzero](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_bzero.c)        | Erases the data in the n bytes of the memory starting at the location pointed to by 's', by writing zeros (bytes  containing '\0') to that area. | void ft_bzero(void *s, size_t n)|
 | 3 | [ft_calloc](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_calloc.c)       | Allocates size bytes and returns a pointer to the allocated memory. The memory is not initialized. |void *ft_calloc(size_t nmemb, size_t size)|
 | 4 | [ft_isalnum](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_isalnum.c)      | Checks  for an alphanumeric character                                                     | int ft_isalnum(int c)         |
