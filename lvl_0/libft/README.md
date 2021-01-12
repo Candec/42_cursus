@@ -61,24 +61,23 @@ This library is part of the 42 Cursus - Started on Feb 2021 at 42 Lisbon.
 ## Cheatsheet
 ### 1. Part One - Libc functions
 | 1 | ft_atoi       | Converts the initial portion of the string pointed to by nptr to int. | int ft_atoi(const char *str) |
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
-| 2 | ft_bzero      | Erases the data in the n bytes of the memory starting at the location pointed to by s, by writing zeros (bytes  containing'\0') to that area.|void	ft_bzero(void *s, size_t n)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
+| 2 | ft_bzero      | Erases the data in the n bytes of the memory starting at the location pointed to by s, by writing zeros (bytes  containing'\0') to that area.|void ft_bzero(void *s, size_t n)|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 3 | ft_calloc     | Allocates size bytes and returns a pointer to the allocated memory. The memory is not initialized.|void *ft_calloc(size_t nmemb, size_t size)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 4 | ft_isalnum    | Checks  for an alphanumeric character |int ft_isalnum(int c)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 5 | ft_isalpha    | Checks for an alphabetic character|int ft_isalpha(int c)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 6 | ft_isascii    | Checks  whether  c  is a 7-bit unsigned char value that fits into the ASCII character set.|int ft_isascii(int c)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 7 | ft_isdigit    | Checks for a digit (0 through 9). | int ft_isdigit(int c)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 | 8 | ft_isprint    | Checks for any printable character including space. |int ft_isprint(int c)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
-| 9 | ft_memset     | Fills the first n bytes of the memory area pointed
-       to by s with the constant byte c.| void *ft_memset(void *s, int c, size_t n)|
-|:-:|---------------|-----------------------------------------------------------------------|------------------------------|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
+| 9 | ft_memset     | Fills the first n bytes of the memory area pointed to by s with the constant byte c.| void *ft_memset(void *s, int c, size_t n)|
+|:-:|:---------------|:-----------------------------------------------------------------------|:------------------------------|
 |10 | ft_memcpy      |Copies n bytes from memory area src to memory area dest. The memory areas must not overlap.|void *ft_memcpy(void *dest, const void *src, size_t n)|
 |:-:|---------------|-----------------------------------------------------------------------|------------------------------|
 |11 | ft_memccpy     |
