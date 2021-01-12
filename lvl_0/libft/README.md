@@ -3,9 +3,9 @@ This library is part of the 42 Cursus - Started on Feb 2021 at 42 Lisbon.
 
 ## Index
 1. [Functions](#functions)
-..1. [Part One - Libc functions](#1.-Part-One-Libc-functions)
-..2. [Part Two - Additional functions](#2.-Part-Two-Additional-functions)
-..3. [Part Three - Bonus part](#3.-Part-Three-Bonus-part)
+- [Part One - Libc functions](#1.-Part-One-Libc-functions)
+- [Part Two - Additional functions](#2.-Part-Two-Additional-functions)
+- [Part Three - Bonus part](#3.-Part-Three-Bonus-part)
 2. [Cheatsheet](#cheatsheet)
 
 
