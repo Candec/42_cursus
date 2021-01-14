@@ -6,12 +6,13 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 17:05:42 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:59:52 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:57:51 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void ft_lstiter(t_list *lst, void (*f)(void *))
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!f)
 		return ;

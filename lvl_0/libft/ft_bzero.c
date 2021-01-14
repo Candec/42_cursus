@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 16:28:04 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:58:55 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:54:52 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char *str;

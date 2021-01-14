@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 16:44:28 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:00:20 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:55:42 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	unsigned char *s;

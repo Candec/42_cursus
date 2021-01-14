@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:00:00 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:00:43 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 11:00:28 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static size_t	get_num(const char *str, char c)
 {
 	size_t i;
@@ -32,7 +33,7 @@ static size_t	get_num(const char *str, char c)
 	return (num);
 }
 
-static char	*ft_strcpy(char *dest, char const *src, int start, int last)
+static char		*ft_strcpy(char *dest, char const *src, int start, int last)
 {
 	int i;
 
@@ -44,11 +45,10 @@ static char	*ft_strcpy(char *dest, char const *src, int start, int last)
 		start++;
 	}
 	dest[i] = 0;
-
 	return (dest);
 }
 
-static void	*free_mem(char **allocated_mem, size_t cnt)
+static void		*free_mem(char **allocated_mem, size_t cnt)
 {
 	size_t i;
 
@@ -62,7 +62,7 @@ static void	*free_mem(char **allocated_mem, size_t cnt)
 	return (0);
 }
 
-static void	do_split(char const *s, char c, char **str)
+static void		do_split(char const *s, char c, char **str)
 {
 	size_t i;
 	size_t j;
@@ -80,7 +80,7 @@ static void	do_split(char const *s, char c, char **str)
 			if ((str[j] = malloc(i - start + 1)) == 0)
 			{
 				free_mem(str, j);
-				return;
+				return ;
 			}
 			ft_strcpy(str[j], s, start, i);
 			j++;
@@ -90,10 +90,10 @@ static void	do_split(char const *s, char c, char **str)
 	}
 }
 
-char		**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
-	char **str;
-	size_t n;
+	char	**str;
+	size_t	n;
 
 	if (s == 0)
 		return (0);

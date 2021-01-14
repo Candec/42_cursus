@@ -6,17 +6,18 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:54:48 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:59:25 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 12:44:31 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_isprint(int c)
 {
-	unsigned char ch;
+	// unsigned char ch;
 
-	ch = c;
-	if (ch >= 32 && ch <= 126)
-		return (1);
-	return(0);
+	// ch = c;
+	// if (ch >= 32 && ch <= 126)
+	// 	return (1);
+	return ((c >= 32 && c <= 126));
 }

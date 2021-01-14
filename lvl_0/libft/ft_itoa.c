@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:59:31 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:55:07 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int	ft_absolute_value(int nbr)
 {
 	if (nbr < 0)

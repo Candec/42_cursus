@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:12:47 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:00:06 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:55:31 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_lstsize(t_list *lst)
 {
 	int a;

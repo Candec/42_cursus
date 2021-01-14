@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:31:44 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:58:52 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:54:49 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static int	ft_isspace(char a)
 {
 	if ((a >= 9 && a <= 13) || a == 32)

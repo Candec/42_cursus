@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:27:24 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:02:28 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:56:28 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t i;

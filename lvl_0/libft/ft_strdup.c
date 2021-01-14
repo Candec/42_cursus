@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 17:14:30 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:00:56 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:56:10 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_strdup(char *src)
 {
 	int		i;

@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 17:42:48 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:02:21 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:56:23 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 size_t	ft_strlen(const char *s)
 {
 	size_t i;

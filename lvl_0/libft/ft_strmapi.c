@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 00:42:59 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:02:25 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:56:25 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*out;

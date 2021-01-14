@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:04:24 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 10:59:56 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:55:22 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 t_list	*ft_lstlast(t_list *lst)
 {
 	while (lst != NULL && lst->next != NULL)

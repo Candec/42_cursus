@@ -6,11 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 17:57:08 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:01:00 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/01/13 10:56:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		size;
