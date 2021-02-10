@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:40:58 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:54:55 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:03:33 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void *m;
+	void	*m;
 
 	m = malloc(size * nmemb);
 	if (m == 0)

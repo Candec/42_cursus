@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:55:07 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:06:15 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	ft_absolute_value(int nbr)
 
 static int	ft_digitcount(int n)
 {
-	int		a;
-	int		i;
+	int	a;
+	int	i;
 
 	a = n;
 	i = 0;
@@ -34,7 +34,7 @@ static int	ft_digitcount(int n)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		a;

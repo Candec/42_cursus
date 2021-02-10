@@ -6,16 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:55:53 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 12:42:59 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:04:55 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	//unsigned char ch;
-
-	//ch = c;
-	// if (ch >= '0' && ch <= '9')
-	// 	return (1);
 	return ((c >= '0' && c <= '9'));
 }

@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 17:46:57 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:55:44 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:09:33 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char *s;
-	unsigned char *d;
+	unsigned char	*s;
+	unsigned char	*d;
 
 	s = (unsigned char *)src;
 	d = (unsigned char *)dest;

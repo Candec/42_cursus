@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:00:00 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 11:00:28 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:12:19 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static size_t	get_num(const char *str, char c)
 {
-	size_t i;
-	size_t num;
+	size_t	i;
+	size_t	num;
 
 	i = 0;
 	num = 0;
@@ -33,9 +33,9 @@ static size_t	get_num(const char *str, char c)
 	return (num);
 }
 
-static char		*ft_strcpy(char *dest, char const *src, int start, int last)
+static char	*ft_strcpy(char *dest, char const *src, int start, int last)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (start < last)
@@ -48,9 +48,9 @@ static char		*ft_strcpy(char *dest, char const *src, int start, int last)
 	return (dest);
 }
 
-static void		*free_mem(char **allocated_mem, size_t cnt)
+static void	*free_mem(char **allocated_mem, size_t cnt)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < cnt)
@@ -62,11 +62,11 @@ static void		*free_mem(char **allocated_mem, size_t cnt)
 	return (0);
 }
 
-static void		do_split(char const *s, char c, char **str)
+static void	do_split(char const *s, char c, char **str)
 {
-	size_t i;
-	size_t j;
-	size_t start;
+	size_t	i;
+	size_t	j;
+	size_t	start;
 
 	i = 0;
 	j = 0;
@@ -77,7 +77,8 @@ static void		do_split(char const *s, char c, char **str)
 			start = i;
 			while (s[i] != c && s[i] != 0)
 				i++;
-			if ((str[j] = malloc(i - start + 1)) == 0)
+			str[j] = malloc(i - start + 1);
+			if (str[j] == 0)
 			{
 				free_mem(str, j);
 				return ;
@@ -90,7 +91,7 @@ static void		do_split(char const *s, char c, char **str)
 	}
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**str;
 	size_t	n;

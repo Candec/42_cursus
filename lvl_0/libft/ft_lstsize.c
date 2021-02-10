@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 18:12:47 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:55:31 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:09:05 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	while (lst != NULL)

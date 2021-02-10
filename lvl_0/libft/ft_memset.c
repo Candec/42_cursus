@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 11:56:09 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:58:56 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:10:48 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char *str;
+	unsigned char	*str;
 
 	if (n == 0)
 		return (s);

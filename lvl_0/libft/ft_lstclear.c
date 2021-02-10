@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:57:11 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:55:14 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:06:42 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	if (!del || !lst || !*lst)
 		return ;

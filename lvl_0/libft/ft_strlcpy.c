@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 18:18:29 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:56:19 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:12:40 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size && src[i] != '\0')

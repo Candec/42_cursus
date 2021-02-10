@@ -6,13 +6,13 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 16:24:07 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/12 11:02:44 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/10 20:14:32 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
-	unsigned char ch;
+	unsigned char	ch;
 
 	ch = c;
 	if (ch >= 'A' && ch <= 'Z')
