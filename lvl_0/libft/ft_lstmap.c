@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 17:43:37 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/10 20:08:45 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/20 19:43:27 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *))
 	t_list	*new;
 	t_list	*first;
 
+	first = 0;
 	if (!f || !d)
 		return (NULL);
 	while (l)
