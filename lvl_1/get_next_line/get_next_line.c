@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/28 20:56:39 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/21 20:07:46 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *str)
 	char	*new;
 	ssize_t	i;
 
-	new = ft_strnew(ft_strlen(str));
+	new = malloc(ft_strlen(str));
 	if (new == NULL)
 		return (NULL);
 	i = -1;
@@ -28,13 +28,20 @@ char	*ft_strdup(const char *str)
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (s[i] != (char)c)
-		if (!s[i++])
-			return (NULL);
-	return ((char *)&s[i]);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char*)(s + i));
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char*)(s + i));
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -44,7 +51,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*b;
 
 	size = ft_strlen(s1) + ft_strlen(s2) - 1;
-	a = malloc(size);
+	a = malloc(size * sizeof(char *));
 	b = a;
 	while (*(s1) != '\0')
 	{
@@ -83,31 +90,30 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	ssize_t		r;
-	char		bf[BUFFER_SIZE + (r = 1)];
-	static char	*c_line = NULL;
+	char		bf[BUFFER_SIZE];
+	static char	*r_line;
 	char		*tmp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	c_line == NULL ? c_line = ft_strnew(0) : NULL;
-	while (!ft_strchr(c_line, '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
+	if (r_line == NULL)
+		r_line = malloc(0);
+	while (!ft_strchr(r_line, '\n'))
 	{
+		r = read(fd, bf, BUFFER_SIZE);
+		if (r <= 0)
+			break ;
 		bf[r] = '\0';
-		tmp = ft_strjoin(c_line, bf);
-		ft_memdel((void **)&c_line);
-		c_line = tmp;
+		r_line = ft_strjoin(r_line, bf);
 	}
 	if (r == 0)
-		*line = ft_strdup(c_line);
-	else if (r > 0)
-		*line = ft_substr(c_line, 0, (ft_strchr(c_line, '\n') - c_line));
-	else
+		return (0);
+	else if (r < 0)
 		return (-1);
-	tmp = ft_strdup(c_line + (ft_strlen(*line) + ((r > 0) ? +1 : +0)));
-	ft_memdel((void **)&c_line);
-	c_line = tmp;
-	return (r == 0 ? 0 * ft_memdel((void **)&c_line) : 1);
+	*line = ft_substr(r_line, 0, (ft_strchr(r_line, '\n') - r_line));
+	r_line = ft_strdup(r_line + (ft_strlen(*line) + 1));
+	return (1);
 }

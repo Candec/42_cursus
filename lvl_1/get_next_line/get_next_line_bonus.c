@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/28 20:56:25 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/21 19:29:08 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strdup(const char *str)
 	char	*new;
 	ssize_t	i;
 
-	new = ft_strnew(ft_strlen(str));
+	new = malloc(ft_strlen(str));
 	if (new == NULL)
 		return (NULL);
 	i = -1;
@@ -28,13 +28,20 @@ char	*ft_strdup(const char *str)
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
+	if (!s)
+		return (NULL);
 	i = 0;
-	while (s[i] != (char)c)
-		if (!s[i++])
-			return (NULL);
-	return ((char *)&s[i]);
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char*)(s + i));
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char*)(s + i));
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -44,7 +51,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*b;
 
 	size = ft_strlen(s1) + ft_strlen(s2) - 1;
-	a = malloc(size);
+	a = malloc(size * sizeof(char *));
 	b = a;
 	while (*(s1) != '\0')
 	{
@@ -67,12 +74,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	char	*str;
 
+	i = 0;
 	if (!s || (long int)len < 0)
 		return (NULL);
 	str = (char *)malloc(len + 1);
 	if (str == NULL)
 		return (NULL);
-	i = 0;
 	while (start < ft_strlen(s) && i < len)
 	{
 		str[i] = s[start];
@@ -83,31 +90,30 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	ssize_t		r;
-	char		bf[BUFFER_SIZE + (r = 1)];
-	static char	*sline[FD_SIZE];
+	char		bf[BUFFER_SIZE];
+	static char	*ax[FDS];
 	char		*tmp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	sline[fd] == NULL ? sline[fd] = ft_strnew(0) : NULL;
-	while (!ft_strchr(sline[fd], '\n') && (r = read(fd, bf, BUFFER_SIZE)) > 0)
+	if (ax[FDS] == NULL)
+		ax[FDS] = malloc(0);
+	while (!ft_strchr(ax[FDS], '\n'))
 	{
+		r = read(fd, bf, BUFFER_SIZE);
+		if (r <= 0)
+			break ;
 		bf[r] = '\0';
-		tmp = ft_strjoin(sline[fd], bf);
-		ft_memdel((void **)&sline[fd]);
-		sline[fd] = tmp;
+		ax[FDS] = ft_strjoin(ax[FDS], bf);
 	}
 	if (r == 0)
-		*line = ft_strdup(sline[fd]);
-	else if (r > 0)
-		*line = ft_substr(sline[fd], 0, (ft_strchr(sline[fd], '\n') - sline[fd]));
-	else
+		return (0);
+	else if (r < 0)
 		return (-1);
-	tmp = ft_strdup(sline[fd] + (ft_strlen(*line) + ((r > 0) ? +1 : +0)));
-	ft_memdel((void **)&sline[fd]);
-	sline[fd] = tmp;
-	return (r == 0 ? 0 * ft_memdel((void **)&sline[fd]) : 1);
+	*line = ft_substr(ax[FDS], 0, (ft_strchr(ax[FDS], '\n') - ax[FDS]));
+	ax[FDS] = ft_strdup(ax[FDS] + (ft_strlen(*line) + 1));
+	return (1);
 }
