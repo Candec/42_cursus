@@ -6,7 +6,7 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/01/12 11:03:03 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/02/24 15:28:11 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ BONUS_OBJ = $(BONUS:.c=.o)
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
