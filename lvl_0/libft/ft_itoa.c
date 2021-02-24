@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/24 14:17:45 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/24 16:50:31 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,29 @@ static int	ft_digitcount(int n)
 	return (i);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		a;
 
-	a = ft_digitcount(n) + 1;
 	if (n < 0)
 	{
-		str = malloc(a + 2);
+		if (n == -2147483648)
+			return (ft_strdup("-2147483648"));
+		str = malloc(ft_digitcount(n) + 2);
 		str[0] = '-';
 	}
 	else if (n == 0)
 	{
-		str = ft_calloc(1, 2);
+		str = calloc(1, ft_digitcount(n) + 1);
+		str[0] = '0';
 	}
 	else
-	{
-		str = malloc(a + 1);
-		a -= 1;
-	}
+		str = malloc(ft_digitcount(n) + 2);
 	while (n != 0)
 	{
-		a--;
-		str[a] = ft_absolute_value(n % 10) + '0';
+		a = ft_digitcount(n);
+		str[--a] = ft_absolute_value(n % 10) + '0';
 		n = n / 10;
 	}
 	return (str);
