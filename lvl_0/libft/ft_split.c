@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 17:00:00 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/10 20:12:19 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:04:23 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static size_t	get_num(const char *str, char c)
 	return (num);
 }
 
-static char	*ft_strcpy(char *dest, char const *src, int start, int last)
+static char		*ft_strcpy(char *dest, char const *src, int start, int last)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ static char	*ft_strcpy(char *dest, char const *src, int start, int last)
 	return (dest);
 }
 
-static void	*free_mem(char **allocated_mem, size_t cnt)
+static void		*free_mem(char **allocated_mem, size_t cnt)
 {
 	size_t	i;
 
@@ -62,7 +62,7 @@ static void	*free_mem(char **allocated_mem, size_t cnt)
 	return (0);
 }
 
-static void	do_split(char const *s, char c, char **str)
+static void		do_split(char const *s, char c, char **str)
 {
 	size_t	i;
 	size_t	j;
@@ -91,7 +91,7 @@ static void	do_split(char const *s, char c, char **str)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**str;
 	size_t	n;

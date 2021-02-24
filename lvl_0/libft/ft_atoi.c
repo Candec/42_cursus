@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:31:44 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/10 20:00:44 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:03:28 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_isspace(char a)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int			ft_atoi(const char *str)
 {
 	long long int	i;
 	long long int	result;

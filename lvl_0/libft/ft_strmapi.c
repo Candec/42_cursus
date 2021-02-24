@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 00:42:59 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:56:25 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:38:16 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		out = malloc((ft_strlen(s)) + 1);
 		if (!out)
 			return (NULL);
-		while (s[i] != 0)
+		while (s[i] != '\0')
 		{
 			out[i] = f(i, s[i]);
 			i++;
 		}
+		out[i] = '\0';
 		return (out);
 	}
 	return (NULL);
