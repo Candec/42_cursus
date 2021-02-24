@@ -6,24 +6,28 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/21 20:07:46 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/02/24 16:05:02 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *src)
 {
-	char	*new;
-	ssize_t	i;
+	int		i;
+	char	*dest;
 
-	new = malloc(ft_strlen(str));
-	if (new == NULL)
-		return (NULL);
-	i = -1;
-	while (str[++i])
-		new[i] = str[i];
-	return (new);
+	i = 0;
+	dest = malloc(ft_strlen(src) * sizeof(*dest));
+	if (dest == '\0')
+		return (0);
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -47,55 +51,52 @@ char	*ft_strchr(const char *s, int c)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		size;
-	char	*a;
-	char	*b;
+	char	*str;
 
-	size = ft_strlen(s1) + ft_strlen(s2) - 1;
-	a = malloc(size * sizeof(char *));
-	b = a;
-	while (*(s1) != '\0')
-	{
-		*a = *s1;
-		a++;
-		s1++;
-	}
-	while (*(s2) != '\0')
-	{
-		*a = *s2;
-		a++;
-		s2++;
-	}
-	a = '\0';
-	return (b);
+	if (!s1 || !s2)
+		return (0);
+	size = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = malloc(size);
+	if (!str)
+		return (0);
+	ft_strlcpy(str, s1, size);
+	ft_strlcat(str, s2, size);
+	return (str);
 }
+
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	size;
 	char	*str;
 
 	i = 0;
-	if (!s || (long int)len < 0)
-		return (NULL);
-	str = (char *)malloc(len + 1);
-	if (str == NULL)
-		return (NULL);
-	while (start < ft_strlen(s) && i < len)
+	if (!s)
+		return (0);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	str = malloc(len + 1);
+	if (!str)
+		return (0);
+	while (i < len)
 	{
-		str[i] = s[start];
+		str[i] = s[start + i];
 		i++;
-		start++;
 	}
 	str[i] = '\0';
 	return (str);
 }
+
 
 int	get_next_line(int fd, char **line)
 {
 	ssize_t		r;
 	char		bf[BUFFER_SIZE];
 	static char	*r_line;
-	char		*tmp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
@@ -104,16 +105,17 @@ int	get_next_line(int fd, char **line)
 	while (!ft_strchr(r_line, '\n'))
 	{
 		r = read(fd, bf, BUFFER_SIZE);
-		if (r <= 0)
-			break ;
 		bf[r] = '\0';
 		r_line = ft_strjoin(r_line, bf);
+		if (r == 0)
+		{
+			*line = r_line;
+			return (0);
+		}
 	}
-	if (r == 0)
-		return (0);
-	else if (r < 0)
-		return (-1);
 	*line = ft_substr(r_line, 0, (ft_strchr(r_line, '\n') - r_line));
+	if (r < 0)
+		return (-1);
 	r_line = ft_strdup(r_line + (ft_strlen(*line) + 1));
 	return (1);
 }
