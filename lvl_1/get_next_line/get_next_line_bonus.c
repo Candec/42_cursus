@@ -6,24 +6,31 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/21 19:29:08 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/09 10:54:04 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strdup(const char *s1)
 {
-	char	*new;
-	ssize_t	i;
+	char	*s2;
+	size_t	i;
 
-	new = malloc(ft_strlen(str));
-	if (new == NULL)
+	i = 0;
+	while (s1[i])
+		i++;
+	s2 = malloc(sizeof(char) * (i + 1));
+	if (!s2)
 		return (NULL);
-	i = -1;
-	while (str[++i])
-		new[i] = str[i];
-	return (new);
+	i = 0;
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -46,45 +53,52 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		size;
-	char	*a;
-	char	*b;
+	char	*ptr;
+	int		i;
+	int		j;
 
-	size = ft_strlen(s1) + ft_strlen(s2) - 1;
-	a = malloc(size * sizeof(char *));
-	b = a;
-	while (*(s1) != '\0')
+	i = 0;
+	j = 0;
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (s1 == NULL || s2 == NULL || !ptr)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		*a = *s1;
-		a++;
-		s1++;
+		ptr[i] = s1[i];
+		i++;
 	}
-	while (*(s2) != '\0')
+	while (s2[j] != '\0')
 	{
-		*a = *s2;
-		a++;
-		s2++;
+		ptr[i] = s2[j];
+		i++;
+		j++;
 	}
-	a = '\0';
-	return (b);
+	ptr[i] = '\0';
+	free((char *)s1);
+	return (ptr);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
+	size_t	size;
 	char	*str;
 
 	i = 0;
-	if (!s || (long int)len < 0)
-		return (NULL);
-	str = (char *)malloc(len + 1);
-	if (str == NULL)
-		return (NULL);
-	while (start < ft_strlen(s) && i < len)
+	if (!s)
+		return (0);
+	if (ft_strlen(s) < start)
+		return (ft_strdup(""));
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
+	str = malloc(len + 1);
+	if (!str)
+		return (0);
+	while (i < len)
 	{
-		str[i] = s[start];
+		str[i] = s[start + i];
 		i++;
-		start++;
 	}
 	str[i] = '\0';
 	return (str);
@@ -94,26 +108,27 @@ int	get_next_line(int fd, char **line)
 {
 	ssize_t		r;
 	char		bf[BUFFER_SIZE];
-	static char	*ax[FDS];
-	char		*tmp;
+	static char	*lin[FDS];
+	char		*temp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (ax[FDS] == NULL)
-		ax[FDS] = malloc(0);
-	while (!ft_strchr(ax[FDS], '\n'))
+	lin[FDS] == NULL ? lin[FDS] = ft_calloc(1, 1) : NULL;
+	r = 0;
+	while (!ft_strchr(lin[FDS], '\n'))
 	{
 		r = read(fd, bf, BUFFER_SIZE);
-		if (r <= 0)
-			break ;
+		if (r < 0)
+			return (-1);
 		bf[r] = '\0';
-		ax[FDS] = ft_strjoin(ax[FDS], bf);
+		lin[FDS] = ft_strjoin(lin[FDS], bf);
+		*line = lin[FDS];
+		if (r == 0)
+			return (0);
 	}
-	if (r == 0)
-		return (0);
-	else if (r < 0)
-		return (-1);
-	*line = ft_substr(ax[FDS], 0, (ft_strchr(ax[FDS], '\n') - ax[FDS]));
-	ax[FDS] = ft_strdup(ax[FDS] + (ft_strlen(*line) + 1));
+	*line = ft_substr(lin[FDS], 0, (ft_strchr(lin[FDS], '\n') - lin[FDS]));
+	temp = lin[FDS];
+	lin[FDS] = ft_strdup(temp + (ft_strlen(*line) + 1));
+	free(temp);
 	return (1);
 }

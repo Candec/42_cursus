@@ -6,12 +6,12 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/21 19:28:15 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/09 10:54:56 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -34,5 +34,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 void	*ft_memset(void *b, int c, size_t len);
+void	*ft_calloc(size_t nmemb, size_t size);
+
+
+
 
 #endif

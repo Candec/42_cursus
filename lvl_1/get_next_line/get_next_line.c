@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/04 20:08:06 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/04 20:46:42 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	while (s1[i])
 		i++;
-	if (!(s2 = (char *)malloc(sizeof(char) * (i + 1))))
+	s2 = malloc(sizeof(char) * (i + 1));
+	if (!s2)
 		return (NULL);
 	i = 0;
 	while (s1[i])
@@ -58,8 +59,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (s1 == NULL || s2 == NULL || !(ptr = (char *)malloc(ft_strlen(s1)
-		+ ft_strlen(s2) + 1)))
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (s1 == NULL || s2 == NULL || !ptr)
 		return (NULL);
 	while (s1[i] != '\0')
 	{
@@ -112,23 +113,20 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (r_line == NULL)
-		r_line = ft_calloc(1, 1);
+	r_line == NULL ? r_line = ft_calloc(1, 1) : NULL;
 	r = 0;
 	while (!ft_strchr(r_line, '\n'))
 	{
 		r = read(fd, bf, BUFFER_SIZE);
+		if (r < 0)
+			return (-1);
 		bf[r] = '\0';
 		r_line = ft_strjoin(r_line, bf);
+		*line = r_line;
 		if (r == 0)
-		{
-			*line = r_line;
 			return (0);
-		}
 	}
 	*line = ft_substr(r_line, 0, (ft_strchr(r_line, '\n') - r_line));
-	if (r < 0)
-		return (-1);
 	temp = r_line;
 	r_line = ft_strdup(temp + (ft_strlen(*line) + 1));
 	free(temp);
