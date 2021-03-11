@@ -6,13 +6,13 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/24 16:50:31 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/11 15:25:25 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_absolute_value(int nbr)
+static int	ft_abs(int nbr)
 {
 	if (nbr < 0)
 		return (-nbr);
@@ -36,30 +36,27 @@ static int	ft_digitcount(int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char	*str;
-	int		a;
+	size_t	size_nbr;
 
-	if (n < 0)
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	size_nbr = ft_digitcount(n);
+	if (!(str = malloc((size_nbr + 1) * sizeof(char))))
+		return (0);
+	str += size_nbr;
+	*str-- = '\0';
+	while (size_nbr--)
 	{
-		if (n == -2147483648)
-			return (ft_strdup("-2147483648"));
-		str = malloc(ft_digitcount(n) + 2);
-		str[0] = '-';
+		*str-- = ft_abs(n) % 10 + '0';
+		if (-10 < n && n < 0)
+		{
+			*str-- = '-';
+			break ;
+		}
+		n /= 10;
 	}
-	else if (n == 0)
-	{
-		str = calloc(1, ft_digitcount(n) + 1);
-		str[0] = '0';
-	}
-	else
-		str = malloc(ft_digitcount(n) + 2);
-	while (n != 0)
-	{
-		a = ft_digitcount(n);
-		str[--a] = ft_absolute_value(n % 10) + '0';
-		n = n / 10;
-	}
-	return (str);
+	return (++str);
 }
