@@ -6,57 +6,52 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/11 15:25:25 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:51:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_abs(int nbr)
+static char	*ft_strreve(char *s)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
-}
+	int		i;
+	int		len;
+	char	tmp;
 
-static int	ft_digitcount(int n)
-{
-	int	a;
-	int	i;
-
-	a = n;
 	i = 0;
-	if (a == 0)
-		i++;
-	while (a != 0)
+	len = ft_strlen(s);
+	while (i < len / 2)
 	{
-		a = a / 10;
+		tmp = s[i];
+		s[i] = s[len - i - 1];
+		s[len - i - 1] = tmp;
 		i++;
 	}
-	return (i);
+	return (s);
 }
 
 char		*ft_itoa(int n)
 {
-	char	*str;
-	size_t	size_nbr;
+	char	arr[12];
+	int		i;
+	int		sign;
 
+	ft_memset(arr, 0, 12);
+	i = 0;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	size_nbr = ft_digitcount(n);
-	if (!(str = malloc((size_nbr + 1) * sizeof(char))))
-		return (0);
-	str += size_nbr;
-	*str-- = '\0';
-	while (size_nbr--)
+	else if (n == 0)
+		return (ft_strdup("0"));
+	sign = (n < 0) ? -1 : 1;
+	n = (n < 0) ? -n : n;
+	while (n > 0)
 	{
-		*str-- = ft_abs(n) % 10 + '0';
-		if (-10 < n && n < 0)
-		{
-			*str-- = '-';
-			break ;
-		}
+		arr[i] = (n % 10) + '0';
 		n /= 10;
+		i++;
 	}
-	return (++str);
+	if (sign < 0)
+		arr[i] = '-';
+	ft_strreve(arr);
+	return (ft_strdup(arr));
 }
