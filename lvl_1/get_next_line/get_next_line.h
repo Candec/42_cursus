@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/04 20:08:16 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/11 14:19:00 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_calloc(size_t nmemb, size_t size);
-
-
-
+void	store(char **content, char *bf);
+int		save_line(char **content, char **line);
 
 #endif
