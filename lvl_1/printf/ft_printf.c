@@ -14,7 +14,17 @@
 
 void	ft_collect_flags(t_storage *obj)
 {
-
+	if (obj->str[obj->i] == '#')
+		return (obj->flags.hash= true);
+	else if (obj->str[obj->i] == '0')
+		return (obj->flags.zero = true);
+	else if (obj->str[obj->i] == ' ')
+		return (obj->flags.plus = true);
+	else if (obj->str[obj->i] == '-')
+		return (obj->flags.minus = true);
+	else if (obj->str[obj->i] == '+')
+		return (obj->flags.plus = true);
+	return(-1);
 }
 
 void	ft_initialized_flags_and_tags(t_storage *obj)
@@ -56,7 +66,6 @@ void	ft_start_printf(va_list args, const char *fmt)
 		write(1, &obj.str[obj.i], 1);
 		obj.i++;
 	}
-
 }
 
 int		ft_printf(const char *fmt, ...)
