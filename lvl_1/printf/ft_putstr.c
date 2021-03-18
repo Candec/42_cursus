@@ -6,11 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 17:02:24 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/16 15:42:05 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:29:47 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "printf.h"
 
 void	ft_putstr(char const *s)
 {
