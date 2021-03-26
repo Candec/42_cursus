@@ -77,9 +77,11 @@ void		ft_start_printf(va_list args, const char *fmt);
 void		ft_initialized_vars(t_storage *obj);
 void		ft_parse(t_storage *obj);
 void		ft_initialized_flags_and_tags(t_storage *obj);
-void		ft_collect_flags(t_storage *obj);
-
-
+int			ft_collect_flags(t_storage *obj);
+void		ft_collect_width(t_storage *obj);
+void		ft_collect_precision(t_storage *obj);
+void		ft_collect_length(t_storage *obj);
+void		ft_collect_type_of_field(t_storage *obj);
 
 
 
@@ -88,6 +90,29 @@ void		ft_collect_flags(t_storage *obj);
 ** Other Prototypes
 */
 size_t		ft_strlen(const char *s);
-void	ft_bzero(void *s, size_t n);
+void		ft_bzero(void *s, size_t n);
+int			ft_isdigit(int c);
+int			ft_atoi(const char *str);
+
+/*
+** Dispatch table
+*/
+typedef void	t_ft_print_functions(t_storage *obj);
+
+static	t_ft_print_functions *g_ft_dispatch_table[] =
+{
+	collect_c,
+	collect_s,
+	collect_p,
+	collect_d,
+	collect_d,
+	collect_o,
+	collect_u,
+	collect_x,
+	collect_x,
+	collect_f,
+	collect_b,
+	collect_percent
+};
 
 #endif
