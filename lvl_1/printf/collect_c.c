@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   collect_c.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 11:27:31 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/12 11:27:31 by jibanez-         ###   ########.fr       */
+/*   Created: 2021/03/27 19:12:35 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/03/27 19:12:35 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(const char c)
+void	collect_c(t_storage *obj)
 {
-	write(1, &c, 1);
-	return ;
+	int j;
+	int c;
+
+	c = va_arg(obj->arguments, int);
+	ft_putchar(c);
 }

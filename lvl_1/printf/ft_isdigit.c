@@ -6,9 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:55:53 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/10 20:04:55 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/03/27 20:22:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	ft_isdigit(int c)
 {

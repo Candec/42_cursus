@@ -83,9 +83,6 @@ void		ft_collect_precision(t_storage *obj);
 void		ft_collect_length(t_storage *obj);
 void		ft_collect_type_of_field(t_storage *obj);
 
-
-
-
 /*
 ** Other Prototypes
 */
@@ -93,6 +90,14 @@ size_t		ft_strlen(const char *s);
 void		ft_bzero(void *s, size_t n);
 int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
+void		ft_putstr(char const *s);
+void		ft_putchar(const char c);
+
+/*
+** c Prototypes
+*/
+void	collect_c(t_storage *obj);
+
 
 /*
 ** Dispatch table
@@ -102,17 +107,19 @@ typedef void	t_ft_print_functions(t_storage *obj);
 static	t_ft_print_functions *g_ft_dispatch_table[] =
 {
 	collect_c,
-	collect_s,
-	collect_p,
-	collect_d,
-	collect_d,
-	collect_o,
-	collect_u,
-	collect_x,
-	collect_x,
-	collect_f,
-	collect_b,
-	collect_percent
+	// collect_s,
+	// collect_p,
+	// collect_d,
+	// collect_d,
+	// collect_o,
+	// collect_u,
+	// collect_x,
+	// collect_x,
+	// collect_f,
+	// collect_b,
+	// collect_percent
 };
+
+
 
 #endif

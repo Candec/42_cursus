@@ -3,10 +3,11 @@
 int main()
 {
 	char test[] = "test";
+	char t = 't';
 	printf("Test 1 - Strings\n");
 	printf("Function:\n");
 
-	ft_printf("Esto es un %s\n", test);
+	ft_printf("Esto es un %c\n", t);
 	printf("Expected: ");
 	printf("Esto es un %s\n", test);
 
