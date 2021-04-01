@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collect_c.c                                        :+:      :+:    :+:   */
+/*   ft_append_to_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/27 19:12:35 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/27 19:12:35 by jibanez-         ###   ########.fr       */
+/*   Created: 2021/03/31 17:17:21 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/03/31 17:17:21 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	collect_c(t_storage *obj)
+void	append_to_final(t_storage *obj, char *source)
 {
-	int	c;
 	int	i;
 
-	c = va_arg(obj->arguments, int);
 	i = 0;
-	if (obj->width_field > 0)
-		i = obj->width_field - 1;
-	if (obj->flags.minus == false)
-	{
-		if (obj->flags.zero == true)
-			append_loop(obj, "0", i);
-		else if (obj->flags.zero == false)
-			append_loop(obj, " ", i);
-		obj->f_string[obj->f_string_i++] = c;
-	}
-	else if (obj->flags.minus == true)
-	{
-		obj->f_string[obj->f_string_i++] = c;
-		append_loop(obj, " ", i);
-	}
+	if (source)
+		while (source[i])
+			obj->f_string[obj->f_string_i++] = source[i];
+	obj->f_string[obj->f_string_i] = '\0';
+}
+
+void	append_loop(t_storage *obj, char *source, int i)
+{
+	if (source[1] != '\0')
+		while (i--)
+			append_to_final(obj, source);
+	else if (source[1] == '\0')
+		while (i--)
+			obj->f_string[obj->f_string_i++] = source[0];
 }

@@ -57,6 +57,8 @@ typedef struct	s_length
 typedef struct	s_storage
 {
 	const char	*str;
+	char		*f_string;
+	int			f_string_i;
 	t_flag		flags;
 	t_variables	vars;
 	t_length	len;
@@ -82,6 +84,8 @@ void		ft_collect_width(t_storage *obj);
 void		ft_collect_precision(t_storage *obj);
 void		ft_collect_length(t_storage *obj);
 void		ft_collect_type_of_field(t_storage *obj);
+void		append_loop(t_storage *obj, char *source, int i);
+void		append_to_final(t_storage *obj, char *source);
 
 /*
 ** Other Prototypes
