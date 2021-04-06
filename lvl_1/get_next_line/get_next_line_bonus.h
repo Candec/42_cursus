@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 10:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/11 14:21:26 by jibanez-         ###   ########.fr       */
+/*   Created: 2021/04/06 12:24:26 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/04/06 12:24:36 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 void	store(char **content, char *bf);
 int		save_line(char **content, char **line);
+void	final_line(char **content, char **line);
 
 #endif

@@ -6,13 +6,22 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/11 14:18:41 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/04/06 12:17:11 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+void	final_line(char **content, char **line)
+{
+	int	i;
 
-int		save_line(char **content, char **line)
+	i = 0;
+	*line = ft_strdup(content[i]);
+	free(content[i]);
+	content[i] = 0;
+}
+
+int	save_line(char **content, char **line)
 {
 	char	*tmp;
 	int		i;
@@ -34,7 +43,7 @@ int		save_line(char **content, char **line)
 
 void	store(char **content, char *bf)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = 0;
 	if (!(*content))
@@ -47,7 +56,7 @@ void	store(char **content, char *bf)
 	}
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*content[100];
 	ssize_t		r;
@@ -57,21 +66,20 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	if (content[fd] && save_line(&content[fd], line))
 		return (1);
-	while ((r = read(fd, bf, BUFFER_SIZE)) > 0)
+	r = read(fd, bf, BUFFER_SIZE);
+	while (r > 0)
 	{
 		bf[r] = '\0';
 		store(&content[fd], bf);
 		if (save_line(&content[fd], line))
 			return (1);
+		r = read(fd, bf, BUFFER_SIZE);
 	}
 	if (content[fd] && !ft_strchr(content[fd], '\n'))
 	{
-		*line = ft_strdup(content[fd]);
-		free(content[fd]);
-		content[fd] = 0;
+		final_line(&content[fd], line);
 		return (0);
 	}
-	if ((r = read(fd, bf, BUFFER_SIZE)) == 0 && !(content[fd]))
-		*line = ft_strdup("");
+	*line = ft_strdup("");
 	return (0);
 }
