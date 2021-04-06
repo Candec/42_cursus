@@ -175,13 +175,17 @@ void	ft_start_printf(va_list args, const char *fmt)
 {
 	t_storage	obj;
 
-	obj.str = fmt;
 	ft_initialized_vars(&obj);
-	while (obj.str[obj.i] != '\0')
+	va_copy(obj.arguments, args);
+	obj.str = fmt;
+	while (obj.str[obj.i])
 	{
 		if (obj.str[obj.i] == '%')
 		{
 			ft_parse(&obj);
+			// if (obj.str[obj.i] == '\0')
+			// {
+			// }
 		}
 		write(1, &obj.str[obj.i], 1);
 		obj.i++;

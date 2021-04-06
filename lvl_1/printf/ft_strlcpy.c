@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 16:44:19 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/06 19:27:30 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/11/28 18:18:29 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/04/06 19:28:22 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+#include "ft_printf.h"
+
+size_t		ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int i;
+	char		*d;
+	const char	*s;
+	size_t		n;
 
-	i = 0;
-	while (i < n && src[i] != '\0')
+	d = dst;
+	s = src;
+	n = size;
+	if (n != 0)
 	{
-		dest[i] = src[i];
-		i++;
+		while (--n != 0)
+		{
+			if ((*d++ = *s++) == '\0')
+				break ;
+		}
 	}
-	dest[i] = 0;
-
-	return (dest);
+	if (n == 0)
+	{
+		if (size != 0)
+			*d = '\0';
+		while (*s++)
+			;
+	}
+	return (s - src - 1);
 }

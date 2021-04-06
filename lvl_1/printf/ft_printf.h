@@ -24,7 +24,11 @@
 # include <stdbool.h>
 # include <limits.h>
 
+/*
+** Macros
+*/
 # define FT_MEMORY 1048576
+# define FT_DECIMAL 10
 
 /*
 ** Flags
@@ -107,14 +111,18 @@ int			ft_abs(int n);
 char		*ft_strncpy(char *dest, char *src, unsigned int n);
 char		*ft_strcpy(char *dest, char *src);
 int			ft_pad(int precision_or_width, int string_length);
+void		*ft_memset(void *s, int c, size_t n);
+char		*ft_itoa(int n);
+void		*ft_calloc(size_t nmemb, size_t size);
+char		*ft_strdup(const char *src);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
 /*
 ** c Prototypes
 */
 void	collect_c(t_storage *obj);
 void	collect_s(t_storage *obj);
-
-
+void	collect_d(t_storage *obj);
 
 /*
 ** Dispatch table
@@ -126,8 +134,8 @@ static	t_ft_print_functions *g_ft_dispatch_table[] =
 	collect_c,
 	collect_s,
 	// collect_p,
-	// collect_d,
-	// collect_d,
+	collect_d,
+	collect_d,
 	// collect_o,
 	// collect_u,
 	// collect_x,

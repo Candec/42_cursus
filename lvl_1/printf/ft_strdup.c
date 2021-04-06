@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 16:44:19 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/06 19:27:30 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 17:14:30 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/04/06 19:25:38 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+#include "ft_printf.h"
+
+char	*ft_strdup(const char *src)
 {
-	unsigned int i;
+	int		size;
+	char	*dest;
 
-	i = 0;
-	while (i < n && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = 0;
-
+	size = ft_strlen(src);
+	dest = malloc(size * sizeof(char) + 1);
+	if (dest == '\0')
+		return (0);
+	ft_strlcpy(dest, src, size + 1);
 	return (dest);
 }

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 16:44:19 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/06 19:27:30 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 16:40:58 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/04/06 19:24:32 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+#include "ft_printf.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	unsigned int i;
+	void	*m;
 
-	i = 0;
-	while (i < n && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = 0;
-
-	return (dest);
+	m = malloc(size * nmemb);
+	if (m == 0)
+		return (0);
+	ft_bzero(m, size * nmemb);
+	return (m);
 }
