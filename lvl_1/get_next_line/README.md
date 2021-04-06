@@ -25,7 +25,8 @@ When you want to do input or output to a file, you have a choice of two basic me
 
 File descriptors (the ones we are using) are a positive integer handle used to identify an opened file at a very low level (kernel level). These are used for functions such as `read()` or `write()`. The intigers are positive as negative values are kept for error handling.
 ### 2. The Open and Read Functions
-#### 1. Open
+#### a. Open
+#### b. Open
 ### 3. Static Variables
 ### 4. Buffer Size
 ### 5. Memory Management
