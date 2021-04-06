@@ -24,6 +24,8 @@
 # include <stdbool.h>
 # include <limits.h>
 
+# define FT_MEMORY 1048576
+
 /*
 ** Flags
 */
@@ -84,8 +86,13 @@ void		ft_collect_width(t_storage *obj);
 void		ft_collect_precision(t_storage *obj);
 void		ft_collect_length(t_storage *obj);
 void		ft_collect_type_of_field(t_storage *obj);
+
+/*
+** Append Prototypes
+*/
 void		append_loop(t_storage *obj, char *source, int i);
 void		append_to_final(t_storage *obj, char *source);
+void		str_append_fstr(t_storage *obj, char *str, int i);
 
 /*
 ** Other Prototypes
@@ -96,11 +103,17 @@ int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
 void		ft_putstr(char const *s);
 void		ft_putchar(const char c);
+int			ft_abs(int n);
+char		*ft_strncpy(char *dest, char *src, unsigned int n);
+char		*ft_strcpy(char *dest, char *src);
+int			ft_pad(int precision_or_width, int string_length);
 
 /*
 ** c Prototypes
 */
 void	collect_c(t_storage *obj);
+void	collect_s(t_storage *obj);
+
 
 
 /*
@@ -111,7 +124,7 @@ typedef void	t_ft_print_functions(t_storage *obj);
 static	t_ft_print_functions *g_ft_dispatch_table[] =
 {
 	collect_c,
-	// collect_s,
+	collect_s,
 	// collect_p,
 	// collect_d,
 	// collect_d,

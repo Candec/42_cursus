@@ -71,7 +71,7 @@ void	ft_collect_length(t_storage *obj)
 
 	current = obj->str[obj->i];
 	next = obj->str[obj->i + 1];
-	if ((current == 'h' && next == 'h') || current == 'l' && next == 'l')
+	if ((current == 'h' && next == 'h') || (current == 'l' && next == 'l'))
 	{
 		if (current == 'h' && next == 'h')
 			obj->len.hh = true;
@@ -98,6 +98,7 @@ void	ft_collect_type_of_field(t_storage *obj)
 	int j;
 
 	c = obj->str[obj->i];
+	j = 0;
 	valid = "cspdiouxXfb%";
 	while (valid[j])
 	{
