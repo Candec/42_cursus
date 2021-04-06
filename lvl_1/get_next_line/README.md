@@ -9,6 +9,8 @@ This library is part of the 42 Cursus - Started on Mar 2021 at 42 Lisbon.
 1. [Thresholds](#Thresholds)
 	1. [File Descriptor](#1-File-Descriptor)
 	2. [The Open and Read Functions](#2-The-Open-and-Read-Functions)
+		1. [Open](#Open)
+		2. [Read](#Read)
 	3. [Static Variables](#3-Static-Variables)
 	4. [Buffer Size](#4-Buffer-Size)
 	5. [Memory Management](#5-Memory-Management)
@@ -23,6 +25,7 @@ When you want to do input or output to a file, you have a choice of two basic me
 
 File descriptors (the ones we are using) are a positive integer handle used to identify an opened file at a very low level (kernel level). These are used for functions such as `read()` or `write()`. The intigers are positive as negative values are kept for error handling.
 ### 2. The Open and Read Functions
+#### 1. Open
 ### 3. Static Variables
 ### 4. Buffer Size
 ### 5. Memory Management
@@ -34,3 +37,4 @@ File descriptors (the ones we are using) are a positive integer handle used to i
 ## References
 1. [GNU - Streams and File Descriptors](https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html)
 2. [SOF - Diff File Descriptor and File Pointer](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer)
+2. [MAN - Open](https://man7.org/linux/man-pages/man2/open.2.html)
