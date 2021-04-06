@@ -75,12 +75,12 @@ The Bonus of this project is a fairly easy one to obtain. It is enough to think 
 This is a fun and relatively short project with a lot of insights and tidbits, and as much challeging it might seem, being the first project out of the function generation we are used to from libft and the piscine, it is the first one which requires a little bit of planning.
 
 ## Testing Tools
-1. [@Tripouille - gnlTester](https://github.com/Tripouille/gnlTester)
+1. [@Tripouille - [gnlTester](https://github.com/Tripouille/gnlTester)
 3. [@mneboth - Testing main](https://github.com/mneboth/main-GnL/blob/master/main.c)
 2. [Valgrind](https://valgrind.org)
 
 ## References
-1. [@m4r11](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
+1. @m4r11 - [Captain's Log](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
 2. [GNU - Streams and File Descriptors](https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html)
 3. [SOF - Diff File Descriptor and File Pointer](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer)
 4. [MAN - Open](https://man7.org/linux/man-pages/man2/open.2.html)
