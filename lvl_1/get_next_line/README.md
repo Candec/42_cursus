@@ -52,17 +52,37 @@ There are some particular properties to the static variables
 - They need to be initialized whith constant literals. Returning values from functions won't work.
 
 ### 4. Buffer Size
-"Your read must use the BUFFEZ_SIZE defined during compilation to read from a file or from stdin" && _"Your program must compile with the flag -D BUFFEZ_SIZE=xx. Which will be used as the buffer size for the read calls in your get_next_line. This value will be modified by your evaluators and by moulinette"_
+>_"Your read must use the BUFFER\_SIZE defined during compilation to read from a file or from stdin"_ 
+>_"Your program must compile with the flag -D BUFFER\_SIZE=xx. Which will be used as the buffer size for the read calls in your get\_next\_line. This value will be modified by your evaluators and by moulinette"_
+
+Both this quotes from the PDF points us torward the use of the variable `BUFFER_SIZE` to define the amount of characters the function `read()` will go over, and remarks that it will test different sizes during the testing.
+
+The project purpose here is to teach us how to define macros in the header to be used during the code. Instead of defining an intiger with its handle, a macro is define on the header to be used at any point of the project, rather than only in the scope we are. The flag `-D` from the second quote `-D macro[=defn]` is just to define this macro using the console while compiling the program. Here is the documentation about [gcc and the flag in particular](https://man7.org/linux/man-pages/man1/gcc.1.html)
+
+Just a final note, the norminette requires the `ifndef - endif` protection to define macros.
+
 ### 5. Memory Management
+This is another of the concepts introduced into this project and which is generally oversee until the end of the projects. With some luck, anyone reading this should be warning before wasting their points and even taking it into account from the beginning of the project.
+
+As this function is suppose to run in a while, and even inside the function there is a while running until the EOD, a lot of strings are going to be allocated to pointers. Each time a new string is assign to one of this pointers, the previous memory the pointer was leading to needs to be freed, otherwise it will become unreachable, as there is nothing telling us where it is, and therefor there will be memory leaks. The proper way of dealing with this is by using a temporal variable (`tmp` or `temp` in my code) which, after being asigned to its final destination, it will be free.
+
+Take it into a account and read about Valgrind if you are on Linux, or about Docker + Valgrind if at the 42 Macs, as theses are the best tools to test these kind of issues.
+
 ### 6. Multiple fd Reading
+The Bonus of this project is a fairly easy one to obtain. It is enough to think about the documents as an array of documents, and therefor by adding `[<any number greater than 0>]` to the static variable it will be treated as a list and access to the document required.
+
+This is a fun and relatively short project with a lot of insights and tidbits, and as much challeging it might seem, being the first project out of the function generation we are used to from libft and the piscine, it is the first one which requires a little bit of planning.
 
 ## Testing Tools
-1. [ft_atoi](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_atoi.c)
+1. [@Tripouille - gnlTester](https://github.com/Tripouille/gnlTester)
+3. [@mneboth - Testing main](https://github.com/mneboth/main-GnL/blob/master/main.c)
+2. [Valgrind](https://valgrind.org)
 
 ## References
-1. [mvaldeta - @m4r11](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
+1. [@m4r11](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
 2. [GNU - Streams and File Descriptors](https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html)
 3. [SOF - Diff File Descriptor and File Pointer](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer)
 4. [MAN - Open](https://man7.org/linux/man-pages/man2/open.2.html)
 5. [MAN - Read](https://man7.org/linux/man-pages/man2/read.2.html)
+7. [MAN - GCC](https://man7.org/linux/man-pages/man1/gcc.1.html)
 6. [G4G - Static Variables](https://www.geeksforgeeks.org/static-variables-in-c/)
