@@ -43,8 +43,16 @@ If count is zero, `read()` may detect errors, as our program should. In the abse
 The returns values are `-1` on errror, a positive intiger showing the `<amount of bytes>` read or `0` in case the end of the document (EOD) is reached.
 
 ### 3. Static Variables
+Static variables have a property of preserving their value even during calls, and therefor they are not re-initialized again. That is the main use they have and characteristic you need to understand.
+
+There are some particular properties to the static variables
+- The values store in the static variable remains in the memory while the program is running.
+- The memory allocation is done in the data segment, rather than the stack. For more details I highly recommend this [article, by G4G](https://www.geeksforgeeks.org/memory-layout-of-c-program/), although it is not required for this project in particular.
+- As global variables, static variables are already initialized to 0, and therefor they will not throw some random garbage.
+- They need to be initialized whith constant literals. Returning values from functions won't work.
 
 ### 4. Buffer Size
+"Your read must use the BUFFEZ_SIZE defined during compilation to read from a file or from stdin" && _"Your program must compile with the flag -D BUFFEZ_SIZE=xx. Which will be used as the buffer size for the read calls in your get_next_line. This value will be modified by your evaluators and by moulinette"_
 ### 5. Memory Management
 ### 6. Multiple fd Reading
 
@@ -52,8 +60,9 @@ The returns values are `-1` on errror, a positive intiger showing the `<amount o
 1. [ft_atoi](https://github.com/Candec/42_cursus/blob/main/lvl_0/libft/ft_atoi.c)
 
 ## References
-1. [GNU - Streams and File Descriptors](https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html)
-2. [SOF - Diff File Descriptor and File Pointer](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer)
-3. [MAN - Open](https://man7.org/linux/man-pages/man2/open.2.html)
-4. [MAN - Read](https://man7.org/linux/man-pages/man2/read.2.html)
-5. [mvaldeta](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
+1. [mvaldeta - @m4r11](https://docs.google.com/document/d/12jcirTVvtEwfZAQuEBKOWjCL4Sh1_ruD3wr2wBXVrl4/edit)
+2. [GNU - Streams and File Descriptors](https://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html)
+3. [SOF - Diff File Descriptor and File Pointer](https://stackoverflow.com/questions/2423628/whats-the-difference-between-a-file-descriptor-and-file-pointer)
+4. [MAN - Open](https://man7.org/linux/man-pages/man2/open.2.html)
+5. [MAN - Read](https://man7.org/linux/man-pages/man2/read.2.html)
+6. [G4G - Static Variables](https://www.geeksforgeeks.org/static-variables-in-c/)
