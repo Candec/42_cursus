@@ -52,7 +52,8 @@ There are some particular properties to the static variables
 - They need to be initialized whith constant literals. Returning values from functions won't work.
 
 ### 4. Buffer Size
->_"Your read must use the BUFFER\_SIZE defined during compilation to read from a file or from stdin"_ 
+>_"Your read must use the BUFFER\_SIZE defined during compilation to read from a file or from stdin"_
+
 >_"Your program must compile with the flag -D BUFFER\_SIZE=xx. Which will be used as the buffer size for the read calls in your get\_next\_line. This value will be modified by your evaluators and by moulinette"_
 
 Both this quotes from the PDF points us torward the use of the variable `BUFFER_SIZE` to define the amount of characters the function `read()` will go over, and remarks that it will test different sizes during the testing.
