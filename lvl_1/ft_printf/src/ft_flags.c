@@ -11,26 +11,27 @@ void	ft_cancel_flags(t_printf *p)
 int	ft_look_flags(t_printf *p)
 {
 	if (p->str[p->i] == '#')
-		p->flags.hash = true;
+		return (p->flags.hash = true);
 	else if (p->str[p->i] == '-')
-		p->flags.minus = true;
+		return (p->flags.minus = true);
 	else if (p->str[p->i] == '+')
-		p->flags.plus = true;
+		return (p->flags.plus = true);
 	else if (p->str[p->i] == ' ')
-		p->flags.space = true;
+		return (p->flags.space = true);
 	else if (p->str[p->i] == '0')
-		p->flags.zero = true;
+		return (p->flags.zero = true);
 	return (-1);
 }
 
 void	ft_init_flags(t_printf *p)
 {
 	p->type_field = 0;
+	p->var.width = 0;
 	p->var.precision = 0;
 	ft_bzero(&p->flags, sizeof(p->flags));
 }
 
-void	collect_flags(t_printf *p)
+void	ft_collect_flags(t_printf *p)
 {
 	p->i++;
 	if (p->str[p->i] == '\0')
