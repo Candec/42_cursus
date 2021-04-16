@@ -6,11 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:08 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/06 12:34:41 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/04/16 14:18:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
