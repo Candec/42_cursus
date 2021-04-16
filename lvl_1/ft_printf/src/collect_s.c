@@ -32,7 +32,7 @@ void	collect_s(t_printf *p)
 	len = ft_strlen(str);
 	i = 0;
 	if (p->var.precision > 0)
-	 	i = p->var.precision;
+	 	len = len - p->var.precision;
 	if (p->var.width > len)
 		i = p->var.width - len;
 	if (p->flags.minus == false)
