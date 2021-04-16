@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 /*
 ** Macros
@@ -79,8 +80,7 @@ void	print_loop(t_printf *p, char s, int i);
 ** Collect Functions
 */
 void	collect_c(t_printf *p);
-// void	collect_c(t_printf *p);
-// void	collect_s(t_printf *p);
+void	collect_s(t_printf *p);
 // void	collect_p(t_printf *p);
 // void	collect_d(t_printf *p);
 // void	collect_s(t_printf *p);
@@ -95,7 +95,7 @@ typedef void		t_collect(t_printf *p);
 
 static t_collect	*g_ft_table[] = {
 	collect_c,
-	// collect_s,
+	collect_s,
 	// collect_p,
 	// collect_d,
 	// collect_d,
@@ -114,5 +114,8 @@ static t_collect	*g_ft_table[] = {
 void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *src);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
 #endif

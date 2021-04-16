@@ -27,13 +27,12 @@ void	ft_init_flags(t_printf *p)
 {
 	p->type_field = 0;
 	p->var.width = 0;
-	p->var.precision = 0;
+	p->var.precision = -1;
 	ft_bzero(&p->flags, sizeof(p->flags));
 }
 
 void	ft_collect_flags(t_printf *p)
 {
-	p->i++;
 	if (p->str[p->i] == '\0')
 		return ;
 	ft_init_flags(p);

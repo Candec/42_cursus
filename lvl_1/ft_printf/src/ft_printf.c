@@ -12,13 +12,15 @@ int	ft_init_printf(va_list args, const char *s)
 	{
 		if (p.str[p.i] == '%')
 		{
+			p.i++;
 			ft_collect_flags(&p);
 			ft_collect_width(&p);
 			ft_collect_precision(&p);
 			ft_collect_type(&p);
 			ft_collect_data(&p);
 		}
-		p.ret += write(1, &p.str[p.i], 1);
+		else
+			p.ret += write(1, &p.str[p.i], 1);
 		p.i++;
 	}
 	return (p.ret);

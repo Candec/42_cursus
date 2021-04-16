@@ -19,8 +19,8 @@ void	ft_collect_precision(t_printf *p)
 {
 	if (p->str[p->i] == '.' && ft_isdigit(p->str[p->i + 1]))
 	{
+		p->var.precision = ft_atoi(&p->str[p->i + 1]);
 		p->i++;
-		p->var.precision = ft_atoi(&p->str[p->i]);
 		while (ft_isdigit(p->str[p->i]))
 			p->i++;
 	}
