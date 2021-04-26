@@ -26,27 +26,32 @@ void	collect_s(t_printf *p)
 {
 	char	*str;
 	int		i;
+	int		j;
 	int		len;
 
 	str = va_arg(p->args, char *);
 	len = ft_strlen(str);
+	j = len;
 	i = 0;
+
+
 	if (p->var.precision > 0)
-	 	len = len - p->var.precision;
+	 	j = len - p->var.precision;
 	if (p->var.width > len)
-		i = p->var.width - len;
+		i = p->var.width - p->var.precision;
+
+
 	if (p->flags.minus == false)
 	{
 		if (p->flags.zero == true)
 			print_loop(p, '0', i);
 		else if (p->flags.zero == false)
 			print_loop(p, ' ', i);
-		s_precision(p, str, len);
+		s_precision(p, str, j);
 	}
 	else if (p->flags.minus == true)
 	{
-		s_precision(p, str, len);
-		// p->ret += write(1, str, len);
+		s_precision(p, str, j);
 		print_loop(p, ' ', i);
 	}
 }
