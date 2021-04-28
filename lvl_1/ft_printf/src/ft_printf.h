@@ -21,11 +21,13 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdint.h>
 
 /*
 ** Macros
 */
 # define VALID "cspdiuxX%"
+# define FT_HEX 16
 
 /*
 ** Structures
@@ -75,13 +77,15 @@ void	ft_collect_precision(t_printf *p);
 void	ft_collect_type(t_printf *p);
 void	ft_collect_data(t_printf *p);
 void	print_loop(t_printf *p, char s, int i);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);
 
 /*
 ** Collect Functions
 */
 void	collect_c(t_printf *p);
 void	collect_s(t_printf *p);
-// void	collect_p(t_printf *p);
+void	collect_p(t_printf *p);
 // void	collect_d(t_printf *p);
 // void	collect_s(t_printf *p);
 // void	collect_u(t_printf *p);
@@ -93,20 +97,20 @@ void	collect_s(t_printf *p);
 */
 typedef void		t_collect(t_printf *p);
 
-static t_collect	*g_ft_table[] = {
-	collect_c,
-	collect_s,
-	// collect_p,
-	// collect_d,
-	// collect_d,
-	// **  collect_o,
-	// collect_u,
-	// collect_x,
-	// collect_x,
-	// **  collect_f,
-	// **  collect_b,
-	// collect_percent
-};
+// static t_collect	*g_ft_table[] = {
+// 	collect_c,
+// 	collect_s,
+// 	collect_p,
+// 	// collect_d,
+// 	// collect_d,
+// 	// **  collect_o,
+// 	// collect_u,
+// 	// collect_x,
+// 	// collect_x,
+// 	// **  collect_f,
+// 	// **  collect_b,
+// 	// collect_percent
+// };
 
 /*
 ** Mini_Libft
@@ -115,7 +119,9 @@ void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *src);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_itoa_base(int_fast64_t value, int base, char *str);
+int		ft_abs(int n);
+char	*ft_strcpy(char *dest, char *src);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

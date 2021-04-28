@@ -58,5 +58,20 @@ void	ft_collect_type(t_printf *p)
 
 void	ft_collect_data(t_printf *p)
 {
+	static t_collect	*g_ft_table[] = {
+	collect_c,
+	collect_s,
+	collect_p,
+	// collect_d,
+	// collect_d,
+	// **  collect_o,
+	// collect_u,
+	// collect_x,
+	// collect_x,
+	// **  collect_f,
+	// **  collect_b,
+	// collect_percent
+	};
+
 	g_ft_table[p->type_field](p);
 }

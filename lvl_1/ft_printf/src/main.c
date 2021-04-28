@@ -63,6 +63,18 @@ int	main(void)
 	printf("\n");
 
 
+	printf("test 6 - String Width\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n",printf("Madonna, %20s Madonna\n", "Incredible width"));
+	printf("Result:\n");
+	printf("[%d]\n",ft_printf("Madonna, %20s Madonna\n", "Incredible width"));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
 	printf("test 6 - String Width Greater than Var1 & Precision\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
@@ -110,14 +122,14 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 
-
+	char *null = "";
 	printf("test 9 - String NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
-	printf("[%d]\n", printf("test %s\n", NULL));
+	printf("[%d]\n", printf("test %s\n", null));
 	printf("Result:\n");
-	printf("[%d]\n", ft_printf("test %s\n", NULL));
+	printf("[%d]\n", ft_printf("test %s\n", null));
 	printf("\n");
 	printf("\n");
 	printf("\n");
@@ -127,9 +139,9 @@ int	main(void)
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
-	printf("[%d]\n", printf("test %.7s\n", NULL));
+	printf("[%d]\n", printf("test %.7s\n", null));
 	printf("Result:\n");
-	printf("[%d]\n", ft_printf("test %.7s\n", NULL));
+	printf("[%d]\n", ft_printf("test %.7s\n", null));
 	printf("\n");
 	printf("\n");
 	printf("\n");
@@ -138,9 +150,9 @@ int	main(void)
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
-	printf("[%d]\n", printf("test %.10s\n", NULL));
+	printf("[%d]\n", printf("test %.10s\n", null));
 	printf("Result:\n");
-	printf("[%d]\n", ft_printf("test %.10s\n", NULL));
+	printf("[%d]\n", ft_printf("test %.10s\n", null));
 	printf("\n");
 	printf("\n");
 	printf("\n");
@@ -150,9 +162,9 @@ int	main(void)
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
-	printf("[%d]\n", printf("%.5s\n", NULL));
+	printf("[%d]\n", printf("%.5s\n", null));
 	printf("Result:\n");
-	printf("[%d]\n", ft_printf("%.5s\n", NULL));
+	printf("[%d]\n", ft_printf("%.5s\n", null));
 	printf("\n");
 	printf("\n");
 	printf("\n");
@@ -187,6 +199,48 @@ int	main(void)
 	printf("[%d]\n", printf("%-10.0s\n", "test"));
 	printf("Result:\n");
 	printf("[%d]\n", ft_printf("%-10.0s\n", "test"));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+	int	num = 10;
+	int	*pointer = &num;
+	printf("test 15 - POINTER - BASIC\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%p\n", &num));
+	printf("[%d]\n", printf("%p\n", pointer));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%p\n", &num));
+	printf("[%d]\n", ft_printf("%p\n", pointer));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 16 - POINTER - WIDTH\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%30p\n", &num));
+	printf("[%d]\n", printf("%30p\n", pointer));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%30p\n", &num));
+	printf("[%d]\n", ft_printf("%30p\n", pointer));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+	printf("test 17 - POINTER - WIDTH\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%-30px\n", &num));
+	printf("[%d]\n", printf("%-30px\n", pointer));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%-30px\n", &num));
+	printf("[%d]\n", ft_printf("%-30px\n", pointer));
 	printf("\n");
 	printf("\n");
 	printf("\n");

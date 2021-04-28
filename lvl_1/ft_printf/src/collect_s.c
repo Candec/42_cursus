@@ -2,9 +2,12 @@
 
 static	int	s_size(t_printf *p, char *str)
 {
-	if (ft_strlen(str) < p->var.precision)
+	size_t	len;
+
+	len = p->var.precision;
+	if (ft_strlen(str) < len)
 		return (ft_strlen(str));
-	return (p->var.precision);
+	return (len);
 }
 
 static	void	s_precision(t_printf *p, char *str, int pre)
@@ -13,11 +16,11 @@ static	void	s_precision(t_printf *p, char *str, int pre)
 	char	c;
 
 	i = 0;
-	if (p->var.precision >= 6 && str == "(null)")
+	if (p->var.precision >= 6 && ft_strcmp(str, "(null)") == 0)
 		p->ret += write(1, "(null)", 6);
-	else if (p->var.precision == -1 && str == "(null)")
+	else if (p->var.precision == -1 && ft_strcmp(str, "(null)") == 0)
 		p->ret += write(1, "(null)", 6);
-	else if (p->var.precision < 6 && str == "(null)")
+	else if (p->var.precision < 6 && ft_strcmp(str, "(null)") == 0)
 		return ;
 	else if (p->var.precision >= 0)
 	{
