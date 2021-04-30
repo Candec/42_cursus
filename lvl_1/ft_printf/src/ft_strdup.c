@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/06 16:26:43 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/29 11:01:35 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 17:14:30 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/04/29 11:11:02 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_abs(int n)
+char	*ft_strdup(const char *src)
 {
-	if (n < 0)
-		n *= -1;
-	return (n);
+	int		size;
+	char	*dest;
+
+	size = ft_strlen(src);
+	dest = malloc(size * sizeof(char) + 1);
+	if (dest == NULL)
+		return (0);
+	ft_strlcpy(dest, src, size + 1);
+	return (dest);
 }

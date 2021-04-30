@@ -75,7 +75,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 6 - String Width Greater than Var1 & Precision\n");
+	printf("test 7 - String Width Greater than Var1 & Precision\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -87,7 +87,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 7 - String Width Lower than Var1 & Precision\n");
+	printf("test 8 - String Width Lower than Var1 & Precision\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -99,7 +99,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 8 - String Width greater than Var1 & Precision\n");
+	printf("test 9 - String Width greater than Var1 & Precision\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -111,7 +111,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 8 - String Width greater than Var1 & Precision\n");
+	printf("test 10 - String Width greater than Var1 & Precision\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -123,7 +123,7 @@ int	main(void)
 	printf("\n");
 
 	char *null = "";
-	printf("test 9 - String NULL\n");
+	printf("test 11 - String NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -135,7 +135,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 10 - String exact precision NULL\n");
+	printf("test 12 - String exact precision NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -146,7 +146,7 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 
-	printf("test 11 - String over precision NULL\n");
+	printf("test 13 - String over precision NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -158,7 +158,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 12 - String under precision NULL\n");
+	printf("test 14 - String under precision NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -170,7 +170,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 12 - String precision 0 NULL\n");
+	printf("test 15 - String precision 0 NULL\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -181,7 +181,7 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 
-	printf("test 13 - String precision 0 NULL with width\n");
+	printf("test 16 - String precision 0 NULL with width\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -192,7 +192,7 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 
-	printf("test 14 - String precision 0 NULL with negative width\n");
+	printf("test 17 - String precision 0 NULL with negative width\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -205,7 +205,7 @@ int	main(void)
 
 	int	num = 10;
 	int	*pointer = &num;
-	printf("test 15 - POINTER - BASIC\n");
+	printf("test 18 - POINTER - BASIC\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -219,7 +219,7 @@ int	main(void)
 	printf("\n");
 
 
-	printf("test 16 - POINTER - WIDTH\n");
+	printf("test 19 - POINTER - WIDTH\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -232,7 +232,7 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 
-	printf("test 17 - POINTER - WIDTH\n");
+	printf("test 20 - POINTER - WIDTH\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -244,5 +244,163 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 	printf("\n");
+
+
+	printf("test 21 - INTIGERS - BASIC\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%d\n", 42));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%d\n", 42));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 22 - INTIGERS - MAX INT\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 23 - INTIGERS - MIN INT\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%d\n", INT_MIN));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%d\n", INT_MIN));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 24 - INTIGERS - 0 INT\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%d\n", 0));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%d\n", 0));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 25 - INTIGERS - MAX INT WITH WIDTH\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%30d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%30d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 26 - INTIGERS - MAX INT WITH WIDTH LOWER THAN THE NUMBER LENGTH\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%7d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%7d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 27 - INTIGERS - MAX INT WITH PRECISION\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%30.16d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%30.16d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 28 - INTIGERS - MAX INT WITH PRECISION LOWER THAN THE NUMBER LENGTH\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%25.5d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%25.5d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 29 - INTIGERS - MAX INT WITH PRECISION OVERFLOW, WIDTH & MINUS FLAG \n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%-25.16d\n", INT_MAX));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%-25.16d\n", INT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 30 - INTIGERS - PRECISION OVERFLOW, WIDTH & PLUS FLAG \n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%+25.16d\n", 666));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%+25.16d\n", 666));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 31 - INTIGERS - PRECISION OVERFLOW, WIDTH & PLUS FLAG & MINUS FLAG \n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%+-25.16d\n", -777));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%+-25.16d\n", -777));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 32 - INTIGERS - POSITIVE INTIGER WIDTH WITH 0 FLAF & PLUS FLAG \n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%+025d\n", 666));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%+025d\n", 666));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("test 33 - INTIGERS - NEGATIVE INTIGER WIDTH WITH 0 FLAF & PLUS FLAG \n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n", printf("%+-25d\n", -222232323));
+	printf("Result:\n");
+	printf("[%d]\n", ft_printf("%+-25d\n", -222232323));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
 
 }

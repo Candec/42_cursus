@@ -6,6 +6,23 @@ static void	p_write(t_printf *p, char *str)
 	p->ret += write(1, str, ft_strlen(str));
 }
 
+static void	p_pad(t_printf *p, int i, char *str)
+{
+	if (p->flags.minus == false)
+	{
+		if (p->flags.zero == true)
+			print_loop(p, '0', i);
+		else if (p->flags.zero == false)
+			print_loop(p, ' ', i);
+		p_write(p, str);
+	}
+	else if (p->flags.minus == true)
+	{
+		p_write(p, str);
+		print_loop(p, ' ', i);
+	}
+}
+
 void	collect_p(t_printf *p)
 {
 	int				i;
@@ -21,17 +38,5 @@ void	collect_p(t_printf *p)
 	len = ft_strlen(str);
 	if (p->var.width > len)
 		i = p->var.width - len - 2;
-	if (p->flags.minus == false)
-	{
-		if (p->flags.zero == true)
-			print_loop(p, '0', i);
-		else if (p->flags.zero == false)
-			print_loop(p, ' ', i);
-		p_write(p, str);
-	}
-	else if (p->flags.minus == true)
-	{
-		p_write(p, str);
-		print_loop(p, ' ', i);
-	}
+	p_pad(p, i, str);
 }

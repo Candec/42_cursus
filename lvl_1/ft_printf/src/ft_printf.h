@@ -22,12 +22,18 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <limits.h>
+# include <stddef.h>
 
 /*
 ** Macros
 */
 # define VALID "cspdiuxX%"
 # define FT_HEX 16
+
+# ifndef ssize_t
+#  define SSIZE_T signed int
+# endif
 
 /*
 ** Structures
@@ -59,7 +65,6 @@ typedef struct s_printf
 	va_list		args;
 	t_flags		flags;
 	t_var		var;
-
 }				t_printf;
 
 /*
@@ -86,7 +91,7 @@ void	ft_bzero(void *s, size_t n);
 void	collect_c(t_printf *p);
 void	collect_s(t_printf *p);
 void	collect_p(t_printf *p);
-// void	collect_d(t_printf *p);
+void	collect_d(t_printf *p);
 // void	collect_s(t_printf *p);
 // void	collect_u(t_printf *p);
 // void	collect_x(t_printf *p);
@@ -119,9 +124,14 @@ void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
-char	*ft_itoa_base(int_fast64_t value, int base, char *str);
+int		ft_numlen(int_fast64_t value, int base);
 int		ft_abs(int n);
 char	*ft_strcpy(char *dest, char *src);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strcmp(char *s1, char *s2);
+void	*ft_memset(void *s, int c, size_t n);
+char	*ft_itoa(int n);
+char	*ft_itoa_base(int_fast64_t value, int base, char *str);
+char	*ft_strdup(const char *src);
 
 #endif
