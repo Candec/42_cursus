@@ -6,31 +6,13 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/11 16:51:12 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:35:13 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_strreve(char *s)
-{
-	int		i;
-	int		len;
-	char	tmp;
-
-	i = 0;
-	len = ft_strlen(s);
-	while (i < len / 2)
-	{
-		tmp = s[i];
-		s[i] = s[len - i - 1];
-		s[len - i - 1] = tmp;
-		i++;
-	}
-	return (s);
-}
-
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	arr[12];
 	int		i;
@@ -42,8 +24,8 @@ char		*ft_itoa(int n)
 		return (ft_strdup("-2147483648"));
 	else if (n == 0)
 		return (ft_strdup("0"));
-	sign = (n < 0) ? -1 : 1;
-	n = (n < 0) ? -n : n;
+	sign = ft_ispositive(n);
+	n = ft_abs(n);
 	while (n > 0)
 	{
 		arr[i] = (n % 10) + '0';

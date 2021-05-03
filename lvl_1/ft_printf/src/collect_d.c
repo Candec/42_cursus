@@ -66,7 +66,7 @@ void	collect_d(t_printf *p)
 
 	i = 0;
 	numb = va_arg(p->args, int);
-	str = ft_itoa(numb);
+	str = ft_mod_itoa(numb);
 	pre = s_size(p, str);
 	if (p->var.width > pre && p->var.width > 0)
 		i = p->var.width - pre;

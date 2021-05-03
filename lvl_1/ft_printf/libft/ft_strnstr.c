@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:21:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 11:06:52 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:37:53 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *a, const char *b, size_t len)
 
 	i = 0;
 	if (*b == '\0' || b == NULL)
-		return ((char*)a);
+		return ((char *)a);
 	while (a[i] != '\0' && i < len)
 	{
 		j = 0;
@@ -27,7 +27,7 @@ char	*ft_strnstr(const char *a, const char *b, size_t len)
 		{
 			if (b[j + 1] == '\0')
 			{
-				return ((char*)a + i);
+				return ((char *)a + i);
 			}
 			j++;
 		}

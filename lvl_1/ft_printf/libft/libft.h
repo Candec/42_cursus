@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/03/11 16:47:49 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:12:19 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <stdint.h>
+# include <stddef.h>
 
 # define ASCII_OFFSET_NUM 48
 
@@ -69,7 +71,7 @@ void			ft_putnbr_fd(int n, int fd);
 /*
 **Bonus from the exercise
 */
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
@@ -86,6 +88,14 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
 
 /*
-**Bonus
+**Extras
 */
+char			*ft_strreve(char *s);
+ssize_t			ft_ispositive(int n);
+int				ft_isspace(char a);
+char			*ft_strcpy(char *dest, char const *src, int start, int last);
+int				ft_numlen(int_fast64_t value, int base);
+int				ft_abs(int n);
+int				ft_strcmp(char *s1, char *s2);
+
 #endif

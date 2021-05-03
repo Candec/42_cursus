@@ -130,7 +130,7 @@ char	*ft_strcpy(char *dest, char *src);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_strcmp(char *s1, char *s2);
 void	*ft_memset(void *s, int c, size_t n);
-char	*ft_itoa(int n);
+char	*ft_mod_itoa(int n);
 char	*ft_itoa_base(int_fast64_t value, int base, char *str);
 char	*ft_strdup(const char *src);
 

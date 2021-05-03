@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/04/30 12:29:33 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 15:24:20 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*ft_strreve(char *s)
 	return (s);
 }
 
-char	*ft_itoa(int n)
+char	*ft_mod_itoa(int n)
 {
 	char	arr[12];
 	int		i;

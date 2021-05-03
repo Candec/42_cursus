@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 19:04:19 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/01/13 10:55:37 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:40:00 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	unsigned char	*ch;
 
 	i = 0;
-	ch = (unsigned char*)s;
+	ch = (unsigned char *)s;
 	while (i < n)
 	{
 		if (ch[i] == (unsigned char)c)
