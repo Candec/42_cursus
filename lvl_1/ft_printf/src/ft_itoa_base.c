@@ -8,7 +8,7 @@ char	*ft_itoa_base(int_fast64_t value, int base, char *str)
 
 	ft_strcpy(placeholder, "0123456789abcdef");
 	len = ft_numlen(value, base);
-	str = malloc(len * sizeof(char *) + 1);
+	str = ft_calloc(len, 4);
 	if (value == 0)
 		return (ft_strcpy(str, "0"));
 	u_value = (uint_fast64_t)value;

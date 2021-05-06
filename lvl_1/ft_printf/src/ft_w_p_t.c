@@ -77,7 +77,7 @@ void	ft_collect_data(t_printf *p)
 	collect_s,
 	collect_p,
 	collect_d,
-	// collect_d,
+	collect_d,
 	// **  collect_o,
 	// collect_u,
 	// collect_x,

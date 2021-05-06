@@ -403,7 +403,7 @@ int	main(void)
 
 
 	printf("\n");
-	printf("test 1 - Normal Test\n");
+	printf("test 34 - NEGATIVE PRECISION\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -416,7 +416,7 @@ int	main(void)
 
 
 	printf("\n");
-	printf("test 1 - Normal Test\n");
+	printf("test 35 - NULL STRING MULTI-TEST\n");
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
@@ -451,6 +451,32 @@ int	main(void)
 	printf("[%d]\n",ft_printf(" -5 %.*s ", -5, NULL));
 	printf("[%d]\n",ft_printf(" -6 %.*s ", -6, NULL));
 	printf("[%d]\n",ft_printf(" -7 %.*s ", -7, NULL));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("\n");
+	printf("test 36 - NEGATIVE PRECISION\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n",printf("%*cxx\n", -10, '0'));
+	printf("Result:\n");
+	printf("[%d]\n",ft_printf("%*cxx\n", -10, '0'));
+	printf("\n");
+	printf("\n");
+	printf("\n");
+
+
+	printf("\n");
+	printf("test 37 - NEGATIVE PRECISION\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n",printf("%10p %-10p ", 0, 0));
+	printf("Result:\n");
+	printf("[%d]\n",ft_printf("%10p %-10p ", 0, 0));
 	printf("\n");
 	printf("\n");
 	printf("\n");
