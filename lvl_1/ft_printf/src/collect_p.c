@@ -39,4 +39,5 @@ void	collect_p(t_printf *p)
 	if (p->var.width > len)
 		i = p->var.width - len - 2;
 	p_pad(p, i, str);
+	free(str);
 }
