@@ -407,9 +407,9 @@ int	main(void)
 	printf("++++++++++++++++\n");
 	printf("\n");
 	printf("Expected:\n");
-	printf("[%d]\n",printf("%*cxx\n", -2, '0'));
+	printf("[%d]\n",printf("%*cxx\n", -10, '0'));
 	printf("Result:\n");
-	printf("[%d]\n",ft_printf("%*cxx\n", -2, '0'));
+	printf("[%d]\n",ft_printf("%*cxx\n", -10, '0'));
 	printf("\n");
 	printf("\n");
 	printf("\n");

@@ -11,7 +11,14 @@ void	ft_collect_width(t_printf *p)
 	else if (p->str[p->i] == '*')
 	{
 		p->var.width = va_arg(p->args, int);
-		p->i++;
+		if (p->var.width >= 0)
+			p->i++;
+		else
+		{
+			p->var.width = -p->var.width;
+			p->flags.minus = true;
+			p->i++;
+		}
 	}
 }
 
@@ -27,7 +34,14 @@ void	ft_collect_precision(t_printf *p)
 	else if (p->str[p->i] == '.' && p->str[p->i + 1] == '*')
 	{
 		p->var.precision = va_arg(p->args, int);
-		p->i += 2;
+		if (p->var.precision >= 0)
+			p->i += 2;
+		else
+		{
+			p->var.precision = ft_abs(p->var.precision);
+			p->flags.minus = true;
+			p->i += 2;
+		}
 	}
 	else if (p->str[p->i] == '.')
 	{
@@ -63,7 +77,7 @@ void	ft_collect_data(t_printf *p)
 	collect_s,
 	collect_p,
 	collect_d,
-	// collect_d,
+	collect_d,
 	// **  collect_o,
 	// collect_u,
 	// collect_x,
