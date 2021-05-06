@@ -413,4 +413,45 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 	printf("\n");
+
+
+	printf("\n");
+	printf("test 1 - Normal Test\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf("[%d]\n",printf(" 7 %.*s ", 7, NULL));
+	printf("[%d]\n",printf(" 6 %.*s ", 6, NULL));
+	printf("[%d]\n",printf(" 5 %.*s ", 5, NULL));
+	printf("[%d]\n",printf(" 4 %.*s ", 4, NULL));
+	printf("[%d]\n",printf(" 3 %.*s ", 3, NULL));
+	printf("[%d]\n",printf(" 2 %.*s ", 2, NULL));
+	printf("[%d]\n",printf(" 1 %.*s ", 1, NULL));
+	printf("[%d]\n",printf(" 0 %.*s ", 0, NULL));
+	printf("[%d]\n",printf(" -1 %.*s ", -1, NULL));
+	printf("[%d]\n",printf(" -2 %.*s ", -2, NULL));
+	printf("[%d]\n",printf(" -3 %.*s ", -3, NULL));
+	printf("[%d]\n",printf(" -4 %.*s ", -4, NULL));
+	printf("[%d]\n",printf(" -5 %.*s ", -5, NULL));
+	printf("[%d]\n",printf(" -6 %.*s ", -6, NULL));
+	printf("[%d]\n",printf(" -7 %.*s ", -7, NULL));
+	printf("Result:\n");
+	printf("[%d]\n",ft_printf(" 7 %.*s ", 7, NULL));
+	printf("[%d]\n",ft_printf(" 6 %.*s ", 6, NULL));
+	printf("[%d]\n",ft_printf(" 5 %.*s ", 5, NULL));
+	printf("[%d]\n",ft_printf(" 4 %.*s ", 4, NULL));
+	printf("[%d]\n",ft_printf(" 3 %.*s ", 3, NULL));
+	printf("[%d]\n",ft_printf(" 2 %.*s ", 2, NULL));
+	printf("[%d]\n",ft_printf(" 1 %.*s ", 1, NULL));
+	printf("[%d]\n",ft_printf(" 0 %.*s ", 0, NULL));
+	printf("[%d]\n",ft_printf(" -1 %.*s ", -1, NULL));
+	printf("[%d]\n",ft_printf(" -2 %.*s ", -2, NULL));
+	printf("[%d]\n",ft_printf(" -3 %.*s ", -3, NULL));
+	printf("[%d]\n",ft_printf(" -4 %.*s ", -4, NULL));
+	printf("[%d]\n",ft_printf(" -5 %.*s ", -5, NULL));
+	printf("[%d]\n",ft_printf(" -6 %.*s ", -6, NULL));
+	printf("[%d]\n",ft_printf(" -7 %.*s ", -7, NULL));
+	printf("\n");
+	printf("\n");
+	printf("\n");
 }

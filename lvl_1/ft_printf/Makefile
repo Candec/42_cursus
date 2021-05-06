@@ -6,7 +6,7 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/04/15 17:39:44 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/05/06 13:49:18 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ libft.a:
 clean:
 	make clean -C ./libft
 	rm -rf ft_*.o
+	rm -rf ./src/*.o
 
 fclean: clean
 	make fclean -C ./libft

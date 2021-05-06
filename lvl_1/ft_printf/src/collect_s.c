@@ -18,10 +18,10 @@ static	void	s_precision(t_printf *p, char *str, int pre)
 	i = 0;
 	if (p->var.precision >= 6 && ft_strcmp(str, "(null)") == 0)
 		p->ret += write(1, "(null)", 6);
-	else if (p->var.precision == -1 && ft_strcmp(str, "(null)") == 0)
+	else if (p->var.precision < 0 && ft_strcmp(str, "(null)") == 0)
 		p->ret += write(1, "(null)", 6);
-	else if (p->var.precision < 6 && ft_strcmp(str, "(null)") == 0)
-		return ;
+	// else if (p->var.precision < 6 && ft_strcmp(str, "(null)") == 0)
+	// 	return ;
 	else if (p->var.precision >= 0)
 	{
 		while (i < pre)
