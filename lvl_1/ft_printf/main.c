@@ -480,4 +480,37 @@ int	main(void)
 	printf("\n");
 	printf("\n");
 	printf("\n");
+
+
+	printf("\n");
+	printf("test 37 - INIGERS\n");
+	printf("++++++++++++++++\n");
+	printf("\n");
+	printf("Expected:\n");
+	printf( "[%d]", printf("\n 0*%0-*.*d*0 0*%0*.*d*0 \n", 2, 6, 102, 21, 10, -101));
+	printf( "[%d]", printf("\n 0*%0-*d*0 0*%0*d*0 \n", 21, 1021, 21, -1011));
+	printf( "[%d]", printf("\n 0*%-0*.10d*0 0*%-0*.0d*0 \n", 21, 1021, 21, -1011));
+	printf( "[%d]", printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -2, 0, 21, 1));
+	printf( "[%d]", printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -21, INT_MAX, 21, INT_MIN));
+	printf( "[%d]", printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -21, LONG_MAX, 21, LONG_MIN));
+	printf( "[%d]", printf("\n --0*%-0*.20d*0 0*%-0*.10d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", printf("\n --0*%-0*.2d*0 0*%-0*.2d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", printf("\n --0*%-0*.3d*0 0* %-0*.3d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", printf("\n --0*%-0*.4d*0 0* %-0*.4d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", printf("\n %9.2d \n", UINT_MAX));
+	printf("Result:\n");
+	printf( "[%d]", ft_printf("\n 0*%0-*.*d*0 0*%0*.*d*0 \n", 2, 6, 102, 21, 10, -101));
+	printf( "[%d]", ft_printf("\n 0*%0-*d*0 0*%0*d*0 \n", 21, 1021, 21, -1011));
+	printf( "[%d]", ft_printf("\n 0*%-0*.10d*0 0*%-0*.0d*0 \n", 21, 1021, 21, -1011));
+	printf( "[%d]", ft_printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -2, 0, 21, 1));
+	printf( "[%d]", ft_printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -21, INT_MAX, 21, INT_MIN));
+	printf( "[%d]", ft_printf("\n --0*%0*.0d*0 0*%0*.10d*0-- \n", -21, LONG_MAX, 21, LONG_MIN));
+	printf( "[%d]", ft_printf("\n --0*%-0*.20d*0 0*%-0*.10d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", ft_printf("\n --0*%-0*.2d*0 0*%-0*.2d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", ft_printf("\n --0*%-0*.3d*0 0*%-0*.3d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", ft_printf("\n --0*%-0*.4d*0 0*%-0*.4d*0-- \n", -21, CHAR_MAX, 21, CHAR_MIN));
+	printf( "[%d]", ft_printf("\n %9.2d \n", UINT_MAX));
+	printf("\n");
+	printf("\n");
+	printf("\n");
 }

@@ -30,6 +30,8 @@
 */
 # define VALID "cspdiuxX%"
 # define FT_HEX 16
+# define FT_DECIMAL 10
+# define FT_INT_STR "2147483648"
 
 # ifndef ssize_t
 #  define SSIZE_T signed int
