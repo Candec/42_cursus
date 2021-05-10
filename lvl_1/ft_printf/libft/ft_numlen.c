@@ -1,4 +1,3 @@
-
 #include "libft.h"
 
 int	ft_numlen(int_fast64_t value, int base)

@@ -30,15 +30,14 @@ typedef struct s_printf{
 	int				invalid;
 }				t_printf;
 
-void	char_type_mem(t_printf *p, va_list *args);
-void	int_type_mem(t_printf *p, va_list *args, char *buffer);
+int		ft_printf(const char *str, ...);
+int		write_char(char *t_str, char *str, int last);
 void	memories_init(t_printf *p);
 void	conversion(va_list *args, char **str);
-void	n_to_str(t_printf *p, unsigned long long n, 
-			char *base, char *buffer);
-int		write_char(char *t_str, char *str, int last);
-void	write_buffer(t_printf *p);
 void	clean(t_printf *p);
-int		ft_printf(const char *str, ...);
+void	int_type_mem(t_printf *p, va_list *args, char *buffer);
+void	char_type_mem(t_printf *p, va_list *args);
+void	n_to_str(t_printf *p, unsigned long long n, char *base, char *buffer);
+void	write_buffer(t_printf *p);
 
 #endif

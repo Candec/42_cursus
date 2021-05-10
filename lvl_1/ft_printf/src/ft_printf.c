@@ -14,7 +14,7 @@ int	write_char(char *t_str, char *str, int last)
 	{
 		backup = total_len;
 		total_len = 0;
-		return backup;
+		return (backup);
 	}
 	return (total_len);
 }
@@ -49,7 +49,7 @@ static void	read_string(va_list *args, char *str)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list args;
+	va_list	args;
 
 	va_start(args, str);
 	read_string(&args, (char *)str);
