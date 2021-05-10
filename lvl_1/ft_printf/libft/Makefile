@@ -6,7 +6,7 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/05/10 18:41:36 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/05/10 19:52:27 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 

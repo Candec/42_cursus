@@ -6,12 +6,12 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/24 12:45:23 by apinto            #+#    #+#              #
-#    Updated: 2021/05/10 17:39:00 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/05/10 19:52:21 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HDRS		= includes
-CFLAGS 		= -Wall -Wextra -Werror -g
+CFLAGS 		= -Wall -Wextra -Werror
 AR 			= ar -rcsv
 NAME 		= libftprintf.a
 SRCS		= $(wildcard ./src/*.c)
