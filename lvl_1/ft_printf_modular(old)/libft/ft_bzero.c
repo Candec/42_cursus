@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/11/26 16:28:04 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/02/10 20:03:23 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+void	ft_bzero(void *s, size_t n)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	unsigned char	*str;
 
-	ft_memset(arr, 0, 12);
-	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
-	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
-	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	str = (unsigned char *)s;
+	while (n--)
+		*str++ = 0;
 }

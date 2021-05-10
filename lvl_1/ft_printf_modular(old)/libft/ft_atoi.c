@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/11/28 19:31:44 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/05/03 11:41:47 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+int	ft_atoi(const char *str)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	long long int	i;
+	long long int	result;
+	int				negative;
 
-	ft_memset(arr, 0, 12);
+	result = 0;
+	negative = 1;
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
+		if (str[i] == '-')
+			negative = -1;
 		i++;
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	while (str[i] && ft_isdigit(str[i]))
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * negative);
 }

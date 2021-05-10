@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:48 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 16:12:19 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <limits.h>
 # include <stdint.h>
 # include <stddef.h>
-# include <stdarg.h>
 
 # define ASCII_OFFSET_NUM 48
 
@@ -91,14 +90,12 @@ t_list			*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *));
 /*
 **Extras
 */
-char			*ft_strrev(char *s);
+char			*ft_strreve(char *s);
 ssize_t			ft_ispositive(int n);
 int				ft_isspace(char a);
 char			*ft_strcpy(char *dest, char const *src, int start, int last);
 int				ft_numlen(int_fast64_t value, int base);
 int				ft_abs(int n);
 int				ft_strcmp(char *s1, char *s2);
-void			ft_strtoupper(char *str);
-int				ft_max(int args, ...);
 
 #endif

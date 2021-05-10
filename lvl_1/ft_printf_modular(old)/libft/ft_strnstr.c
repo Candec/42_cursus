@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/11/28 19:21:01 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/05/03 11:37:53 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_strnstr(const char *a, const char *b, size_t len)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	size_t	i;
+	size_t	j;
 
-	ft_memset(arr, 0, 12);
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	if (*b == '\0' || b == NULL)
+		return ((char *)a);
+	while (a[i] != '\0' && i < len)
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
+		j = 0;
+		while (b[j] == a[i + j] && i + j < len)
+		{
+			if (b[j + 1] == '\0')
+			{
+				return ((char *)a + i);
+			}
+			j++;
+		}
 		i++;
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	return (NULL);
 }

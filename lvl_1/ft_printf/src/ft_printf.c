@@ -1,38 +1,58 @@
 #include "ft_printf.h"
 
-int	ft_init_printf(va_list args, const char *s)
+int	write_char(char *t_str, char *str, int last)
 {
-	t_printf	p;
+	int			len;
+	static int	total_len;
+	int			backup;
 
-	p.str = s;
-	p.i = 0;
-	p.ret = 0;
-	va_copy(p.args, args);
-	while (p.str[p.i] != '\0')
+	len = str - t_str;
+	if (len)
+		write(1, t_str, len);
+	total_len += len;
+	if (last)
 	{
-		if (p.str[p.i] == '%')
-		{
-			p.i++;
-			ft_collect_flags(&p);
-			ft_collect_width(&p);
-			ft_collect_precision(&p);
-			ft_collect_type(&p);
-			ft_collect_data(&p);
-		}
-		else
-			p.ret += write(1, &p.str[p.i], 1);
-		p.i++;
+		backup = total_len;
+		total_len = 0;
+		return backup;
 	}
-	return (p.ret);
+	return (total_len);
 }
 
-int	ft_printf(const char *s, ...)
+static void	read_string(va_list *args, char *str)
 {
-	va_list	args;
-	int		ret;
+	char	*t_str;
+	int		valid;
 
-	va_start(args, s);
-	ret = ft_init_printf(args, s);
+	t_str = str;
+	valid = 0;
+	while (*str)
+	{
+		if (*str == '%')
+		{
+			write_char(t_str, str++, 0);
+			conversion(args, &str);
+			str++;
+			valid = 0;
+			if (*str)
+				t_str = str;
+		}
+		else
+		{
+			str++;
+			valid = 1;
+		}
+	}
+	if (valid)
+		write_char(t_str, str, 0);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list args;
+
+	va_start(args, str);
+	read_string(&args, (char *)str);
 	va_end(args);
-	return (ret);
+	return (write_char((char *)str, (char *)str, 1));
 }

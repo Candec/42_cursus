@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/03 11:35:13 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*ft_itoa(int n)
 	}
 	if (sign < 0)
 		arr[i] = '-';
-	ft_strrev(arr);
+	ft_strreve(arr);
 	return (ft_strdup(arr));
 }

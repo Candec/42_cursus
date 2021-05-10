@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/02 23:17:46 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/01/12 11:02:39 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	size_t	i;
+	size_t	len;
 
-	ft_memset(arr, 0, 12);
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
-	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
+	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
 		i++;
-	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	len = ft_strlen(&s1[i]);
+	if (len != 0)
+		while (s1[i + len - 1] && ft_strchr(set, s1[i + len - 1]) != NULL)
+			len--;
+	return (ft_substr(s1, i, len));
 }

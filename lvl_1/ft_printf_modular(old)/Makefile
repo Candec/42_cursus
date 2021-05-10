@@ -6,35 +6,42 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/05/10 18:41:36 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/05/10 14:14:24 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =  $(wildcard *.c)
-
-OBJ = $(SRC:.c=.o)
-
-CC = gcc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g
-
-NAME = libft.a
+HDRS		= includes
+CFLAGS 		= -Wall -Wextra -Werror -g
+AR 			= ar -rcsv
+NAME 		= libftprintf.a
+SRCS		= $(wildcard ./src/*.c)
+OBJS 		= $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): libft.a $(OBJS)
+	ar -x libft.a
+	$(AR) $(NAME) *.o $(OBJS)
+
+libft.a:
+	$(MAKE) libft.a -C ./libft
+	mv ./libft/libft.a ./libft.a
+
+%.o: %.c
+	gcc $(CFLAGS) -I $(HDRS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	make clean -C ./libft
+	rm -rf ft_*.o
+	rm -rf ./src/*.o
 
 fclean: clean
-	$(RM) $(NAME)
+	make fclean -C ./libft
+	rm -f $(OBJS)
+	rm -f libft.a
+	rm -f $(NAME)
+	rm -rf ./__.SYMDEF\ SORTED
 
-re: fclean $(NAME)
+re: fclean all
 
-so:
-	$(CC) -fPIC -c $(CFLAGS) $(SRC)
-	gcc -shared -o libft.so $(OBJ)
-
-.PHONY: all clean fclean re
+.PHONY:		all clean fclean re

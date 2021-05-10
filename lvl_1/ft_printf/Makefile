@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/05/06 19:44:58 by jibanez-         ###   ########.fr        #
+#    Created: 2021/03/24 12:45:23 by apinto            #+#    #+#              #
+#    Updated: 2021/05/10 17:39:00 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 HDRS		= includes
-CFLAGS 		= -Wall -Wextra -Werror
+CFLAGS 		= -Wall -Wextra -Werror -g
 AR 			= ar -rcsv
 NAME 		= libftprintf.a
 SRCS		= $(wildcard ./src/*.c)
@@ -33,7 +33,6 @@ libft.a:
 clean:
 	make clean -C ./libft
 	rm -rf ft_*.o
-	rm -rf ./src/*.o
 
 fclean: clean
 	make fclean -C ./libft

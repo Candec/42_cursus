@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/10 00:42:59 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/02/24 14:38:16 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	char			*out;
+	unsigned int	i;
 
-	ft_memset(arr, 0, 12);
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	if (f && s)
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
+		out = malloc((ft_strlen(s)) + 1);
+		if (!out)
+			return (NULL);
+		while (s[i] != '\0')
+		{
+			out[i] = f(i, s[i]);
+			i++;
+		}
+		out[i] = '\0';
+		return (out);
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	return (NULL);
 }

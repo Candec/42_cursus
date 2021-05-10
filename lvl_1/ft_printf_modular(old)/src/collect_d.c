@@ -27,12 +27,14 @@
 // 	size = ft_strlen(str);
 // 	if (p->flags.zero == false)
 // 		d_sign(p, numb);
-// 	if (p->var.precision > size)
+// 	if (p->var.precision > size && p->var.precision > 0)
 // 	{
 // 		while (i++ < p->var.precision - size)
 // 			p->ret += write(1, "0", 1);
 // 		p->ret += write(1, str, size);
 // 	}
+// 	else if (p->var.precision <= 0)
+// 		;
 // 	else
 // 		p->ret += write(1, str, size);
 // }
@@ -41,18 +43,23 @@
 // {
 // 	if (p->flags.minus == false)
 // 	{
-// 		if (p->flags.zero == true)
-// 		{
-// 			d_sign(p, numb);
-// 			print_loop(p, '0', i);
-// 		}
-// 		else if (p->flags.zero == false)
+// 		if (p->flags.zero == false)
 // 			print_loop(p, ' ', i);
+// 		else if (p->flags.zero == true)
+// 		{
+// 			if (p->var.precision < p->var.width && p->var.precision > 0)
+// 				print_loop(p, ' ', i - 1);
+// 			d_sign(p, numb);
+// 			if (p->var.precision <= -1)
+// 				print_loop(p, '0', i - 1);
+// 		}
 // 		d_precision(p, str, numb);
 // 	}
 // 	else if (p->flags.minus == true)
 // 	{
 // 		d_precision(p, str, numb);
+// 		if (numb < 0)
+// 			i--;
 // 		print_loop(p, ' ', i);
 // 	}
 // }
@@ -75,38 +82,12 @@
 // 	d_pad(p, i, str, numb);
 // }
 
-
-void			collect_d(t_printf *p)
+void	collect_d(t_printf *p)
 {
-	int_fast64_t	n;
-	char			*s;
-	char			*t_s;
+	int 	n;
+	char	*str;
 
-	s[0] = 0;
-	t_s[0] = 0;
-	ft_bzero(&p->var, sizeof(p->var));
-	n = 0;
-	n = length_field_d(p);
-	if (n < 0)
-	{
-		ft_strcpy(s, "-");
-		if (n == INT_MIN)
-			ft_strcpy(t_s, "2147483648");
-		else
-		{
-			n = ft_abs(n);
-			t_s = ft_itoa_base(n, FT_DECIMAL, t_s);
-		}
-	}
-	else
-	{
-		if (p->flags.plus == true)
-			ft_strcpy(s, "+");
-		else if (p->flags.space == true)
-			ft_strcpy(s, " ");
-		ft_itoa_base(n, FT_DECIMAL, t_s);
-	}
-	(p->var.precision != -1) && (p->flags.zero = false);
-	(p->var.precision == 0 && n == 0) && (ft_strcpy(t_s, NULL));
-	d_append_buffer(p, s, t_s);
+	n = va_arg(p->args, int);
+	str = ft_itoa(n);
+	write(1, str, ft_strlen(str));
 }

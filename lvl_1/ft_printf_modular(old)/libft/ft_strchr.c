@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/18 15:52:54 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/05/03 11:39:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+char	*ft_strchr(const char *s, int c)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	int	i;
 
-	ft_memset(arr, 0, 12);
+	if (!s)
+		return (NULL);
 	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	while (s[i])
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
 		i++;
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	if (s[i] == (char)c)
+		return ((char *)(s + i));
+	return (NULL);
 }

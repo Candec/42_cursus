@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/11/26 17:46:57 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/02/24 11:48:23 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	void	*d;
+	void	*s;
 
-	ft_memset(arr, 0, 12);
-	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	d = dest;
+	s = (void *)src;
+	if (dest < src && dest + n >= src)
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
+		while (n--)
+			*(char *)d++ = *(char *)src++;
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	else if (src < dest && src + n > dest)
+	{
+		s += n;
+		d += n;
+		while (n--)
+			*(char *)--d = *(char *)--s;
+	}
+	else
+		ft_memcpy(dest, src, n);
+	return (dest);
 }

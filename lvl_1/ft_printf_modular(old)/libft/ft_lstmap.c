@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/07 18:59:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/10 19:01:40 by jibanez-         ###   ########.fr       */
+/*   Created: 2020/12/17 17:43:37 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/02/20 19:43:27 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+t_list	*ft_lstmap(t_list *l, void *(*f)(void *), void (*d)(void *))
 {
-	char	arr[12];
-	int		i;
-	int		sign;
+	t_list	*new;
+	t_list	*first;
 
-	ft_memset(arr, 0, 12);
-	i = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	else if (n == 0)
-		return (ft_strdup("0"));
-	sign = ft_ispositive(n);
-	n = ft_abs(n);
-	while (n > 0)
+	first = 0;
+	if (!f || !d)
+		return (NULL);
+	while (l)
 	{
-		arr[i] = (n % 10) + '0';
-		n /= 10;
-		i++;
+		new = ft_lstnew((*f)(l->content));
+		if (!new)
+		{
+			while (first)
+			{
+				new = first->next;
+				(*d)(first->content);
+				free(first);
+				first = new;
+			}
+			l = NULL;
+			return (NULL);
+		}
+		ft_lstadd_back(&first, new);
+		l = l->next;
 	}
-	if (sign < 0)
-		arr[i] = '-';
-	ft_strrev(arr);
-	return (ft_strdup(arr));
+	return (first);
 }
