@@ -1,17 +1,13 @@
-#include "push_swap.h"
-
-
+#include "./includes/push_swap.h"
 
 int	main(int argc, char *argv[])
 {
-	int *a;
-	int i;
+	t_list *a;
+	t_list *b;
 
-	i = 0;
-	while (i < argc)
-	{
-		int a = atoi(argv[i]);
-		printf("%d\n", a);
-		i++;
-	}
+	a = 0;
+	b = 0;
+	if (argc == 1)
+		return (1);
+	ft_stack_init(argv + 1, argc - 1, &a);
 }

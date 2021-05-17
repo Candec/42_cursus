@@ -1,4 +1,0 @@
-// void	stack_init()
-// {
-
-// }
