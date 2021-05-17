@@ -1,4 +1,4 @@
-#include "mlx.h"
+#include <mlx.h>
 
 int	main(void)
 {
@@ -6,6 +6,6 @@ int	main(void)
 	void	*win_ptr;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "a");
+	win_ptr = mlx_new_window(mlx_ptr, 500, 1000, "test window");
 	mlx_loop(mlx_ptr);
 }

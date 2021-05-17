@@ -6,11 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/12 16:44:50 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/05/17 11:06:06 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 static void	final_line(char **content, char **line)
 {
 	int	i;
@@ -56,7 +56,7 @@ static void	store(char **content, char *bf)
 	}
 }
 
-int	get_next_line(int fd, char **line)
+int	ft_get_next_line(int fd, char **line)
 {
 	static char	*content[100];
 	ssize_t		r;
