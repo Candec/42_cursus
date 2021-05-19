@@ -6,7 +6,7 @@
 #    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/24 12:45:23 by apinto            #+#    #+#              #
-#    Updated: 2021/05/17 15:04:51 by jibanez-         ###   ########.fr        #
+#    Updated: 2021/05/19 15:59:04 by jibanez-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ $(NAME): libft.a $(OBJS)
 	$(AR) $(NAME) *.o $(OBJS)
 
 $(CC):
-	gcc main.c $(NAME) -I $(HDRS) -L custom
+	gcc main.c $(NAME) -I $(HDRS) -L custom $(CFLAGS)
 
 libft.a:
 	$(MAKE) libft.a -C ./libft
