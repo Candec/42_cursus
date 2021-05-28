@@ -11,7 +11,7 @@ VBoxManage createvm --name $VB_Name --ostype $VB_OS --register
 
 # Sets the main characteristics of the VB [CPUS, Memory, VRAM and Storage capacity]
 # It can never be greater than the computer it is hosting the VB
-VBoxManage modifyvm $VB_Name --cpus 1 --memory 2048 --vram 16
+VBoxManage modifyvm $VB_Name --cpus 1 --memory 5120 --vram 16
 VBoxManage createhd --filename $VB_StoragePath --size 5120
 
 # Sets up a Dynamic Space Unit, rather than a fixed one
