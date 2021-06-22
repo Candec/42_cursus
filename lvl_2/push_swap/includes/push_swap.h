@@ -5,6 +5,24 @@
 # include <stdlib.h>
 # include "../libft/libft.h"
 
+typedef struct s_node
+{
+	int 			content;
+	struct s_node	*next;
+}				t_node;
+
+typedef struct s_stack
+{
+	struct s_node	*head;
+	int         	size;
+}				t_stack;
+
+typedef struct s_stacks
+{
+	struct s_stack	*a;
+	struct s_stack	*b;
+}				t_stacks;
+
 /*
 ** Prototypes
 */

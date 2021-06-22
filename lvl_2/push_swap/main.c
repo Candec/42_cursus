@@ -2,13 +2,15 @@
 
 int	main(int argc, char *argv[])
 {
-	t_list *a;
-	t_list *b;
+	t_stacks stacks;
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1)
-		return (1);
+	stacks.a->head = NULL;
+	stacks.a->size = 0;
+	stacks.b->head = NULL;
+	stacks.b->size = 0;
+
+	
+	parse(argc, argv, stacks);
 	ft_stack_init(argv + 1, argc - 1, &a);
 	visualize_stack(a, b);
 	// while (a != NULL || b !=NULL)
