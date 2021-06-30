@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/17 11:06:20 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/06/30 17:46:14 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,7 @@ int				ft_abs(int n);
 int				ft_strcmp(char *s1, char *s2);
 void			ft_strtoupper(char *str);
 int				ft_max(int args, ...);
+int				ft_isnumber(char *str);
+
 
 #endif
