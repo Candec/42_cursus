@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void	visualize_stack(t_list *a, t_list *b)
+void	visualize_stack(t_stacks stacks)
 {
 	while (a != NULL || b != NULL)
 	{
