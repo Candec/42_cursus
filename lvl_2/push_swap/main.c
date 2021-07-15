@@ -6,8 +6,8 @@ int	main(int argc, char *argv[])
 
 	stacks.a->head = NULL;
 	stacks.a->size = 0;
-	stacks.b->head = NULL;
-	stacks.b->size = 0;
+	// stacks.b->head = NULL;
+	// stacks.b->size = 0;
 
 
 	if (!parse(argc, argv, stacks))

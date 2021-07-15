@@ -12,84 +12,50 @@
 
 #include "libft.h"
 
-static size_t	get_num(const char *str, char c)
+static int	ft_contar(char const *s, char c)
 {
-	size_t	i;
-	size_t	num;
+	unsigned int	i;
+	int				count;
 
 	i = 0;
-	num = 0;
-	while (str[i])
+	count = 0;
+	while (s[i])
 	{
-		if (str[i] != c && str[i] != 0)
-		{
-			num++;
-			while (str[i] != c && str[i] != 0)
-				i++;
-		}
-		else if (str[i] != 0)
+		while (s[i] == c)
+			i++;
+		if (s[i] != '\0')
+			count++;
+		while (s[i] && (s[i] != c))
 			i++;
 	}
-	return (num);
-}
-
-static void	*free_mem(char **allocated_mem, size_t cnt)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < cnt)
-	{
-		free(allocated_mem[i]);
-		i++;
-	}
-	free(allocated_mem);
-	return (0);
-}
-
-static void	do_split(char const *s, char c, char **str)
-{
-	size_t	i;
-	size_t	j;
-	size_t	start;
-
-	i = 0;
-	j = 0;
-	while (s[i] != 0)
-	{
-		if (s[i] != c && s[i] != 0)
-		{
-			start = i;
-			while (s[i] != c && s[i] != 0)
-				i++;
-			str[j] = malloc(i - start + 1);
-			if (str[j] == 0)
-			{
-				free_mem(str, j);
-				return ;
-			}
-			ft_strcpy(str[j], s, start, i);
-			j++;
-		}
-		else if (s[i] != 0)
-			i++;
-	}
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**str;
-	size_t	n;
+	size_t			nbwords;
+	char			*ptr;
+	char			**splitted;
 
-	if (s == 0)
+	if (!s)
 		return (0);
-	n = get_num(s, c);
-	str = malloc(sizeof(char *) * (n + 1));
-	if (str == 0)
+	nbwords = ft_contar((char *)s, c);
+	splitted = (char **)malloc(sizeof(char *) * (nbwords + 1));
+	if (!splitted)
 		return (0);
-	str[n] = 0;
-	if (n == 0)
-		return (str);
-	do_split(s, c, str);
-	return (str);
+	ptr = (char *)s;
+	while (*s)
+	{
+		if (*s == c)
+		{
+			if (ptr != s)
+				*(splitted++) = ft_substr(ptr, 0, s - ptr);
+			ptr = (char *)s + 1;
+		}
+		s++;
+	}
+	if (ptr != s)
+		*(splitted++) = ft_substr(ptr, 0, s - ptr);
+	*splitted = 0;
+	return (splitted - nbwords);
 }

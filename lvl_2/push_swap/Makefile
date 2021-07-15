@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 HDRS		= includes
-CFLAGS 		= -Wall -Wextra -Werror -g
+CFLAGS 		= -g
+# CFLAGS 		= -Wall -Wextra -Werror -g
 AR 			= ar -rcsv
 NAME 		= libcustom.a
 SRCS		= $(wildcard ./src/*.c)
