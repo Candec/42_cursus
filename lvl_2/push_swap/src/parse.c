@@ -1,26 +1,35 @@
 #include "../includes/push_swap.h"
 
-int parse(int argc, char *argv[], t_stacks stacks)
+int parse_int(int argc, char *argv[])
 {
-	char **store;
 	int i;
+	char **store;
 
-	i = 0;
 	if (argc <= 1)
-		return 0;
-	else
-		if (argc == 2)
-			if (ft_strchr(argv[1], ' '))
+		return (0);
+	else if (argc == 2)
+		if (ft_strchr(argv[1], ' '))
+		{
+			i = 0;
+			store = ft_split(argv[1], ' ');
+			while (store[i] != NULL)
 			{
-				store = ft_split(argv[1], ' ');
-				while (store[i] != NULL)
-				{
-					printf("%s\n", store[i]);
-					i++;
-				}
+				if (!ft_isnumber(store[i]))
+					return (0);
+				i++;
 			}
-			// else if (ft_isnumber(argv[1]))
-
+		}
+		else if (!ft_isnumber(argv[1]))
+			return (0);
+	else
+	{
+		i = 1;
+		while (argv[i] != NULL)
+		{
+			if (!ft_isnumber(argv[i]))
+				return (0);
+			i++;
+		}
+	}
 return 1;
-
 }

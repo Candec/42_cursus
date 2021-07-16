@@ -2,13 +2,14 @@
 
 int	ft_isnumber(char *str)
 {
-	int i;
+	// int i;
 
-	i = 0;
-	while(str[i++])
+	// i = 0;
+	while(*str)
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(*str))
 			return (0);
+		str++;
 	}
 	return (1);
 }

@@ -10,11 +10,11 @@ int	main(int argc, char *argv[])
 	// stacks.b->size = 0;
 
 
-	if (!parse(argc, argv, stacks))
+	if (!parse_int(argc, argv))
 	{
 		write(1, "Error\n", 7);
-		return(0);
 	}
+	return(0);
 	// ft_stack_init(argv + 1, argc - 1, &a);
 
 	// visualize_stack(stacks);

@@ -28,7 +28,8 @@ typedef struct s_stacks
 */
 int		push_swap(int a[]);
 void	ft_stack_init(char *stack[], int i, t_list **a);
-int 	parse(int argc, char *argv[], t_stacks stacks);
+int		parse_int(int argc, char *argv[]);
+
 
 // void	visualize_stack(t_list *a, t_list *b);
 
