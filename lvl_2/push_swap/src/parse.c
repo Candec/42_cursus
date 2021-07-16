@@ -30,6 +30,6 @@ int	parse_int(int argc, char *argv[])
 		rtr = compare(argv, 1);
 
 		// Look for repeated arguments
-
+		// Look for too long ints
 	return (rtr);
 }
