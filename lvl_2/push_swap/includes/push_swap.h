@@ -6,30 +6,34 @@
 # include <limits.h>
 # include "../libft/libft.h"
 
-typedef struct s_node
+typedef struct		s_node
 {
-	int 			content;
 	struct s_node	*next;
-}				t_node;
+	struct s_node	*last;
+	int				n;
+}					t_node;
 
-typedef struct s_stack
+typedef struct		s_todo
 {
-	struct s_node	*head;
-	int				size;
-}				t_stack;
+	struct s_todo	*next;
+	struct s_todo	*prec;
+	char			order;
+	char			invert;
+}					t_todo;
 
-typedef struct s_stacks
+typedef struct		s_stacks
 {
-	struct s_stack	*a;
-	struct s_stack	*b;
-}				t_stacks;
+	t_node			**a;
+	t_node			**b;
+}					t_stacks;
 
 /*
 ** Prototypes
 */
 int		push_swap(int a[]);
 void	ft_stack_init(char *stack[], int i, t_list **a);
-int		parse_int(int argc, char *argv[]);
+int		parse(char *str, t_node **node, int *err);
+
 
 
 // void	visualize_stack(t_list *a, t_list *b);

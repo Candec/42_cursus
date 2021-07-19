@@ -114,6 +114,9 @@ int				ft_strcmp(char *s1, char *s2);
 void			ft_strtoupper(char *str);
 int				ft_max(int args, ...);
 int				ft_isnumber(char *str);
-
+char			*ft_strmerge(char **str, int space, int size);
+char			*ft_strnew(size_t size);
+char			*ft_strcat(char *s1, char *s2);
+void			*ft_memalloc(size_t size);
 
 #endif

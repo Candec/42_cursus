@@ -2,20 +2,13 @@
 
 int	main(int argc, char *argv[])
 {
-	t_stacks	stacks;
+	t_node	*node;
+	char	*str;
+	int		verbose;
 
-	stacks.a->head = NULL;
-	stacks.a->size = 0;
-	// stacks.b->head = NULL;
-	// stacks.b->size = 0;
-
-
-	if (!parse_int(argc, argv))
-	{
-		write(1, "Error\n", 7);
-	}
-	return(0);
-	// ft_stack_init(argv + 1, argc - 1, &a);
-
-	// visualize_stack(stacks);
+	node = NULL;
+	str = ft_strmerge(argv + 1, 1, argc - 1);
+	if (!(parse(str, &node, &verbose) < 1 || verbose))
+		return (0);
+	return (1);
 }
