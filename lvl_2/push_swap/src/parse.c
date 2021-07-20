@@ -75,25 +75,25 @@ static int	split_atoi(char *str, t_node **node, int check)
 	return (check);
 }
 
-int	parse(char *str, t_node **node, int *err)
+int	parse(char *s, t_node **node, int *err)
 {
 	size_t	i;
 
 	*err = -1;
 	i = 0;
-	while (ft_isspace(str[i]))
+	while (ft_isspace(s[i]))
 		i++;
-	*err = (str[i] == '-' && str[i + 1] == 'v' && !ft_isdigit(str[i + 2]));
+	*err = (s[i] == '-' && s[i + 1] == 'v' && !ft_isdigit(s[i + 2]));
 	i += *err * 2;
-	while (str[i])
+	while (s[i])
 	{
-		if (!ft_isdigit(str[i]) && !ft_isspace(str[i]))
-			if (!ft_strchr("+-", str[i]))
-				if (!ft_isdigit(str[i - 1]) && ft_isdigit(str[i + 1]))
-					return (-1);
+		if (!(ft_strchr("+-", s[i]) && !ft_isdigit(s[i - 1])
+				&& ft_isdigit(s[i + 1])))
+			if (!ft_isdigit(s[i]) && !ft_isspace(s[i]))
+				return (-1);
 		i++;
 	}
-	if (!split_atoi(str, node, 1))
+	if (!split_atoi(s, node, 1))
 		return (-1);
 	return (*node != NULL);
 }

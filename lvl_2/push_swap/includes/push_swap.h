@@ -27,15 +27,21 @@ typedef struct		s_stacks
 	t_node			**b;
 }					t_stacks;
 
+enum{PA, PB, SA, SB, SS, RA, RB, RR, RRA , RRB, RRR};
+
 /*
 ** Prototypes
 */
-int		push_swap(int a[]);
-void	ft_stack_init(char *stack[], int i, t_list **a);
 int		parse(char *str, t_node **node, int *err);
-
-
-
-// void	visualize_stack(t_list *a, t_list *b);
+int		countitem(t_node *node);
+void    small_sort(t_stacks stacks);
+void	do_order(char order, t_node **a, t_node **b);
+char	*str_order(char order);
+t_todo	**get_list(void);
+void	add_order(t_todo **todo, char order);
+char	invert(char order);
+int		is_opposite(char order, char ref);
+int		apply(char *str, t_node **a, t_node **b);
+void	print_orders(void);
 
 #endif

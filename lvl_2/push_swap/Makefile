@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 HDRS		= includes
-CFLAGS 		= -g
-# CFLAGS 		= -Wall -Wextra -Werror -g
+# CFLAGS 		= -g
+CFLAGS 		= -Wall -Wextra -Werror -g
 AR 			= ar -rcsv
 NAME 		= libcustom.a
 SRCS		= $(wildcard ./src/*.c)
@@ -26,7 +26,7 @@ $(NAME): libft.a $(OBJS)
 	$(AR) $(NAME) *.o $(OBJS)
 
 $(CC):
-	gcc main.c $(NAME) -I $(HDRS) -L custom $(CFLAGS)
+	gcc main.c $(NAME) -I $(HDRS) $(CFLAGS)
 
 libft.a:
 	$(MAKE) libft.a -C ./libft

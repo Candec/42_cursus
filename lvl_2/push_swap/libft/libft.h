@@ -107,7 +107,6 @@ int				ft_get_next_line(int fd, char **line);
 char			*ft_strrev(char *s);
 ssize_t			ft_ispositive(int n);
 int				ft_isspace(char a);
-char			*ft_strcpy(char *dest, char const *src, int start, int last);
 int				ft_numlen(int_fast64_t value, int base);
 int				ft_abs(int n);
 int				ft_strcmp(char *s1, char *s2);
@@ -118,5 +117,8 @@ char			*ft_strmerge(char **str, int space, int size);
 char			*ft_strnew(size_t size);
 char			*ft_strcat(char *s1, char *s2);
 void			*ft_memalloc(size_t size);
+void    		ft_strdel(char **str);
+void			ft_putstr(char *str);
+char			*ft_strcpy(char *dest, char *src);
 
 #endif
