@@ -4,6 +4,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdbool.h>
 # include "../libft/libft.h"
 
 typedef struct		s_node
@@ -43,5 +44,8 @@ char	invert(char order);
 int		is_opposite(char order, char ref);
 int		apply(char *str, t_node **a, t_node **b);
 void	print_orders(void);
+int     is_sorted(t_node *node, int until);
+void	quicksort(t_stacks p, int until, int apile, int fiter);
+
 
 #endif
