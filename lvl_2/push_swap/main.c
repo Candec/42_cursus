@@ -31,7 +31,7 @@ static void	makeinstruct(t_node **a)
 {
 	t_stacks	stacks;
 	t_node		*b;
-	//t_todo		**list;
+	t_todo		**list;
 	int			size;
 
 	b = NULL;
@@ -44,9 +44,9 @@ static void	makeinstruct(t_node **a)
 			small_sort(stacks);
 		else
 		 	quicksort(stacks, size, 1, 2);
-		//list = getlist();
-		//while (del(list))
-			// ;
+		list = get_list();
+		while (del(list))
+			 ;
 		print_orders();
 	}
 }

@@ -53,3 +53,22 @@ int	is_opposite(char order, char ref)
 		return (1);
 	return (0);
 }
+
+int	is_blocking(char order1, char order2)
+{
+	char	tmp;
+
+	if (order1 > order2)
+	{
+		tmp = order1;
+		order1 = order2;
+		order2 = tmp;
+	}
+	if (order1 <= PB && (order2 > PB || order2 == order1))
+		return (1);
+	else if (order1 == SA && (order2 == RA || order2 == RRA))
+		return (1);
+	else if (order1 == SB && (order2 == RB || order2 == RRB))
+		return (1);
+	return (0);
+}
