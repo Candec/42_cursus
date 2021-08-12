@@ -16,7 +16,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 

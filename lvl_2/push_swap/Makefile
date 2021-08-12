@@ -12,12 +12,13 @@
 
 HDRS		= includes
 # CFLAGS 		= -g
-CFLAGS 		= -Wall -Wextra -Werror -g
+CFLAGS 		= -Wall -Wextra -Werror
 AR 			= ar -rcsv
 NAME 		= libcustom.a
 SRCS		= $(wildcard ./src/*.c)
 OBJS 		= $(SRCS:%.c=%.o)
 CC			= gcc
+PROG_NAME	= push_swap
 
 all: $(NAME) $(CC)
 
@@ -26,7 +27,7 @@ $(NAME): libft.a $(OBJS)
 	$(AR) $(NAME) *.o $(OBJS)
 
 $(CC):
-	gcc $(NAME) -I $(HDRS) $(CFLAGS)
+	gcc $(NAME) -I $(HDRS) $(CFLAGS) -o $(PROG_NAME)
 
 libft.a:
 	$(MAKE) libft.a -C ./libft
