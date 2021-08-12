@@ -1,9 +1,9 @@
-#include "./includes/push_swap.h"
+#include "push_swap.h"
 
 int	countitem(t_node *node)
 {
-	int	i;
-	t_node *cur;
+	int		i;
+	t_node	*cur;
 
 	i = 0;
 	cur = node;
@@ -43,7 +43,7 @@ static void	makeinstruct(t_node **a)
 		if (size <= 3)
 			small_sort(stacks);
 		else
-		 	quicksort(stacks, size, 1, 2);
+			quicksort(stacks, size, 1, 2);
 		list = get_list();
 		while (del(list))
 			 ;

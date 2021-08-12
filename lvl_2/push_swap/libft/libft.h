@@ -117,7 +117,7 @@ char			*ft_strmerge(char **str, int space, int size);
 char			*ft_strnew(size_t size);
 char			*ft_strcat(char *s1, char *s2);
 void			*ft_memalloc(size_t size);
-void    		ft_strdel(char **str);
+void			ft_strdel(char **str);
 void			ft_putstr(char *str);
 char			*ft_strcpy(char *dest, char *src);
 

@@ -26,7 +26,7 @@ $(NAME): libft.a $(OBJS)
 	$(AR) $(NAME) *.o $(OBJS)
 
 $(CC):
-	gcc main.c $(NAME) -I $(HDRS) $(CFLAGS)
+	gcc $(NAME) -I $(HDRS) $(CFLAGS)
 
 libft.a:
 	$(MAKE) libft.a -C ./libft

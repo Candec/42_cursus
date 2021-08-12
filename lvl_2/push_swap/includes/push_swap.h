@@ -7,14 +7,14 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 
-typedef struct		s_node
+typedef struct s_node
 {
 	struct s_node	*next;
 	struct s_node	*last;
 	int				n;
 }					t_node;
 
-typedef struct		s_todo
+typedef struct s_todo
 {
 	struct s_todo	*next;
 	struct s_todo	*prec;
@@ -22,7 +22,7 @@ typedef struct		s_todo
 	char			invert;
 }					t_todo;
 
-typedef struct		s_stacks
+typedef struct s_stacks
 {
 	t_node			**a;
 	t_node			**b;
@@ -48,5 +48,8 @@ int		is_sorted(t_node *node, int until);
 void	quicksort(t_stacks p, int until, int apile, int fiter);
 int		is_blocking(char order1, char order2);
 int		del(t_todo **list);
+int		median(t_node *pile, int size);
+void	sort3(t_node **a, t_node **b, int until, int sorted);
+int		act(t_node **a, t_node **b, int sorted, int pivot);
 
 #endif
