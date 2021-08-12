@@ -14,7 +14,7 @@ HDRS		= includes
 # CFLAGS 		= -g
 CFLAGS 		= -Wall -Wextra -Werror
 AR 			= ar -rcsv
-NAME 		= libcustom.a
+NAME 		= libproject.a
 SRCS		= $(wildcard ./src/*.c)
 OBJS 		= $(SRCS:%.c=%.o)
 CC			= gcc
