@@ -19,6 +19,7 @@ int	is_sorted(t_node *node, int until)
 
 	i = 1;
 	cur = node;
+    // printf("%d -- %d\n", cur->n, cur->next->n);
 	while (cur->next != node && cur->n < cur->next->n)
 	{
 		cur = cur->next;

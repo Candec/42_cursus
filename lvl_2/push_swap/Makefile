@@ -12,7 +12,7 @@
 
 HDRS		= includes
 # CFLAGS 		= -g
-CFLAGS 		= -Wall -Wextra -Werror
+CFLAGS 		= -Wall -Wextra -Werror -g
 AR 			= ar -rcsv
 NAME 		= libproject.a
 SRCS		= $(wildcard ./src/*.c)
