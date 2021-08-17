@@ -44,9 +44,11 @@ static void	swapb(t_node **a, t_node **b)
 
 void	sort3(t_node **a, t_node **b, int until, int sorted)
 {
-	if ((sorted && !is_sorted(*a, until)) || (!sorted && !is_sorted(*b, until)))
+	if ((sorted && !is_sorted(*a, until, sorted))
+		|| (!sorted && !is_sorted(*b, until, sorted)))
 	{
-		if ((sorted && !is_sorted(*a, 2)) || (!sorted && !is_sorted(*b, 2)))
+		if ((sorted && !is_sorted(*a, 2, sorted))
+			|| (!sorted && !is_sorted(*b, 2, sorted)))
 		{
 			if (sorted)
 				do_order(SA, a, b);

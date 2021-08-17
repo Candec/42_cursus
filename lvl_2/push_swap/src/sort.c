@@ -38,6 +38,15 @@ static void	inverter(int i, int sorted, t_stacks p)
 	}
 }
 
+bool    get_sorted(int sorted, t_stacks p, int until)
+{
+	if (sorted)
+		return (is_sorted(*(p.a), until, sorted));
+	else
+		return (is_sorted(*(p.b), until, sorted));
+
+}
+
 void	quicksort(t_stacks p, int until, int sorted, int fiter)
 {
 	int	i;
@@ -47,8 +56,9 @@ void	quicksort(t_stacks p, int until, int sorted, int fiter)
 	i = 0;
 	reset = 0;
 	pivot = get_median(sorted, p, until);
-	if ((sorted && is_sorted(*(p.a), until))
-		|| (!sorted && is_sorted(*(p.b), until)))
+	// if ((sorted && is_sorted(*(p.a), until, sorted))
+	// 	|| (!sorted && is_sorted(*(p.b), until, sorted)))
+	if (get_sorted(sorted, p, until))
 		return ;
 	while (until > 3 && i < (until / 2) + (until % 2 && !sorted) && ++reset)
 		i += act(p.a, p.b, sorted, pivot);

@@ -44,7 +44,7 @@ char	invert(char order);
 int		is_opposite(char order, char ref);
 int		apply(char *str, t_node **a, t_node **b);
 void	print_orders(void);
-int		is_sorted(t_node *node, int until);
+int		is_sorted(t_node *node, int until, int sorted);
 void	quicksort(t_stacks p, int until, int apile, int fiter);
 int		is_blocking(char order1, char order2);
 int		del(t_todo **list);

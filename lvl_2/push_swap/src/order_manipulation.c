@@ -5,7 +5,7 @@ void	add_order(t_todo **todo, char order)
 	t_todo	*new;
 	t_todo	*cur;
 
-	new = malloc(sizeof(t_todo));
+	new = (t_todo *)malloc(sizeof(t_todo));
 	if (todo && new)
 	{
 		new->next = NULL;

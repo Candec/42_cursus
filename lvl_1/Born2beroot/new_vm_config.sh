@@ -2,8 +2,8 @@
 
 VB_Name='Devian_Test'
 VB_OS='Debian_64'
-VB_StoragePath="/Users/$USER/VB_Name.vdi"
-VB_ISOPath="/Users/$USER/Downloads/debian-10.9.0-amd64-netinst.iso"
+VB_StoragePath="/goinfre/$USER/VB_Name.vdi"
+VB_ISOPath="/goinfre/$USER/debian-10.9.0-amd64-netinst.iso"
 
 # Creates the VirtualBox and expects an OS. Different OS can be selected using the command 
 # 	$ VBoxManage ostype

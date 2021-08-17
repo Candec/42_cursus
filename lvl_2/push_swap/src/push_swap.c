@@ -12,15 +12,15 @@ int	countitem(t_node *node)
 	return (i);
 }
 
-int	is_sorted(t_node *node, int until)
+int	is_sorted(t_node *node, int until, int sorted)
 {
 	t_node	*cur;
 	int		i;
 
 	i = 1;
 	cur = node;
-    // printf("%d -- %d\n", cur->n, cur->next->n);
-	while (cur->next != node && cur->n < cur->next->n)
+	while (cur->next != node && ((cur->n < cur->next->n)
+			|| (!sorted && cur->n > cur->next->n)))
 	{
 		cur = cur->next;
 		i++;
@@ -39,7 +39,7 @@ static void	makeinstruct(t_node **a)
 	stacks.a = a;
 	stacks.b = &b;
 	size = countitem(*(stacks.a));
-	if (!is_sorted(*(stacks.a), size))
+	if (!is_sorted(*(stacks.a), size, 1))
 	{
 		if (size <= 3)
 			small_sort(stacks);

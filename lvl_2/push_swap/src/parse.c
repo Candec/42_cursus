@@ -55,7 +55,6 @@ static int	split_atoi(char *str, t_node **node, int check)
 	i = 0;
 	while (check && str[i])
 	{
-		// if (ft_strchr("0123456789-+", str[i]) && str[i + 1] != 'v')
 		if (ft_strchr("0123456789-+", str[i]))
 		{
 			check = check && check_n_atoi(str + i, &tmp);
@@ -84,7 +83,6 @@ int	parse(char *s, t_node **node, int *err)
 	i = 0;
 	while (ft_isspace(s[i]))
 		i++;
-	// *err = (s[i] == '-' && s[i + 1] == 'v' && !ft_isdigit(s[i + 2]));
 	*err = (s[i] == '-' && !ft_isdigit(s[i + 1]));
 	i += *err * 2;
 	while (s[i])
