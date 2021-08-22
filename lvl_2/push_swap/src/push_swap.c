@@ -19,11 +19,11 @@ int	is_sorted(t_node *node, int until, int sorted)
 
 	i = 1;
 	cur = node;
-	while (cur->next != node && ((cur->n < cur->next->n)
+	while (cur->next != node && ((sorted && cur->n < cur->next->n)
 			|| (!sorted && cur->n > cur->next->n)))
 	{
-		cur = cur->next;
 		i++;
+		cur = cur->next;
 	}
 	return (i >= until);
 }

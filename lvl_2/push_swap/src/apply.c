@@ -1,12 +1,4 @@
-#include "push_swap.h"
-
-static void	rotate(t_node **node, int reverse)
-{
-	if (reverse)
-		*node = (*node)->last;
-	else
-		*node = (*node)->next;
-}
+#include "../includes/push_swap.h"
 
 static void	push(t_node **from, t_node **to)
 {
@@ -35,6 +27,14 @@ static void	push(t_node **from, t_node **to)
 		(*to)->last = tmp;
 	}
 	*to = tmp;
+}
+
+static void	rotate(t_node **node, int reverse)
+{
+	if (reverse)
+		*node = (*node)->last;
+	else
+		*node = (*node)->next;
 }
 
 static int	apply_s(char *str, t_node **a, t_node **b)
