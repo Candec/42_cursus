@@ -47,7 +47,7 @@ int	is_opposite(char order, char ref)
 	}
 	if (order <= PB && ref <= PB)
 		return (order != ref);
-	else if (order <= SB && ref == SB)
+	else if (order <= SB && ref == order)
 		return (1);
 	else if ((order == RA && ref == RRA) || (order == RB && ref == RRB))
 		return (1);
