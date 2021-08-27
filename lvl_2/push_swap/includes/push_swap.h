@@ -57,5 +57,9 @@ void	RRARRB(int sorted, t_stacks p);
 void	fitest(int i, int sorted, t_stacks p, int fiter);
 void	inverter(int i, int sorted, t_stacks p);
 bool	get_sorted(int sorted, t_stacks p, int until);
+void	del_node(t_node **list);
+int		del_stacks(t_stacks stacks);
+int		ft_ordersize(t_todo *lst);
+void	del_orders(t_todo **list);
 
 #endif

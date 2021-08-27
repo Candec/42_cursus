@@ -50,6 +50,7 @@ static void	makeinstruct(t_node **a)
 			 ;
 		print_orders();
 	}
+	del_stacks(stacks);
 }
 
 int	main(int argc, char *argv[])

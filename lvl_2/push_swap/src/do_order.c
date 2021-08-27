@@ -68,4 +68,5 @@ void	print_orders(void)
 		cur = cur->next;
 	}
 	ft_putstr(buf);
+	del_orders(list);
 }
