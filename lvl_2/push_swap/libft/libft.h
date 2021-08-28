@@ -25,6 +25,7 @@
 # include <stddef.h>
 # include <stdarg.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4000
@@ -120,5 +121,7 @@ void			*ft_memalloc(size_t size);
 void			ft_strdel(char **str);
 void			ft_putstr(char *str);
 char			*ft_strcpy(char *dest, char *src);
+int			ft_strequal(char *s1, char *s2)
+
 
 #endif
