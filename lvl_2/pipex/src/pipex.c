@@ -62,7 +62,14 @@ void	check_heredoc_mode(t_pipex *p, int argc, char *argv[], char *envp[])
 
 void	check_pipe_mode(t_pipex *p, int argc, char *argv[], char *envp[])
 {
-	if (access())
+	if (access(argv[1], F_OK) == ERROR)
+		error_handling(p, "NO INPUT FILE", TRUE);
+	if (access(argv[1], R_OK) == ERROR)
+		error_handling(p, "INSUFICIENT PERMISSIONS", TRUE);
+	find_command_paths(p, argc, argv, envp);
+	p->fd_input = open(argv[1], O_RDONLY);
+
+
 }
 
 void	check_input(t_pipex *p, int argc, char *argv[], char *envp[])
