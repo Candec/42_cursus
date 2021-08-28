@@ -16,10 +16,8 @@ int	ft_ordersize(t_todo *lst)
 void	del_orders(t_todo **list)
 {
 	t_todo	*cur;
-	int		ret;
 	int		size;
 
-	ret = 0;
 	if (!list)
 		return ;
 	size = ft_ordersize(*list);
@@ -30,7 +28,6 @@ void	del_orders(t_todo **list)
 	{
 		if (cur && cur->next)
 		{
-			ret = 1;
 			cur = (*list)->next;
 			free(*list);
 			*list = cur;

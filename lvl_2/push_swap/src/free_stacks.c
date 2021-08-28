@@ -20,10 +20,8 @@ int	ft_nodesize(t_node *lst)
 void	del_node(t_node **list)
 {
 	t_node	*cur;
-	int		ret;
 	int		size;
 
-	ret = 0;
 	if (!list)
 		return ;
 	size = ft_nodesize(*list);
@@ -34,7 +32,6 @@ void	del_node(t_node **list)
 	{
 		if (cur && cur->last)
 		{
-			ret = 1;
 			cur = (*list)->next;
 			free(*list);
 			*list = cur;
