@@ -1,5 +1,74 @@
 #include "../includes/pipex.h"
 
+void	check_cmd_path(t_pipex *p, char *args[], char *error)
+{
+	char	*cmd_path;
+	int		i;
+
+	i = 0;
+	while (p->env_path[i])
+	{
+		cmd_path = ft_strjoin(p->env_path[i], args[0])
+		if (access(cmd_path, X_OK) != -1)
+		{
+			ft_strdel(&cmd_path);
+			break	;
+		}
+		ft_strdel(&cmd_path);
+		i++;
+	}
+	if (!p->env_path[i])
+	{
+		error_handling(p, error, FALSE);
+		ft_strdel(&error);
+		//ft_str_array_del(args)
+		error_handling(p, "EXIT", TRUE);
+	}
+}
+
+	validate_command(t_pipex *p, int argc, char *argv[])
+{
+	char	**cmd_args;
+	int		i;
+	char	*error;
+
+	i = 1;
+	if (p->mode == PIPE)
+		i = 0;
+	else if (p->mode == HERE_DOC)
+		i = 1;
+	while (i++ < argc - 1)
+	{
+		cmd_args = ft_split(argv[i], ' ');
+		error = ft_strjoin("COMMAND ", cmd_args[0]);
+		check_cmd_path(p, cmd_args, error);
+	}
+}
+
+
+void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[])
+{
+	int i;
+
+	i = 0;
+	while (envp[i] ! = NULL)
+	{
+		if (!ft_strncmp("PATH=", envp[i], 5))
+			break ;
+		i++;
+	}
+	p->env_path = ft_split(envp[i], ':');
+	p->env_path[0] = ft_substr(p->env_path[0], 5, ft_strlen(p->env_path[0] - 5));
+	i = 0;
+	while (p->env_path[i])
+	{
+		p->env_path[i] = ft_strjoin(p->env_path[i], "/");
+		i++;
+	}
+	validate_command(p, argc, argv);
+}
+
+
 /*
 **	Possible errors to handle
 **	1. Not enough arguments
@@ -60,6 +129,14 @@ void	check_heredoc_mode(t_pipex *p, int argc, char *argv[], char *envp[])
 	p->limiter = ft_strdup(argv[2]);
 }
 
+/*
+**	1. Checks the existance of an inputfile
+**	2. Cheks the permissions of the inputfile
+**	3. It fetchs the commands
+**	4. Opens the input file
+**	5. Opens the output file
+*/
+
 void	check_pipe_mode(t_pipex *p, int argc, char *argv[], char *envp[])
 {
 	if (access(argv[1], F_OK) == ERROR)
@@ -68,8 +145,11 @@ void	check_pipe_mode(t_pipex *p, int argc, char *argv[], char *envp[])
 		error_handling(p, "INSUFICIENT PERMISSIONS", TRUE);
 	find_command_paths(p, argc, argv, envp);
 	p->fd_input = open(argv[1], O_RDONLY);
-
-
+	if (p->fd_input == ERROR)
+		error_handling(p, "CANT OPEN INPUT FILE", TRUE);
+	p->fd_output = open(argv[argc - 1], O_WRONLY | O_CREATE | O_TRUNC, 0777);
+	if (p->fd_output == ERROR)
+		error_handling(p, "CANT OPEN OUTPUT FILE", TRUE);
 }
 
 void	check_input(t_pipex *p, int argc, char *argv[], char *envp[])
