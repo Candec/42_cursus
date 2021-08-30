@@ -17,7 +17,7 @@ void	check_cmd_path(t_pipex *p, char *args[], char *str)
 	int		i;
 
 	i = -1;
-	while (p->env_path[i++])
+	while (p->env_path[++i])
 	{
 		cmd_path = ft_strjoin(p->env_path[i], args[0]);
 		if (access(cmd_path, X_OK) != -1)
@@ -52,10 +52,10 @@ void	validate_command(t_pipex *p, int argc, char *argv[])
 
 	i = 1;
 	if (p->mode == PIPE)
-		i = 0;
-	else if (p->mode == HERE_DOC)
 		i = 1;
-	while (i++ < argc - 1)
+	else if (p->mode == HERE_DOC)
+		i = 2;
+	while (++i < argc - 1)
 	{
 		cmd_args = ft_split(argv[i], ' ');
 		str = ft_strjoin("COMMAND ", cmd_args[0]);
@@ -76,12 +76,11 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[])
 {
 	int	i;
 
-	i = 0;
-	while (envp[i] != NULL)
+	i = -1;
+	while (envp[i++] != NULL)
 	{
 		if (!ft_strncmp("PATH=", envp[i], 5))
 			break ;
-		i++;
 	}
 	p->env_path = ft_split(envp[i], ':');
 	p->env_path[0] = ft_substr(p->env_path[0],
@@ -102,7 +101,7 @@ void	save_commands(t_pipex *p, char *cmds_arg[])
 	int		i;
 
 	i = -1;
-	while (p->env_path[i++])
+	while (p->env_path[++i])
 	{
 		cmds_path = ft_strjoin(p->env_path[i], *cmds_arg);
 		if (access(cmds_path, X_OK) != -1)

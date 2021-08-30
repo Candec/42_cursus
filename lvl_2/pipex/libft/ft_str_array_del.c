@@ -1,11 +1,11 @@
 #include "libft.h"
 
-void	ft_str_array_del(char ***str_array)
+void	ft_str_array_del(char ***str_arr)
 {
 	int	i;
 
 	i = -1;
-	while ((*str_array)[++i])
-		ft_strdel(&(*str_array)[i]);
-	*str_array = NULL;
+	while ((*str_arr)[++i])
+		ft_strdel(&(*str_arr)[i]);
+	*str_arr = NULL;
 }

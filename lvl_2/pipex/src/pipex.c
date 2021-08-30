@@ -14,9 +14,9 @@ void	clear_data(t_pipex *p)
 {
 	int	i;
 
-	i = -1;
 	if (p->cmds)
 	{
+		i = -1;
 		while (p->cmds[++i])
 			ft_str_array_del(&p->cmds[i]);
 	}

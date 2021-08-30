@@ -1,5 +1,4 @@
 NAME = pipex
-NAME_CHECKER = checker
 
 LIBFT = libft/libft.a
 CFLAGS = -Wall -Wextra -Werror -g
@@ -7,8 +6,6 @@ AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
-# OBJ_COMMON = $(SRC_COMMON:%.c=$(OBJ_DIR)/%.o)
-# OBJ_CHECKER = $(SRC_CHECKER:%.c=$(OBJ_DIR)/%.o)
 
 HEADER = pipex.h
 

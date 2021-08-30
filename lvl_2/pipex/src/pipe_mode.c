@@ -10,9 +10,9 @@ void	child_process(t_pipex *p, int ant_fd, int i)
 		dup2(p->fd[WRITE_END], STDOUT_FILENO);
 	else
 		dup2(p->fd_output, STDOUT_FILENO);
+	pipe_closer(p);
 	if (execve(p->cmds[i][0], p->cmds[i], p->envp) == ERROR)
 		error_handling(p, "EXE ERROR", TRUE);
-	pipe_closer(p);
 }
 
 void	pipe_mode(t_pipex *p)

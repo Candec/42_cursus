@@ -55,5 +55,5 @@ void	here_doc_mode(t_pipex *p)
 	write(p->fd_input, str, ft_strlen(str));
 	close(p->fd_input);
 	ft_strdel(&str);
-	pipe_mode_bridge(p, "inputstream.txt");
+	pipe_mode_bridge(p, "TMP.txt");
 }
