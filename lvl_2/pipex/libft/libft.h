@@ -34,6 +34,8 @@
 #  define ASCII_OFFSET_NUM 48
 # endif
 
+typedef int t_bool;
+
 /*
 **First half
 */
@@ -120,5 +122,7 @@ void			*ft_memalloc(size_t size);
 void			ft_strdel(char **str);
 void			ft_putstr(char *str);
 char			*ft_strcpy(char *dest, char *src);
+void			ft_str_array_del(char ***str_array);
+t_bool			ft_strequal(char *s1, char *s2);
 
 #endif

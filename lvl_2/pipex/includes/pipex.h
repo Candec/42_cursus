@@ -23,22 +23,63 @@ enum
 # define CHILD_PROCESS 0
 # define ERROR -1
 
-typedef struct	s_pipex
+typedef struct s_pipex
 {
 	int		argc;
 	char	**argv;
 	char	**envp;
 	char	**env_path;
-	char	*cmds;
+	char	***cmds;
+	char	*limiter;
 	int		n_cmds;
 	int		fd_input;
 	int		fd_output;
 	int		fd[2];
-	int		pid_cmd;
 	int		status;
 	int		mode;
-	char	*limiter;
+	pid_t	pid_cmd;
 }				t_pipex;
 
+/*
+**	pipex.c
+*/
+
+void	pipe_closer(t_pipex *p);
+void	clear_data(t_pipex *p);
+void	pipex_init(t_pipex *p, char **argv);
+void	error_handling(t_pipex *p, char *error, int exit);
+
+/*
+**	check_mode.c
+*/
+
+void	check_input(t_pipex *p, int argc, char *argv[], char *envp[]);
+void	check_pipe_mode(t_pipex *p, int argc, char *argv[], char *envp[]);
+void	check_heredoc_mode(t_pipex *p, int argc, char *argv[], char *envp[]);
+
+/*
+**	check_cmds.c
+*/
+
+void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[]);
+void	validate_command(t_pipex *p, int argc, char *argv[]);
+void	check_cmd_path(t_pipex *p, char *args[], char *str);
+void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[]);
+void	get_commands(t_pipex *p);
+
+/*
+**	pipe_mode.c
+*/
+
+void	pipe_mode(t_pipex *p);
+void	child_process(t_pipex *p, int ant_fd, int i);
+
+/*
+**	here_doc_mode.c
+*/
+
+void	here_doc_mode(t_pipex *p);
+void	gnl_ret(t_pipex *p, int ret, char **line, char **readstr);
+void	pipe_mode_bridge(t_pipex *p, char *inputstream);
 
 #endif
