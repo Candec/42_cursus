@@ -76,8 +76,8 @@ void	pipex_init(t_pipex *p, char **argv)
 	p->n_cmds = 0;
 	p->fd_input = -1;
 	p->fd_output = -1;
+	p->fd[0] = -1;
 	p->fd[1] = -1;
-	p->fd[2] = -1;
 	p->pid_cmd = -1;
 	if (ft_strequal(argv[1], "here_doc"))
 		p->mode = HERE_DOC;
@@ -98,6 +98,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	p;
 
+    printf("%s\n", ft_strjoin("/", "wc"));
 	pipex_init(&p, argv);
 	check_input(&p, argc, argv, envp);
 	get_commands(&p);

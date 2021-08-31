@@ -72,12 +72,12 @@ void	validate_command(t_pipex *p, int argc, char *argv[])
 **	4. Added '/' so we can use it later for path checking.
 */
 
-void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[])
+void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 {
 	int	i;
 
 	i = -1;
-	while (envp[i++] != NULL)
+	while (envp[++i] != NULL)
 	{
 		if (!ft_strncmp("PATH=", envp[i], 5))
 			break ;
@@ -86,7 +86,7 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char *envp[])
 	p->env_path[0] = ft_substr(p->env_path[0],
 			5, ft_strlen(p->env_path[0] - 5));
 	i = -1;
-	while (p->env_path[i++])
+	while (p->env_path[++i])
 		p->env_path[i] = ft_strjoin(p->env_path[i], "/");
 	validate_command(p, argc, argv);
 }
@@ -122,6 +122,7 @@ void	get_commands(t_pipex *p)
 	p->cmds = ft_calloc(p->argc - 2, sizeof(char **));
 	if (!p->cmds)
 		error_handling(p, "MALLOC", TRUE);
+	i = 1;
 	if (p->mode == PIPE)
 		i = 1;
 	else if (p->mode == HERE_DOC)
