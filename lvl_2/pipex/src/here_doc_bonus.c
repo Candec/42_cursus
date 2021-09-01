@@ -26,7 +26,7 @@ void	gnl_ret(t_pipex *p, int ret, char **line, char **readstr)
 	else if (ret == 1)
 	{
 		*readstr = ft_strjoin(*readstr, *line);
-		*readstr = ft_strjoin(*readstr, "\n");
+		*readstr = ft_strjoin_char(*readstr, '\n');
 		ft_strdel(line);
 	}
 }

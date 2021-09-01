@@ -1,7 +1,8 @@
 NAME = pipex
 
 LIBFT = libft/libft.a
-CFLAGS = -Wall -Wextra -Werror -g
+# CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src

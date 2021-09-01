@@ -34,7 +34,7 @@ void	check_cmd_path(t_pipex *p, char *args[], char *str)
 		ft_str_array_del(&args);
 		error_handling(p, "EXIT", TRUE);
 	}
-}
+}   
 
 /*
 **	1. Checks the mode
@@ -75,6 +75,7 @@ void	validate_command(t_pipex *p, int argc, char *argv[])
 void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 {
 	int	i;
+    char *str;
 
 	i = -1;
 	while (envp[++i])
@@ -83,11 +84,17 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 			break ;
 	}
 	p->env_path = ft_split(envp[i], ':');
-	p->env_path[0] = ft_substr(p->env_path[0],
-			5, ft_strlen(p->env_path[0] - 5));
+    str = p->env_path[0];
+	p->env_path[0] = ft_substr(str, 5,
+			ft_strlen(str - 5));
+    free(str);
 	i = -1;
 	while (p->env_path[++i])
-		p->env_path[i] = ft_strjoin(p->env_path[i], "/");
+    {
+        str = p->env_path[i];
+		p->env_path[i] = ft_strjoin_char(str, '/');
+        free(str);
+    }
 	validate_command(p, argc, argv);
 }
 

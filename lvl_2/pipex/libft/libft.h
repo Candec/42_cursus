@@ -34,7 +34,7 @@
 #  define ASCII_OFFSET_NUM 48
 # endif
 
-typedef int t_bool;
+typedef int	t_bool;
 
 /*
 **First half
@@ -124,5 +124,6 @@ void			ft_putstr(char *str);
 char			*ft_strcpy(char *dest, char *src);
 void			ft_str_array_del(char ***str_array);
 t_bool			ft_strequal(char *s1, char *s2);
+char	        *ft_strjoin_char(const char *s1, char c);
 
 #endif
