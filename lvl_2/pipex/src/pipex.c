@@ -98,7 +98,8 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	p;
 
-    printf("%s\n", ft_strjoin("/", "wc"));
+
+
 	pipex_init(&p, argv);
 	check_input(&p, argc, argv, envp);
 	get_commands(&p);

@@ -22,7 +22,7 @@ void	pipe_mode(t_pipex *p)
 
 	i = -1;
 	ant_fd = p->fd_input;
-	while (i++ < p->n_cmds)
+	while (++i < p->n_cmds)
 	{
 		if (pipe(p->fd) == ERROR)
 			error_handling(p, "PIPE OPENING", TRUE);

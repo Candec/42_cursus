@@ -77,7 +77,7 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 	int	i;
 
 	i = -1;
-	while (envp[++i] != NULL)
+	while (envp[++i])
 	{
 		if (!ft_strncmp("PATH=", envp[i], 5))
 			break ;
@@ -128,7 +128,7 @@ void	get_commands(t_pipex *p)
 	else if (p->mode == HERE_DOC)
 		i = 2;
 	j = -1;
-	while (i++ < p->argc - 1)
+	while (++i < p->argc - 1)
 	{
 		cmds_args = ft_split(p->argv[i], ' ');
 		if (!cmds_args)
