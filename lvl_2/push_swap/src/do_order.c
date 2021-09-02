@@ -44,6 +44,16 @@ t_todo	**get_list(void)
 	return (&list);
 }
 
+int	continuation(int i, char *buf)
+{
+	if (i > 2043)
+	{
+		ft_putstr(buf);
+		i = 0;
+	}
+	return (i);
+}
+
 void	print_orders(void)
 {
 	t_todo	**list;
@@ -57,12 +67,13 @@ void	print_orders(void)
 	i = 0;
 	while (cur)
 	{
-		if (i > 2043)
-		{
-			ft_putstr(buf);
-			i = 0;
-		}
+		i = continuation(i, buf);
 		str = str_order(cur->order);
+		if (cur->next && (cur->order == SA && cur->next->order == SB))
+		{
+			str = str_order(SS);
+			cur = cur->next;
+		}
 		ft_strcpy(buf + i, str);
 		i += ft_strlen(str);
 		cur = cur->next;

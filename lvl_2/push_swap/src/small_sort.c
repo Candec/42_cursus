@@ -7,7 +7,9 @@ static char	last_end(t_node *node)
 
 	last = node->last->n;
 	cur = node;
-	if (cur->n > last || cur->next->n > last)
+	if (cur->n < cur->next->n && cur->next->n > cur->last->n)
+		return (RRA);
+	else if (cur->n > last || cur->next->n > last)
 	{
 		if (cur->n > last)
 			return (RA);
