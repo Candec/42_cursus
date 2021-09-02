@@ -86,7 +86,7 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 	p->env_path = ft_split(envp[i], ':');
     str = p->env_path[0];
 	p->env_path[0] = ft_substr(str, 5,
-			ft_strlen(str - 5));
+			ft_strlen(str) - 5);
     free(str);
 	i = -1;
 	while (p->env_path[++i])
@@ -136,7 +136,7 @@ void	get_commands(t_pipex *p)
 		i = 2;
 	j = -1;
 	while (++i < p->argc - 1)
-	{
+    {
 		cmds_args = ft_split(p->argv[i], ' ');
 		if (!cmds_args)
 			error_handling(p, "SPLIT", TRUE);

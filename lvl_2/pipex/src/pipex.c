@@ -10,37 +10,28 @@ void	pipe_closer(t_pipex *p)
 	p->fd[1] = -1;
 }
 
-static void    ft_free_cubo(t_pipex **p)
+void    ft_free_cube(t_pipex *p)
 {
     int i = 0, j = 0;
     
-    while ((*p)->cmds[i])
+    while (p->cmds[i])
     {
         j = 0;
-        while ((*p)->cmds[i][j])
+        while (p->cmds[i][j])
         {
-            free((*p)->cmds[i][j]);
+            free(p->cmds[i][j]);
             j++;
         }
-        free((*p)->cmds[i]);
+        free(p->cmds[i]);
         i++;
     }
-    free((*p)->cmds);
+    free(p->cmds);
 }
 
 void	clear_data(t_pipex *p)
 {
-	// int	i;
-
-	// if (p->cmds)
-	// {
-	// 	i = -1;
-	// 	while (p->cmds[++i])
-    //         ft_f
-	// 		ft_str_array_del(&p->cmds[i]);
-    //     free(p->cmds);
-	// }
-    //ft_free_cubo(&p);
+    if (p->cmds)
+        ft_free_cube(p);
 	if (p->env_path)
 		ft_str_array_del(&p->env_path);
     pipe_closer(p);
