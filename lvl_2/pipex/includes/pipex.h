@@ -81,6 +81,6 @@ void	child_process(t_pipex *p, int ant_fd, int i);
 void	here_doc_mode(t_pipex *p);
 void	gnl_ret(t_pipex *p, int ret, char **line, char **readstr);
 void	pipe_mode_bridge(t_pipex *p, char *inputstream);
-void    ft_free_cube(t_pipex *p);
+void	ft_free_cube(t_pipex *p);
 
 #endif

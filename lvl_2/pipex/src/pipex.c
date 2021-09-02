@@ -34,7 +34,7 @@ void	clear_data(t_pipex *p)
         ft_free_cube(p);
 	if (p->env_path)
 		ft_str_array_del(&p->env_path);
-    pipe_closer(p);
+	pipe_closer(p);
 	if (p->limiter)
 		ft_strdel(&p->limiter);
 	if (access("TMP.txt", X_OK) != -1)
