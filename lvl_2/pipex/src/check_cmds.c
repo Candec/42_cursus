@@ -34,7 +34,7 @@ void	check_cmd_path(t_pipex *p, char *args[], char *str)
 		ft_str_array_del(&args);
 		error_handling(p, "EXIT", TRUE);
 	}
-}   
+}
 
 /*
 **	1. Checks the mode
@@ -74,8 +74,8 @@ void	validate_command(t_pipex *p, int argc, char *argv[])
 
 void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 {
-	int	i;
-    char *str;
+	int		i;
+	char	*str;
 
 	i = -1;
 	while (envp[++i])
@@ -84,17 +84,17 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 			break ;
 	}
 	p->env_path = ft_split(envp[i], ':');
-    str = p->env_path[0];
+	str = p->env_path[0];
 	p->env_path[0] = ft_substr(str, 5,
 			ft_strlen(str) - 5);
-    free(str);
+	free(str);
 	i = -1;
 	while (p->env_path[++i])
-    {
-        str = p->env_path[i];
+	{
+		str = p->env_path[i];
 		p->env_path[i] = ft_strjoin_char(str, '/');
-        free(str);
-    }
+		free(str);
+	}
 	validate_command(p, argc, argv);
 }
 
@@ -102,22 +102,26 @@ void	find_command_paths(t_pipex *p, int argc, char *argv[], char **envp)
 **	| Command addition to t_pipex |
 */
 
-void	save_commands(t_pipex *p, char *cmds_arg[])
+char	*save_commands(t_pipex *p, char *cmds_arg)
 {
 	char	*cmds_path;
 	int		i;
+	char	*tmp;
 
+	tmp = cmds_arg;
 	i = -1;
 	while (p->env_path[++i])
 	{
-		cmds_path = ft_strjoin(p->env_path[i], *cmds_arg);
+		cmds_path = ft_strjoin(p->env_path[i], cmds_arg);
 		if (access(cmds_path, X_OK) != -1)
 		{
-			*cmds_arg = cmds_path;
-			break ;
+			tmp = cmds_path;
+			free(cmds_arg);
+			return (tmp);
 		}
 		ft_strdel(&cmds_path);
 	}
+	return (NULL);
 }
 
 void	get_commands(t_pipex *p)
@@ -126,7 +130,7 @@ void	get_commands(t_pipex *p)
 	int		j;
 	char	**cmds_args;
 
-	p->cmds = ft_calloc(p->argc - 2, sizeof(char **));
+	p->cmds = ft_calloc((p->argc - 2), sizeof(char *));
 	if (!p->cmds)
 		error_handling(p, "MALLOC", TRUE);
 	i = 1;
@@ -136,11 +140,11 @@ void	get_commands(t_pipex *p)
 		i = 2;
 	j = -1;
 	while (++i < p->argc - 1)
-    {
+	{
 		cmds_args = ft_split(p->argv[i], ' ');
 		if (!cmds_args)
 			error_handling(p, "SPLIT", TRUE);
-		save_commands(p, &cmds_args[0]);
+		cmds_args[0] = save_commands(p, cmds_args[0]);
 		p->cmds[++j] = cmds_args;
 		p->n_cmds++;
 	}

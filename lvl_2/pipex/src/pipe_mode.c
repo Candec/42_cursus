@@ -1,5 +1,26 @@
 #include "../includes/pipex.h"
 
+void	ft_free_cube(char ***cmds)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cmds[i])
+	{
+		j = 0;
+		while (cmds[i][j])
+		{
+			free(cmds[i][j]);
+			j++;
+		}
+		free(cmds[i]);
+		i++;
+	}
+	free(cmds);
+}
+
 void	child_process(t_pipex *p, int ant_fd, int i)
 {
 	if (ant_fd != STDIN_FILENO && i != 0)
