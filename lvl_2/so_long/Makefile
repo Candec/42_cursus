@@ -1,53 +1,87 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/24 12:45:23 by apinto            #+#    #+#              #
-#    Updated: 2021/05/19 15:59:04 by jibanez-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = so_long
 
-HDRS		= includes
-CFLAGS 		= -Wall -Wextra -Werror -g
-AR 			= ar -rcsv
-NAME 		= libproject.a
-SRCS		= $(wildcard ./src/*.c)
-OBJS 		= $(SRCS:%.c=%.o)
-CC			= gcc
-PROG_NAME	= push_swap
+LIBFT = libft/libft.a
+# CFLAGS 		= -Wall -Wextra -Werror -I/usr/local/include -Imlx_linux -O3
+CFLAGS 		= -I/usr/local/include -Imlx_linux -O3 -g
+LFLAGS		= -L/usr/local/lib -Lmlx_Linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
+AR = ar rcsv
+OBJ_DIR = obj
+SRC_DIR = src
+OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
+MAP = ./map.ber
 
-all: $(NAME) $(CC)
+HEADER = so_long.h
 
-$(NAME): libft.a $(OBJS)
-	ar -x libft.a
-	$(AR) $(NAME) *.o $(OBJS)
+SRC = main.c \
+	handle_error.c \
+	map_valid.c \
+	# pipe_mode.c \
+	# here_doc_bonus.c
 
-$(CC):
-	gcc $(NAME) -I $(HDRS) $(CFLAGS) -o $(PROG_NAME)
+all: $(NAME)
 
-libft.a:
-	$(MAKE) libft.a -C ./libft
-	mv ./libft/libft.a ./libft.a
+$(NAME): $(OBJ) $(OBJ_COMMON)
+	@echo $(ANSI_B_BGREEN) "compile libft" $(ANSI_RESET)$(ANSI_F_BBLACK)
+	$(MAKE) all -C libft
+	@echo $(ANSI_RESET) ""
+	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
+	gcc $(CFLAGS) $(OBJ) $(OBJ_COMMON) $(LIBFT) -o $(NAME)
+	@echo $(ANSI_RESET) ""
 
-%.o: %.c
-	gcc $(CFLAGS) -I $(HDRS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix includes/,$(HEADER))
+	@echo $(ANSI_B_BGREEN) "compile $(NAME) objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
+	mkdir -p $(dir $@)
+	gcc $(CFLAGS) -Iincludes -c $< -o $@
+	@echo $(ANSI_RESET)
 
 clean:
-	make clean -C ./libft
-	rm -rf ft_*.o
-	rm -f $(OBJS)
+	@echo $(ANSI_B_RED) "clean" $(ANSI_RESET)$(ANSI_F_BRED)
+	$(MAKE) clean -C libft
+	rm -rf $(OBJ_DIR)
+	@echo $(ANSI_RESET) ""
 
 fclean: clean
-	make fclean -C ./libft
-	rm -f $(OBJS)
-	rm -f libft.a
+	@echo $(ANSI_B_RED) "fclean" $(ANSI_RESET)$(ANSI_F_BRED)
+	$(MAKE) fclean -C libft
 	rm -f $(NAME)
-	rm -f $(PROG_NAME)
-	rm -rf ./__.SYMDEF\ SORTED
+	@echo $(ANSI_RESET) ""
 
 re: fclean all
 
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean
+
+# colors
+ANSI_RESET = "\033[0m"
+ANSI_B_RED = "\033[41m"
+ANSI_B_BGREEN = "\033[42;1m"
+ANSI_F_BRED = "\033[31;1m"
+ANSI_F_BBLACK = "\033[30;1m"
+
+
+lib:
+	$(MAKE) -C libft
+
+norm:
+	@echo $(ANSI_B_RED) "norminette v3" $(ANSI_RESET)
+	$(MAKE) norm -C libft
+	@norminette $(addprefix inc/,$(HEADER)) \
+		$(addprefix src/,$(SRC))
+
+libnorm:
+	@echo $(ANSI_B_RED) "libft norminette" $(ANSI_RESET)
+	$(MAKE) norm -C libft
+
+run: all
+	@echo $(ANSI_B_RED) "Running for debbuger without sanitize" $(ANSI_RESET)
+	./$(NAME) $(MAP)
+	# @./$(NAME)
+
+runv: all
+	@echo $(ANSI_B_RED) "Valgrind RESULT" $(ANSI_RESET)
+	#valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all -s ./$(NAME)
+
+runs: all
+	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)
+	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(OBJ_COMMON) $(LIBFT) -o pipex
+	./push_swaps $(LIST_INTEGER)

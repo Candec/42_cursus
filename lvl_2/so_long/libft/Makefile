@@ -1,40 +1,35 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/18 11:17:55 by jibanez-          #+#    #+#              #
-#    Updated: 2021/05/10 19:52:27 by jibanez-         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-SRC =  $(wildcard *.c)
-
-OBJ = $(SRC:.c=.o)
-
-CC = gcc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -g
-
 NAME = libft.a
+HEADER	= libft.h
+CFLAGS = -Wall -Wextra -Werror
+OBJS = $(SRCS:%.c=$(DIR_OBJS)%.o)
+AR = ar -rcs
+DIR_OBJS = obj/
+SRCS = $(wildcard *.c)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $?
+
+$(DIR_OBJS)%.o: %.c $(HEADER)
+	gcc $(CFLAGS) -include $(HEADER) -c $< -o $@
+
+$(OBJS):	| $(DIR_OBJS)
+$(DIR_OBJS):
+	mkdir $(DIR_OBJS)
 
 clean:
-	$(RM) $(OBJ)
+	rm -rf $(DIR_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
-so:
-	$(CC) -fPIC -c $(CFLAGS) $(SRC)
-	gcc -shared -o libft.so $(OBJ)
+norm:
+	@norminette $(HEADER) $(SRCS)
 
-.PHONY: all clean fclean re
+norm2:
+	@norminette2 $(HEADER) $(SRCS)
+
+.PHONY:		all clean fclean re

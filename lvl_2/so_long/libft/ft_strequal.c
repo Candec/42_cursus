@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	ft_strequal(char *s1, char *s2)
+t_bool	ft_strequal(char *s1, char *s2)
 {
 	if (!s1 || !s2)
 		return (0);
