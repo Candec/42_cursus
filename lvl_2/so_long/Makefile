@@ -1,9 +1,9 @@
 NAME = so_long
 
 LIBFT = libft/libft.a
-# CFLAGS 		= -Wall -Wextra -Werror -I/usr/local/include -Imlx_linux -O3
-CFLAGS 		= -I/usr/local/include -Imlx_linux -O3 -g
-LFLAGS		= -L/usr/local/lib -Lmlx_Linux -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
+LIBMLX = mlx_linux/libmlx.a
+CFLAGS 		= -I/usr/include -Imlx_linux -O3
+LFLAGS		= -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11
 AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src
@@ -15,17 +15,17 @@ HEADER = so_long.h
 SRC = main.c \
 	handle_error.c \
 	map_valid.c \
-	# pipe_mode.c \
-	# here_doc_bonus.c
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_COMMON)
+$(NAME): $(OBJ)
 	@echo $(ANSI_B_BGREEN) "compile libft" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	$(MAKE) all -C libft
+	@echo $(ANSI_B_BGREEN) "compile libmlx" $(ANSI_RESET)$(ANSI_F_BBLACK)
+	$(MAKE) -C mlx_linux
 	@echo $(ANSI_RESET) ""
 	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	gcc $(CFLAGS) $(OBJ) $(OBJ_COMMON) $(LIBFT) -o $(NAME)
+	clang $(LFLAGS) $(LIBMLX) $(OBJ) $(LIBFT) $(LIBMLX) -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix includes/,$(HEADER))
@@ -83,5 +83,5 @@ runv: all
 
 runs: all
 	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)
-	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(OBJ_COMMON) $(LIBFT) -o pipex
+	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) -o pipex
 	./push_swaps $(LIST_INTEGER)
