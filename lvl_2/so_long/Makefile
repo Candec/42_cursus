@@ -15,6 +15,7 @@ HEADER = so_long.h
 SRC = main.c \
 	handle_error.c \
 	map_valid.c \
+	window.c
 
 all: $(NAME)
 

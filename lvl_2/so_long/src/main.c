@@ -69,9 +69,8 @@ int	main(int argc, char *argv[])
 	map_size(&map);
 	map_alloc(&map);
 	map_valid(&map);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1600, 720, "Whaaaaaat?");
-	mlx_loop(mlx);
+	init_game(&map);
+
 
 	// printf("Player Status: %d\n", map.player);
 	// printf("Player coordinates x:%d - y:%d\n", map.player_x, map.player_y);

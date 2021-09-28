@@ -2,6 +2,8 @@
 # define SO_LONG
 
 # include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -25,6 +27,24 @@ enum
 	TRUE,
 };
 
+typedef struct	s_img
+
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_img;
+
+typedef struct	s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+}				t_mlx;
+
+
 typedef struct	s_map
 {
 	char	*fd;
@@ -36,6 +56,7 @@ typedef struct	s_map
 	int		collectable;
 	int		player_x;
 	int		player_y;
+	t_mlx	mlx;
 }				t_map;
 
 /*
@@ -53,5 +74,11 @@ void	clean_data(t_map *map);
 ** map_valid.c
 */
 void	map_valid(t_map *map);
+
+/*
+** window.c
+*/
+void	init_game(t_map *map);
+
 
 #endif
