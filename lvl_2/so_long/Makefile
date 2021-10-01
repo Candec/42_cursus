@@ -73,7 +73,7 @@ libnorm:
 	$(MAKE) norm -C libft
 
 run: all
-	@echo $(ANSI_B_RED) "Running for debbuger without sanitize" $(ANSI_RESET)
+	@echo $(ANSI_B_RED) "Running Game" $(ANSI_RESET)
 	./$(NAME) $(MAP)
 	# @./$(NAME)
 
@@ -82,7 +82,7 @@ runv: all
 	#valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
 	valgrind --leak-check=full --show-leak-kinds=all -s ./$(NAME)
 
-runs: all
-	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)
-	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) -o pipex
-	./push_swaps $(LIST_INTEGER)
+test: all
+	@echo $(ANSI_B_RED) "Running test" $(ANSI_RESET)
+	clang -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11 mlx_linux/libmlx.a test.c  libft/libft.a mlx_linux/libmlx.a -o windows_test
+	./windows_test

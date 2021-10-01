@@ -2,6 +2,7 @@
     "files.associations": {
         "sstream": "c",
         "push_swap.h": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "so_long.h": "c"
     }
 }

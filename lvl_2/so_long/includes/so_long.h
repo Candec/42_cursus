@@ -37,14 +37,6 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-typedef struct	s_mlx
-{
-	void	*mlx;
-	void	*win;
-	t_img	img;
-}				t_mlx;
-
-
 typedef struct	s_map
 {
 	char	*fd;
@@ -56,8 +48,15 @@ typedef struct	s_map
 	int		collectable;
 	int		player_x;
 	int		player_y;
-	t_mlx	mlx;
 }				t_map;
+
+typedef struct	s_mlx
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	t_map	map;
+}				t_mlx;
 
 /*
 ** Functions
