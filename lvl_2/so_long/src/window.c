@@ -23,28 +23,46 @@ int	render(t_mlx *data)
 	return (0);
 }
 
-void	init_game(t_map *map)
+void	win_size(t_mlx *data)
 {
-	t_mlx data;
+	data->win_width = ASSET_SIZE * data->map.width;
+	data->win_height = ASSET_SIZE * data->map.height;
+}
 
-	data.map = *map;
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
-		return (1);
-		// handle_error(map, "MLX_ERROR", TRUE);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, "Game");
-	if (data.win_ptr == NULL)
+int	start_mlx_and_window(t_mlx *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
 	{
-		free(data.win_ptr);
+		//handle_error(&data->map, "MLX_ERROR", TRUE);
 		return (1);
 	}
-		// handle_error(map, "WIN_ERROR", TRUE);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->win_width, data->win_height, "Game");
+	if (data->win_ptr == NULL)
+	{
+		free(data->win_ptr);
+		//handle_error(&data->&map, "WIN_ERROR", TRUE);
+		return (1);
+	}
+	return (0);
+}
+
+void	init_game(t_map *map)
+{
+	t_mlx	data;
+
+	data.map = *map;
+	// data.img.addr = ft_strdup("./Assets/tile.xpm");
+	// data.img.line_len = ASSET_SIZE;
+	win_size(&data);
+	start_mlx_and_window(&data);
+
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-
-
+	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, ASSET_SIZE, ASSET_SIZE);
+	// mlx_xpm_file_to_image(data.mlx_ptr, data.img.addr, &data.img.line_len, &data.img.line_len);
+	
 	mlx_loop(data.mlx_ptr);
-
 
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);

@@ -20,6 +20,7 @@
 ** Definitons
 */
 # define ERROR -1
+# define ASSET_SIZE 30
 
 enum
 {
@@ -56,6 +57,8 @@ typedef struct	s_mlx
 	void	*win_ptr;
 	t_img	img;
 	t_map	map;
+	int	win_width;
+	int	win_height;
 }				t_mlx;
 
 /*
