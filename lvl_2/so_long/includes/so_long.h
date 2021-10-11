@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/07 13:03:26 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/10/07 13:03:26 by jibanez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG
 # define SO_LONG
 
@@ -20,7 +32,7 @@
 ** Definitons
 */
 # define ERROR -1
-# define ASSET_SIZE 30
+# define ASSET_SIZE 64
 
 enum
 {
@@ -31,11 +43,13 @@ enum
 typedef struct	s_img
 
 {
-	void	*mlx_img;
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		img_height;
+	int		img_width;
 }				t_img;
 
 typedef struct	s_map
@@ -55,7 +69,15 @@ typedef struct	s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img;
+	t_img	img_floor_tile;
+	t_img	img_wall_tile;
+	t_img	img_exit_tile;
+	t_img	img_col_tile;
+	t_img	img_p_u_tile;
+	t_img	img_p_d_tile;
+	t_img	img_p_r_tile;
+	t_img	img_p_l_tile;
+	t_img	img_p_e_tile;
 	t_map	map;
 	int	win_width;
 	int	win_height;
@@ -80,7 +102,7 @@ void	map_valid(t_map *map);
 /*
 ** window.c
 */
-void	init_game(t_map *map);
+int	init_game(t_map *map);
 
 
 #endif

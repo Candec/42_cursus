@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
+/*   Updated: 2021/10/11 13:45:09 by jibanez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 void	map_alloc(t_map *map)
@@ -69,7 +81,8 @@ int	main(int argc, char *argv[])
 	map_size(&map);
 	map_alloc(&map);
 	map_valid(&map);
-	init_game(&map);
+	if (init_game(&map) == ERROR)
+		return (ERROR);
 
 
 	// printf("Player Status: %d\n", map.player);
