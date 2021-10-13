@@ -6,82 +6,82 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:52 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/07 13:03:52 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:45:44 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void	map_collectable(t_map *map)
+static void	map_collectable(t_mlx *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < data->map.height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < data->map.width)
 		{
-			if (map->content[i][j] == 'C')
-				map->collectable++;
+			if (data->map.content[i][j] == 'C')
+				data->map.collectable++;
 			j++;
 		}
 		i++;
 	}
-	if (map->collectable == FALSE)
-		handle_error(map, "NO COLLECTABLES", TRUE);
+	if (data->map.collectable == FALSE)
+		handle_error(data, "NO COLLECTABLES", TRUE);
 }
 
-static void	map_exit(t_map *map)
+static void	map_exit(t_mlx *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < data->map.height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < data->map.width)
 		{
-			if (map->content[i][j] == 'E' && map->exit == FALSE)
-				map->exit = TRUE;
+			if (data->map.content[i][j] == 'E' && data->map.exit == FALSE)
+				data->map.exit = TRUE;
 			j++;
 		}
 		i++;
 	}
-	if (map->exit == FALSE)
-		handle_error(map, "NO EXIT", TRUE);
+	if (data->map.exit == FALSE)
+		handle_error(data, "NO EXIT", TRUE);
 }
 
-static void	map_player(t_map *map)
+static void	map_player(t_mlx *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < data->map.height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < data->map.width)
 		{
-			if (map->content[i][j] == 'P' && map->player == FALSE)
+			if (data->map.content[i][j] == 'P' && data->map.player == FALSE)
 			{
-				map->player = TRUE;
-				map->player_x = j;
-				map->player_y = i;
+				data->map.player = TRUE;
+				data->map.player_x = j;
+				data->map.player_y = i;
 			}
-			else if (map->content[i][j] == 'P' && map->player == TRUE)
-				handle_error(map, "MORE THAN TWO PLAYERS", TRUE);
+			else if (data->map.content[i][j] == 'P' && data->map.player == TRUE)
+				handle_error(data, "MORE THAN TWO PLAYERS", TRUE);
 			j++;
 		}
 		i++;
 	}
-	if (map->player == FALSE)
-		handle_error(map, "NO PLAYER", TRUE);
+	if (data->map.player == FALSE)
+		handle_error(data, "NO PLAYER", TRUE);
 }
 
-static void	map_walled(t_map *map)
+static void	map_walled(t_mlx *data)
 {
 	int	i;
 	int	j;
@@ -90,48 +90,48 @@ static void	map_walled(t_map *map)
 
 	i = -1;
 	j = -1;
-	x = map->height;
-	y = map->width;
-	while (i < map->height)
+	x = data->map.height;
+	y = data->map.width;
+	while (i < data->map.height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < data->map.width)
 		{
 			if ((i == 0 || i == x)
-				&& (map->content[0][j] != '1' || map->content[x][j] != '1'))
-				handle_error(map, "WALLS ARE NOT COMPLETE", TRUE);
+				&& (data->map.content[0][j] != '1' || data->map.content[x][j] != '1'))
+				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
 			if ((i > 0 && i < x)
-				&& (map->content[i][0] != '1' || map->content[i][y - 1] != '1'))
-				handle_error(map, "WALLS ARE NOT COMPLETE", TRUE);
+				&& (data->map.content[i][0] != '1' || data->map.content[i][y - 1] != '1'))
+				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	map_valid(t_map *map)
+void	map_valid(t_mlx *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < data->map.height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < data->map.width)
 		{
-			if (map->content[i][j] != '1'
-				&& map->content[i][j] != '0'
-				&& map->content[i][j] != 'P'
-				&& map->content[i][j] != 'C'
-				&& map->content[i][j] != 'E')
-				handle_error(map, "INVALID SIMBOL", TRUE);
+			if (data->map.content[i][j] != '1'
+				&& data->map.content[i][j] != '0'
+				&& data->map.content[i][j] != 'P'
+				&& data->map.content[i][j] != 'C'
+				&& data->map.content[i][j] != 'E')
+				handle_error(data, "INVALID SIMBOL", TRUE);
 			j++;
 		}
 		i++;
 	}
-	map_walled(map);
-	map_player(map);
-	map_exit(map);
-	map_collectable(map);
+	map_walled(data);
+	map_player(data);
+	map_exit(data);
+	map_collectable(data);
 }

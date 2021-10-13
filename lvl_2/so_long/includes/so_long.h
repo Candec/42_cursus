@@ -91,18 +91,18 @@ typedef struct	s_mlx
 /*
 ** handle_error.c
 */
-void	handle_error(t_map *map, char *msg, bool stop);
-void	clean_data(t_map *map);
+void	handle_error(t_mlx *data, char *msg, bool stop);
+void	clean_data(t_mlx *data);
 
 /*
 ** map_valid.c
 */
-void	map_valid(t_map *map);
+void	map_valid(t_mlx *data);
 
 /*
 ** window.c
 */
-int	init_game(t_map *map);
+int	init_game(t_mlx *data);
 
 
 #endif

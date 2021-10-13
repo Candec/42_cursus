@@ -6,13 +6,13 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/11 13:45:09 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:32:35 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	map_alloc(t_map *map)
+void	map_alloc(t_mlx *data)
 {
 	int		i;
 	int		fd;
@@ -20,68 +20,81 @@ void	map_alloc(t_map *map)
 	char	**lines;
 
 	i = 0;
-	fd = open(map->fd, O_RDONLY);
-	lines = ft_calloc(map->height, map->width);
+	fd = open(data->map.fd, O_RDONLY);
+	lines = ft_calloc(data->map.height, data->map.width);
 	if (!lines)
-		handle_error(map, "MALLOC ERROR", TRUE);
+		handle_error(data, "MALLOC ERROR", TRUE);
 	while (ft_get_next_line(fd, &line) == 1)
 		lines[i++] = line;
 	lines[i] = line;
-	map->content = lines;
+	data->map.content = lines;
 	close(fd);
 }
 
-void	map_size(t_map *map)
+void	map_size(t_mlx *data)
 {
 	int		fd;
 	char	*line;
 	int		temp;
 
 	temp = 0;
-	fd = open(map->fd, O_RDONLY);
+	fd = open(data->map.fd, O_RDONLY);
 	while (ft_get_next_line(fd, &line) == 1)
 	{
 		if (!temp)
-			map->width = ft_strlen(line);
+			data->map.width = ft_strlen(line);
 		temp = ft_strlen(line);
-		if (map->width != temp)
+		if (data->map.width != temp)
 		{
 			free(line);
 			close(fd);
-			handle_error(map, "DIMENSION NOT CORRECT", TRUE);
+			handle_error(data, "DIMENSION NOT CORRECT", TRUE);
 		}
-		map->height++;
+		data->map.height++;
 		free(line);
 	}
 	free(line);
 	close(fd);
 }
 
-void	init_map(t_map *map, char*file)
+void	init_map(t_mlx *data, char*file)
 {
-	map->height = 0;
-	map->width = -1;
-	map->fd = file;
-	if (!map->fd)
-		handle_error(map, "CANT OPEN FILE", TRUE);
-	map->player = FALSE;
-	map->exit = FALSE;
-	map->collectable = 0;
+	data->map.height = 0;
+	data->map.width = -1;
+	data->map.fd = file;
+	if (!data->map.fd)
+		handle_error(data, "CANT OPEN FILE", TRUE);
+	data->map.player = FALSE;
+	data->map.exit = FALSE;
+	data->map.collectable = 0;
 }
 
 int	main(int argc, char *argv[])
 {
-	t_map	map;
+	t_mlx	data;
 	void	*mlx;
 	void	*mlx_win;
 
 	if (argc != 2)
-		handle_error(&map, "ARGUMENTS", TRUE);
-	init_map(&map, argv[1]);
-	map_size(&map);
-	map_alloc(&map);
-	map_valid(&map);
-	if (init_game(&map) == ERROR)
+		handle_error(&data, "ARGUMENTS", TRUE);
+	init_map(&data, argv[1]);
+	map_size(&data);
+	map_alloc(&data);
+	map_valid(&data);
+	int i = 0;
+	int j = 0;
+	while (i <= data.map.height)
+	{
+		j = 0;
+		while (j <= data.map.width)
+		{
+			printf("%c ", data.map.content[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	if (init_game(&data) == ERROR)
 		return (ERROR);
 
 
@@ -89,6 +102,6 @@ int	main(int argc, char *argv[])
 	// printf("Player coordinates x:%d - y:%d\n", map.player_x, map.player_y);
 	// printf("Exit Status: %d\n", map.exit);
 	// printf("Number of collectable: %d\n", map.collectable);
-	clean_data(&map);
+	clean_data(&data);
 	return (0);
 }

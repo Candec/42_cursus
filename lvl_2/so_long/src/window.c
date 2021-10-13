@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/11 14:07:34 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:02:33 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,36 @@ int	load_textures(t_mlx *data)
 	return (1);
 }
 
+void	draw_first_map(t_mlx *data)
+{
+	int		column;
+	int		row;
+	t_img	*tile;
+
+	column = -1;
+	row = -1;
+
+	while (++row <= data->map.width)
+	{
+		column = -1;
+		while (++column <= data->map.height)
+		{
+			if (data->map.content[row][column] == '1')
+				tile = &data->img_wall_tile;
+			else if (data->map.content[row][column] == '0')
+				tile = &data->img_exit_tile;
+			else if (data->map.content[row][column] == 'P')
+				tile = &data->img_p_d_tile;
+			else if (data->map.content[row][column] == 'E')
+				tile = &data->img_exit_tile;
+			else if (data->map.content[row][column] == 'C')
+				tile = &data->img_col_tile;
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, row , column);
+		}
+
+	}
+}
+
 // int	render(t_mlx *data)
 // {
 // 	if (data->win_ptr == NULL)
@@ -83,7 +113,7 @@ int	load_textures(t_mlx *data)
 void	win_size(t_mlx *data)
 {
 	data->win_width = ASSET_SIZE * data->map.width;
-	data->win_height = ASSET_SIZE * data->map.height;
+	data->win_height = ASSET_SIZE * (1 + data->map.height);
 }
 
 int	start_mlx_and_window(t_mlx *data)
@@ -101,32 +131,30 @@ int	start_mlx_and_window(t_mlx *data)
 	return (0);
 }
 
-int	init_game(t_map *map)
+int	init_game(t_mlx *data)
 {
-	t_mlx	data;
-
-	data.map = *map;
 	// data.img.addr = ft_strdup("./Assets/tile.xpm");
 	// data.img.line_len = ASSET_SIZE;
-	win_size(&data);
-	if (start_mlx_and_window(&data) == ERROR)
+	win_size(data);
+	if (start_mlx_and_window(data) == ERROR)
 	{
 		write(1, "COULDN'T FIND SCREEN\n", 22);
 		return (ERROR);
 	}
-	if (load_textures(&data) == ERROR)
+	if (load_textures(data) == ERROR)
 	{
 		write(1, "ERROR LOADING THE IMGs\n", 24);
 		return (ERROR);
 	}
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+	draw_first_map(data);
+	// mlx_loop_hook(data->mlx_ptr, &render, data);
+	// mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, ASSET_SIZE, ASSET_SIZE);
 	// mlx_xpm_file_to_image(data.mlx_ptr, data.img.addr, &data.img.line_len, &data.img.line_len);
 	
-	mlx_loop(data.mlx_ptr);
+	mlx_loop(data->mlx_ptr);
 
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 	return (0);
 }
