@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/13 23:46:45 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/14 00:34:12 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,22 +81,24 @@ void	draw_first_map(t_mlx *data)
 	column = -1;
 	row = -1;
 
-	while (++column < data->map.width)
+	printf("Num of rows %d Num of Columns %d\n", data->map.height, data->map.width);
+	while (++row <= data->map.height)
 	{
 		column = -1;
-		while (++row < data->map.height)
+		while (++column <= data->map.width)
 		{
 			if (data->map.content[row][column] == '1')
 				tile = &data->img_wall_tile;
 			else if (data->map.content[row][column] == '0')
-				tile = &data->img_exit_tile;
+				tile = &data->img_floor_tile;
 			else if (data->map.content[row][column] == 'P')
 				tile = &data->img_p_d_tile;
 			else if (data->map.content[row][column] == 'E')
 				tile = &data->img_exit_tile;
 			else if (data->map.content[row][column] == 'C')
 				tile = &data->img_col_tile;
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, column, row);
+			printf("Row %d Col %d\n", row, column);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, column * ASSET_SIZE, row * ASSET_SIZE);
 		}
 	}
 }
