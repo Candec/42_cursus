@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/13 18:02:33 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/13 23:46:45 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	draw_first_map(t_mlx *data)
 	column = -1;
 	row = -1;
 
-	while (++row <= data->map.width)
+	while (++column < data->map.width)
 	{
 		column = -1;
-		while (++column <= data->map.height)
+		while (++row < data->map.height)
 		{
 			if (data->map.content[row][column] == '1')
 				tile = &data->img_wall_tile;
@@ -96,9 +96,8 @@ void	draw_first_map(t_mlx *data)
 				tile = &data->img_exit_tile;
 			else if (data->map.content[row][column] == 'C')
 				tile = &data->img_col_tile;
-			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, row , column);
+			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, column, row);
 		}
-
 	}
 }
 
@@ -147,8 +146,10 @@ int	init_game(t_mlx *data)
 		return (ERROR);
 	}
 	draw_first_map(data);
+	// mlx_key_hook(data->win_ptr, on_key_press, &data);
+	// mlx_hook(data->win_ptr, DESTROY_NOTIFY, 1L, exit_hook, &data);
 	// mlx_loop_hook(data->mlx_ptr, &render, data);
-	// mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	// data.img.mlx_img = mlx_new_image(data.mlx_ptr, ASSET_SIZE, ASSET_SIZE);
 	// mlx_xpm_file_to_image(data.mlx_ptr, data.img.addr, &data.img.line_len, &data.img.line_len);
 	

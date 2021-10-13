@@ -26,6 +26,7 @@
 # include <stdbool.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include "../minilibx_mms_20200219/mlx.h"
 
 
 /*
@@ -33,6 +34,12 @@
 */
 # define ERROR -1
 # define ASSET_SIZE 64
+# define DESTROY_NOTIFY	17
+# define ESC			53
+# define MOVE_UP 		13
+# define MOVE_DOWN 		1
+# define MOVE_RIGHT 	2
+# define MOVE_LEFT		0
 
 enum
 {

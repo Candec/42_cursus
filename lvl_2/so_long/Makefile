@@ -2,7 +2,7 @@ NAME = so_long
 
 LIBFT = libft/libft.a
 LIBMLX = mlx_linux/libmlx.a
-CFLAGS 		= -I/usr/include -Imlx_linux -O3
+CFLAGS 		= -I/usr/include -Imlx_linux -O3 -g -fsanitize=address
 LFLAGS		= -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11
 AR = ar rcsv
 OBJ_DIR = obj
@@ -26,13 +26,13 @@ $(NAME): $(OBJ)
 	$(MAKE) -C mlx_linux
 	@echo $(ANSI_RESET) ""
 	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	clang $(LFLAGS) $(LIBMLX) $(OBJ) $(LIBFT) $(LIBMLX) -o $(NAME)
+	clang $(LFLAGS) $(LIBMLX) $(OBJ) $(LIBFT) $(LIBMLX) -g -fsanitize=address -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix includes/,$(HEADER))
 	@echo $(ANSI_B_BGREEN) "compile $(NAME) objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	mkdir -p $(dir $@)
-	gcc $(CFLAGS) -Iincludes -c $< -o $@
+	gcc $(CFLAGS) -Iincludes -g -fsanitize=address -c $< -o $@
 	@echo $(ANSI_RESET)
 
 clean:
