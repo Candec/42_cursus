@@ -28,24 +28,24 @@
 # include "../libft/libft.h"
 # include "../minilibx_mms_20200219/mlx.h"
 
-
 /*
 ** Definitons
 */
 # define ERROR -1
 # define ASSET_SIZE 64
-# define DESTROY_NOTIFY	17
-# define ESC			53
-# define MOVE_UP 		13
-# define MOVE_DOWN 		1
-# define MOVE_RIGHT 	2
-# define MOVE_LEFT		0
 
 enum
 {
 	FALSE,
 	TRUE,
 };
+
+typedef struct	s_coord
+{
+	int	x;
+	int	y;
+}				t_coord;
+
 
 typedef struct	s_img
 
@@ -94,10 +94,10 @@ typedef struct	s_mlx
 ** Functions
 */
 
-
 /*
 ** handle_error.c
 */
+int		exit_hook(t_mlx *data);
 void	handle_error(t_mlx *data, char *msg, bool stop);
 void	clean_data(t_mlx *data);
 
@@ -109,7 +109,19 @@ void	map_valid(t_mlx *data);
 /*
 ** window.c
 */
-int	init_game(t_mlx *data);
+int		init_game(t_mlx *data);
 
+/*
+** texture.c
+*/
+int		xpm_to_image_wrapper(t_mlx *data, t_img *image, char *filename);
+int		load_textures(t_mlx *data);
+
+/*
+** mlx_utilities.c
+*/
+void	render_asset(t_mlx *data, void *img_ptr, int x, int y);
+void	calc_coord(int x, int y, t_coord *coord);
+void	win_size(t_mlx *data);
 
 #endif

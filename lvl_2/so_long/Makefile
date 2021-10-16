@@ -15,7 +15,9 @@ HEADER = so_long.h
 SRC = main.c \
 	handle_error.c \
 	map_valid.c \
-	window.c
+	window.c \
+	mlx_utility.c \
+	textures.c
 
 all: $(NAME)
 

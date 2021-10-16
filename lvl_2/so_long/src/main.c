@@ -6,11 +6,31 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/13 14:32:35 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/16 21:23:51 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	print_map(t_mlx *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i <= data->map.height)
+	{
+		j = 0;
+		while (j <= data->map.width)
+		{
+			printf("%c ", data->map.content[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
 
 void	map_alloc(t_mlx *data)
 {
@@ -39,7 +59,9 @@ void	map_size(t_mlx *data)
 
 	temp = 0;
 	fd = open(data->map.fd, O_RDONLY);
-	while (ft_get_next_line(fd, &line) == 1)
+	if (fd == ERROR)
+		handle_error(data, "CAN'T OPEN THE FILE", FALSE);
+	while (ft_get_next_line(fd, &line) != 0)
 	{
 		if (!temp)
 			data->map.width = ft_strlen(line);
@@ -63,7 +85,7 @@ void	init_map(t_mlx *data, char*file)
 	data->map.width = -1;
 	data->map.fd = file;
 	if (!data->map.fd)
-		handle_error(data, "CANT OPEN FILE", TRUE);
+		handle_error(data, "CANT FIND THE FILE", TRUE);
 	data->map.player = FALSE;
 	data->map.exit = FALSE;
 	data->map.collectable = 0;
@@ -81,27 +103,8 @@ int	main(int argc, char *argv[])
 	map_size(&data);
 	map_alloc(&data);
 	map_valid(&data);
-	int i = 0;
-	int j = 0;
-	while (i <= data.map.height)
-	{
-		j = 0;
-		while (j <= data.map.width)
-		{
-			printf("%c ", data.map.content[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
 	if (init_game(&data) == ERROR)
 		return (ERROR);
-
-
-	// printf("Player Status: %d\n", map.player);
-	// printf("Player coordinates x:%d - y:%d\n", map.player_x, map.player_y);
-	// printf("Exit Status: %d\n", map.exit);
-	// printf("Number of collectable: %d\n", map.collectable);
 	clean_data(&data);
 	return (0);
 }

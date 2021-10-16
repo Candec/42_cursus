@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:52 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/13 11:45:44 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/16 21:01:52 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,20 @@ static void	map_walled(t_mlx *data)
 	j = -1;
 	x = data->map.height;
 	y = data->map.width;
-	while (i < data->map.height)
+	while (++i < data->map.height)
 	{
 		j = 0;
-		while (j < data->map.width)
+		while (++j < data->map.width)
 		{
 			if ((i == 0 || i == x)
-				&& (data->map.content[0][j] != '1' || data->map.content[x][j] != '1'))
+				&& (data->map.content[0][j] != '1'
+				|| data->map.content[x][j] != '1'))
 				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
 			if ((i > 0 && i < x)
-				&& (data->map.content[i][0] != '1' || data->map.content[i][y - 1] != '1'))
+				&& (data->map.content[i][0] != '1'
+				|| data->map.content[i][y - 1] != '1'))
 				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
-			j++;
 		}
-		i++;
 	}
 }
 
