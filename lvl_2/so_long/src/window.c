@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/14 00:34:12 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:39:16 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	draw_first_map(t_mlx *data)
 				tile = &data->img_exit_tile;
 			else if (data->map.content[row][column] == 'C')
 				tile = &data->img_col_tile;
-			printf("Row %d Col %d\n", row, column);
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, tile->img, column * ASSET_SIZE, row * ASSET_SIZE);
 		}
 	}
