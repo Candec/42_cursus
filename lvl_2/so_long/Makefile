@@ -17,7 +17,8 @@ SRC = main.c \
 	map_valid.c \
 	window.c \
 	mlx_utility.c \
-	textures.c
+	textures.c \
+	move.c
 
 all: $(NAME)
 

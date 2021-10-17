@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/06/30 17:46:14 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/17 13:31:50 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4000
+#  define BUFFER_SIZE 300
 # endif
 
 # ifndef ASCII_OFFSET_NUM

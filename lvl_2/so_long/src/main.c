@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/16 21:23:51 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/18 00:39:05 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@ void	print_map(t_mlx *data)
 
 	i = 0;
 	j = 0;
+	printf("\e[1;1H\e[2J");
 	while (i <= data->map.height)
 	{
 		j = 0;
 		while (j <= data->map.width)
 		{
-			printf("%c ", data->map.content[i][j]);
+			write(1, &data->map.content[i][j], 1);
+			write(1, " ", 2);
 			j++;
 		}
-		printf("\n");
+		write(1, "\n", 2);
 		i++;
 	}
+	write(1, "\n", 2);
 }
 
 void	map_alloc(t_mlx *data)
@@ -55,28 +58,29 @@ void	map_size(t_mlx *data)
 {
 	int		fd;
 	char	*line;
-	int		temp;
+	int		n;
 
-	temp = 0;
 	fd = open(data->map.fd, O_RDONLY);
 	if (fd == ERROR)
 		handle_error(data, "CAN'T OPEN THE FILE", FALSE);
 	while (ft_get_next_line(fd, &line) != 0)
 	{
-		if (!temp)
+		if (data->map.height == 0)
 			data->map.width = ft_strlen(line);
-		temp = ft_strlen(line);
-		if (data->map.width != temp)
-		{
-			free(line);
-			close(fd);
-			handle_error(data, "DIMENSION NOT CORRECT", TRUE);
-		}
+		n = ft_strlen(line);
 		data->map.height++;
 		free(line);
+		if (data->map.width != n)
+		{
+			close(fd);
+			handle_error(data, "DIMENSION NOT CORRECT", FALSE);
+		}
 	}
+	n = ft_strlen(line);
 	free(line);
 	close(fd);
+	if (data->map.width != n)
+		handle_error(data, "DIMENSION NOT CORRECT", FALSE);
 }
 
 void	init_map(t_mlx *data, char*file)

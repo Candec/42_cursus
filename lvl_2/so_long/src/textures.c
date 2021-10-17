@@ -6,11 +6,21 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/16 20:42:04 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/16 20:51:20 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/17 15:53:15 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static int	check_images_loaded(t_mlx *data)
+{
+	if (!data->img_floor_tile.img || !data->img_wall_tile.img
+		|| !data->img_col_tile.img || !data->img_p_e_tile.img
+		|| !data->img_p_l_tile.img || !data->img_p_r_tile.img
+		|| !data->img_p_u_tile.img || !data->img_p_d_tile.img)
+		return (ERROR);
+	return (0);
+}
 
 int	xpm_to_image_wrapper(t_mlx *data, t_img *image, char *filename)
 {
@@ -41,10 +51,7 @@ int	load_textures(t_mlx *data)
 		"./assets/char_right.xpm");
 	xpm_to_image_wrapper(data, &data->img_p_e_tile,
 		"./assets/char_exit.xpm");
-	if (!data->img_floor_tile.img || !data->img_wall_tile.img
-		|| !data->img_col_tile.img || !data->img_p_e_tile.img
-		|| !data->img_p_l_tile.img || !data->img_p_r_tile.img
-		|| !data->img_p_u_tile.img || !data->img_p_d_tile.img)
+	if (check_images_loaded(data) == ERROR)
 		return (ERROR);
 	return (1);
 }

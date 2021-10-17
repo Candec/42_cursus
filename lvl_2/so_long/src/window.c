@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/17 12:53:17 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/18 00:40:15 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	handle_keypress(int keysym, t_mlx *data)
 	else if (keysym == XK_Up || keysym == XK_Down
 		|| keysym == XK_Left || keysym == XK_Right)
 	{
-		
+		move(data, keysym);
 	}
 	return (0);
 }
@@ -32,9 +32,6 @@ int	draw_first_map(t_mlx *data)
 	t_coord	coord;
 
 	row = -1;
-	column = -1;
-
-	printf("Num of rows %d Num of Columns %d\n", data->map.height, data->map.width);
 	while (++row <= data->map.height)
 	{
 		column = -1;
@@ -54,7 +51,6 @@ int	draw_first_map(t_mlx *data)
 			render_asset(data, tile->img, coord.x, coord.y);
 		}
 	}
-	return (0);
 }
 
 int	start_mlx_and_window(t_mlx *data)
@@ -75,6 +71,7 @@ int	start_mlx_and_window(t_mlx *data)
 int	init_game(t_mlx *data)
 {
 	win_size(data);
+	print_map(data);
 	if (start_mlx_and_window(data) == ERROR)
 		handle_error(data, "COULDN'T FIND SCREEN\n", TRUE);
 	if (load_textures(data) == ERROR)

@@ -68,6 +68,7 @@ typedef struct	s_map
 	bool	player;
 	bool	exit;
 	int		collectable;
+	int		collected;
 	int		player_x;
 	int		player_y;
 }				t_map;
@@ -93,6 +94,11 @@ typedef struct	s_mlx
 /*
 ** Functions
 */
+
+/*
+** Main
+*/
+void	print_map(t_mlx *data);
 
 /*
 ** handle_error.c
