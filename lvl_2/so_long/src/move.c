@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:56:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/18 00:43:46 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/18 00:51:07 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	move_up(t_mlx *data)
 		data->map.content[data->map.player_y - 1][data->map.player_x] = 'P';
 		data->map.player_y -= 1;
 		calc_coord(data->map.player_x, data->map.player_y, coord);
-		render_asset(data, data->img_p_u_tile.img, coord->x, coord->y);
+		// render_asset(data, data->img_p_u_tile.img, coord->x, coord->y);
 	}
 }
 

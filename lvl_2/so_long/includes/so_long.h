@@ -130,4 +130,9 @@ void	render_asset(t_mlx *data, void *img_ptr, int x, int y);
 void	calc_coord(int x, int y, t_coord *coord);
 void	win_size(t_mlx *data);
 
+/*
+** move.c
+*/
+void	move(t_mlx *data, int key);
+
 #endif
