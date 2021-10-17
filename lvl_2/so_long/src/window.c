@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/16 20:55:55 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/17 12:53:17 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	draw_first_map(t_mlx *data)
 		column = -1;
 		while (++column <= data->map.width)
 		{
-			calc_coord(row, column, &coord);
+			calc_coord(column, row, &coord);
 			if (data->map.content[row][column] == '1')
 				tile = &data->img_wall_tile;
 			else if (data->map.content[row][column] == '0')
