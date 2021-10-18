@@ -69,6 +69,7 @@ typedef struct	s_map
 	bool	exit;
 	int		collectable;
 	int		collected;
+	int		steps;
 	int		player_x;
 	int		player_y;
 }				t_map;
