@@ -2,7 +2,7 @@ NAME = so_long
 
 LIBFT = libft/libft.a
 LIBMLX = mlx_linux/libmlx.a
-CFLAGS 		= -I/usr/include -Imlx_linux -O3
+CFLAGS 		= -I/usr/include -Imlx_linux -O3 -fsanitize=leak -g
 LFLAGS		= -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11
 AR = ar rcsv
 OBJ_DIR = obj
@@ -35,7 +35,7 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix includes/,$(HEADER))
 	@echo $(ANSI_B_BGREEN) "compile $(NAME) objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	mkdir -p $(dir $@)
-	gcc $(CFLAGS) -Iincludes -c $< -o $@
+	clang $(CFLAGS) -Iincludes -c $< -o $@
 	@echo $(ANSI_RESET)
 
 clean:

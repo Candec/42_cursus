@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/18 00:39:05 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/18 18:09:48 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ void	init_map(t_mlx *data, char*file)
 		handle_error(data, "CANT FIND THE FILE", TRUE);
 	data->map.player = FALSE;
 	data->map.exit = FALSE;
+	data->map.player_escape = FALSE;
 	data->map.collectable = 0;
+	data->map.collected = 0;
 }
 
 int	main(int argc, char *argv[])

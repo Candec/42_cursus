@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/18 00:40:15 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/20 19:31:09 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ int	handle_keypress(int keysym, t_mlx *data)
 {
 	if (keysym == XK_Escape)
 		exit_hook(data);
+
+	if (data->map.player_escape == TRUE)
+		return (0);
 	else if (keysym == XK_Up || keysym == XK_Down
 		|| keysym == XK_Left || keysym == XK_Right)
 	{
-		move(data, keysym);
+			move(data, keysym);
 	}
 	return (0);
 }
@@ -51,6 +54,7 @@ int	draw_first_map(t_mlx *data)
 			render_asset(data, tile->img, coord.x, coord.y);
 		}
 	}
+	return (0);
 }
 
 int	start_mlx_and_window(t_mlx *data)

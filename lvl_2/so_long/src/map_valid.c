@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:52 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/16 21:01:52 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:58:53 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	map_player(t_mlx *data)
 			if (data->map.content[i][j] == 'P' && data->map.player == FALSE)
 			{
 				data->map.player = TRUE;
-				data->map.player_x = j;
-				data->map.player_y = i;
+				data->map.p_x = j;
+				data->map.p_y = i;
 			}
 			else if (data->map.content[i][j] == 'P' && data->map.player == TRUE)
 				handle_error(data, "MORE THAN TWO PLAYERS", TRUE);

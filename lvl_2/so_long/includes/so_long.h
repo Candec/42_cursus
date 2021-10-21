@@ -70,8 +70,9 @@ typedef struct	s_map
 	int		collectable;
 	int		collected;
 	int		steps;
-	int		player_x;
-	int		player_y;
+	int		p_x;
+	int		p_y;
+	bool	player_escape;
 }				t_map;
 
 typedef struct	s_mlx
@@ -130,6 +131,9 @@ int		load_textures(t_mlx *data);
 void	render_asset(t_mlx *data, void *img_ptr, int x, int y);
 void	calc_coord(int x, int y, t_coord *coord);
 void	win_size(t_mlx *data);
+int		move_is_valid(t_mlx *data, int x, int y);
+void	previous_tile_space(t_mlx *data, t_coord *coord);
+
 
 /*
 ** move.c
