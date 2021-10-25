@@ -23,23 +23,30 @@ uint64_t	ft_time(void)
 int ft_init(t_table *table, int argc, char **argv)
 {
     table->thinkers = ft_atoi(argv[1]);
-    table->t_eat = ft_atoi(argv[2]);
-    table->t_sleep = ft_atoi(argv[3]);
+    table->t_die = ft_atoi(argv[2]);
+    table->t_eat = ft_atoi(argv[3]);
+    table->t_sleep = ft_atoi(argv[4]);
     table->is_dead = FALSE;
     table->is_eating = FALSE;
     table->start_time = ft_time();
-    ft_init_thinkers(table);
+    // ft_init_thinkers(table);
 }
 
 int ft_check(t_table *table, int argc, char **argv)
 {
     if (argc == 5)
     {
+        table = malloc(sizeof(t_table));
+        if (!table)
+            return (ERROR);
         table->n_meals = -1;
         ft_init(table, argc, argv);
     }
     else if (argc == 6)
     {
+        table = malloc(sizeof(t_table));
+        if (!table)
+            return (ERROR);
         table->n_meals = ft_atoi(argv[5]);
         ft_init(table, argc, argv);
     }

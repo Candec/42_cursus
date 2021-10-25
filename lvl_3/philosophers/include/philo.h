@@ -51,6 +51,7 @@ typedef struct  s_philo
 typedef struct  s_table
 {
     int             thinkers;
+    int             t_die;
     int             t_eat;
     int             t_sleep;
     int             t_think;

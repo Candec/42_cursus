@@ -17,5 +17,6 @@ int main(int argc, char *argv[])
     t_table *table;
 
     if (!ft_check(table, argc, argv))
-        ft_think(table);
+        return (0);
+        // ft_think(table);
 }
