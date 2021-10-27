@@ -23,60 +23,66 @@
 
 # define ERROR -1
 # define SUCCESS 0
+# define FALSE 0
+# define TRUE 1
 
 enum
 {
-    FALSE,
-    TRUE
+	THINK,
+	EAT,
+	SLEEP,
+	DEAD
 };
 
-typedef struct  s_philo
+typedef struct s_philo
 {
-    int             id;
-    bool            is_eating;
-    bool            is_reasting;
-    bool            is_thinking;
-    bool            is_dead;
-    bool            fork_right;
-    bool            fork_left;
-    int             n_meals;
-    uint64_t        start_time;
-    uint64_t        start_eating;
-    pthread_mutex_t	*mutex_printer;
+	int				id;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				n_meals;
+	bool			is_eating;
+	bool			is_reasting;
+	bool			is_thinking;
+	bool			is_dead;
+	bool			fork_right;
+	bool			fork_left;
+	uint64_t		start_time;
+	uint64_t		start_eating;
+	pthread_mutex_t	*mutex_printer;
 	pthread_mutex_t	*mutex_dead;
 	pthread_mutex_t	*mutex_right;
 	pthread_mutex_t	*mutex_left;
-}               t_philo;
+}					t_philo;
 
-typedef struct  s_table
+typedef struct s_table
 {
-    int             thinkers;
-    int             t_die;
-    int             t_eat;
-    int             t_sleep;
-    int             t_think;
-    int             n_meals;
-    bool            is_dead;
-    bool            is_eating;
-    int             *fork;
-    uint64_t        start_time;
-    t_philo         *philo;
-    pthread_t       *thread;
-    pthread_mutex_t	*philo_mutex;
+	int				thinkers;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				t_think;
+	int				n_meals;
+	bool			is_dead;
+	bool			is_eating;
+	int				*fork;
+	uint64_t		start_time;
+	t_philo			*philo;
+	pthread_t		*thread;
+	pthread_mutex_t	*philo_mutex;
 	pthread_mutex_t	mutex_printer;
 	pthread_mutex_t	mutex_dead;
-}               t_table;
+}					t_table;
 
 /*
 ** check.c
 */
 
-int ft_check(t_table *table, int argc, char **argv);
+int	ft_check(t_table *table, int argc, char **argv);
 
 /*
 ** ft_atoi.c
 */
 int	ft_atoi(const char *str);
-
 
 #endif

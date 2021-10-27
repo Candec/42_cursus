@@ -12,11 +12,13 @@
 
 #include "../include/philo.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    t_table *table;
+	t_table	*table;
 
-    if (!ft_check(table, argc, argv))
-        return (0);
-        // ft_think(table);
+	if (!ft_check(table, argc, argv))
+	{
+		return (0);
+	}
+	// ft_think(table);
 }
