@@ -20,5 +20,5 @@ int	main(int argc, char *argv[])
 	{
 		return (0);
 	}
-	// ft_think(table);
+	ft_think(table);
 }

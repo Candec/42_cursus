@@ -28,15 +28,16 @@
 
 enum
 {
-	THINK,
+	DEAD,
 	EAT,
 	SLEEP,
-	DEAD
+	THINK
 };
 
 typedef struct s_philo
 {
 	int				id;
+	int				state;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
@@ -75,14 +76,28 @@ typedef struct s_table
 }					t_table;
 
 /*
+** philo.c
+*/
+int		ft_check(t_table *table, int argc, char **argv);
+
+
+/*
 ** check.c
 */
-
-int	ft_check(t_table *table, int argc, char **argv);
+void	ft_init_forks(t_table *table);
+void	ft_init_mutex(t_table *table);
+void	ft_init_thinkers(t_table *table);
+void	ft_init_thread(t_table *table);
+int		ft_init(t_table *table, int argc, char **argv);
 
 /*
 ** ft_atoi.c
 */
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+
+/*
+**	utils.c
+*/
+uint64_t	ft_time(void);
 
 #endif
