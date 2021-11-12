@@ -78,26 +78,38 @@ typedef struct s_table
 /*
 ** philo.c
 */
-int		ft_check(t_table *table, int argc, char **argv);
+int			ft_check(t_table *table, int argc, char **argv);
 
 
 /*
 ** check.c
 */
-void	ft_init_forks(t_table *table);
-void	ft_init_mutex(t_table *table);
-void	ft_init_thinkers(t_table *table);
-void	ft_init_thread(t_table *table);
-int		ft_init(t_table *table, int argc, char **argv);
+void		ft_init_forks(t_table *table);
+void		ft_init_mutex(t_table *table);
+void		ft_init_thinkers(t_table *table);
+void		ft_init_thread(t_table *table);
+int			ft_init(t_table *table, int argc, char **argv);
 
 /*
 ** ft_atoi.c
 */
-int		ft_atoi(const char *str);
+int			ft_atoi(const char *str);
 
 /*
 **	utils.c
 */
 uint64_t	ft_time(void);
+int			ft_eat_timeout(t_philo *philo);
+int			ft_sleep_timeout(t_philo *philo);
+void		ft_print(t_philo *philo);
+int			ft_take_forks(t_philo *philo);
+void		ft_free_forks(t_philo *philo);
+
+
+/*
+**	life.c
+*/
+int			death_check(t_philo *philo, bool is_dead);
+void		*life_cycle(void *philo);
 
 #endif
