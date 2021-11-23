@@ -1,9 +1,12 @@
 NAME = so_long
 
-LIBFT = libft/libft.a
-LIBMLX = mlx_linux/libmlx.a
-CFLAGS 		= -I/usr/include -Imlx_linux -O3 -fsanitize=leak -g
-LFLAGS		= -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11
+LIBFT 		= libft/libft.a
+LIBMLX 		= minilibx_mms_20200219/libmlx.a
+CFLAGS 		= -g -Wall -Wextra -Werror
+# CFLAGS 		= -I/usr/include -Imlx_linux -O3 -g
+IFLAGS		= -I minilibx_mms_20200219 -Ilmlx -I/includes
+LFLAGS		= -L minilibx_mms_20200219 -lmlx 
+# LFLAGS		= -I ./mlx_linux -L ./mlx_linux -lmlx -Ilmlx -lXext -lX11
 AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src
@@ -26,10 +29,10 @@ $(NAME): $(OBJ)
 	@echo $(ANSI_B_BGREEN) "compile libft" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	$(MAKE) all -C libft
 	@echo $(ANSI_B_BGREEN) "compile libmlx" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	$(MAKE) -C mlx_linux
+	$(MAKE) -C minilibx_mms_20200219
 	@echo $(ANSI_RESET) ""
 	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	clang $(LFLAGS) $(LIBMLX) $(OBJ) $(LIBFT) $(LIBMLX) -o $(NAME)
+	clang $(CFLAGS) $(IFLAGS) $(OBJ) $(LIBFT) $(LFLAGS) -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix includes/,$(HEADER))

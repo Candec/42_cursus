@@ -114,13 +114,13 @@ void	move_right(t_mlx *data)
 
 void	move(t_mlx *data, int key)
 {
-	if (key == XK_Up)
+	if (key == 0xff52)
 		move_up(data);
-	else if (key == XK_Down)
+	else if (key == 0xff54)
 		move_down(data);
-	else if (key == XK_Left)
+	else if (key == 0xff51)
 		move_left(data);
-	else if (key == XK_Right)
+	else if (key == 0xff53)
 		move_right(data);
 	printf("x: %d - y: %d\n""collecables: %d\ncollected: %d\nNum of steps: %d\n",
 		data->map.p_x, data->map.p_y, data->map.collectable,

@@ -20,10 +20,10 @@ void	print_map(t_mlx *data)
 	i = 0;
 	j = 0;
 	printf("\e[1;1H\e[2J");
-	while (i <= data->map.height)
+	while (i < data->map.height - 1)
 	{
 		j = 0;
-		while (j <= data->map.width)
+		while (j < data->map.width)
 		{
 			write(1, &data->map.content[i][j], 1);
 			write(1, " ", 2);
@@ -38,19 +38,21 @@ void	print_map(t_mlx *data)
 void	map_alloc(t_mlx *data)
 {
 	int		i;
+	int		ret;
 	int		fd;
 	char	*line;
-	char	**lines;
 
+	ret = 1;
 	i = 0;
 	fd = open(data->map.fd, O_RDONLY);
-	lines = ft_calloc(data->map.height, data->map.width);
-	if (!lines)
+	data->map.content = ft_calloc(data->map.height, data->map.width);
+	if (!data->map.content)
 		handle_error(data, "MALLOC ERROR", TRUE);
-	while (ft_get_next_line(fd, &line) == 1)
-		lines[i++] = line;
-	lines[i] = line;
-	data->map.content = lines;
+	while (ret > 0)
+	{
+		ret = ft_get_next_line(fd, &line);
+		data->map.content[i++] = line;
+	}
 	close(fd);
 }
 
@@ -100,8 +102,6 @@ void	init_map(t_mlx *data, char*file)
 int	main(int argc, char *argv[])
 {
 	t_mlx	data;
-	void	*mlx;
-	void	*mlx_win;
 
 	if (argc != 2)
 		handle_error(&data, "ARGUMENTS", TRUE);

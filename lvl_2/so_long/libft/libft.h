@@ -27,7 +27,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 300
+#  define BUFFER_SIZE 3000
 # endif
 
 # ifndef ASCII_OFFSET_NUM

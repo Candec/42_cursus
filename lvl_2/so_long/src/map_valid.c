@@ -94,18 +94,18 @@ static void	map_walled(t_mlx *data)
 	y = data->map.width;
 	while (++i < data->map.height)
 	{
-		j = 0;
-		while (++j < data->map.width)
-		{
-			if ((i == 0 || i == x)
-				&& (data->map.content[0][j] != '1'
-				|| data->map.content[x][j] != '1'))
-				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
-			if ((i > 0 && i < x)
-				&& (data->map.content[i][0] != '1'
-				|| data->map.content[i][y - 1] != '1'))
-				handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
-		}
+		// j = -1;
+		// while (++j < data->map.width)
+		// {
+		// 	if ((i == 0 || i == x)
+		// 		&& (data->map.content[0][j] != '1'
+		// 		|| data->map.content[x][j] != '1'))
+		// 		// handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
+		// 	if ((i > 0 && i < x)
+		// 		&& (data->map.content[i][0] != '1'
+		// 		|| data->map.content[i][y - 1] != '1'))
+		// 		// handle_error(data, "WALLS ARE NOT COMPLETE", TRUE);
+		// }
 	}
 }
 
@@ -114,21 +114,19 @@ void	map_valid(t_mlx *data)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < data->map.height)
+	i = -1;
+	while (++i < data->map.height)
 	{
-		j = 0;
-		while (j < data->map.width)
+		j = -1;
+		while (++j < data->map.width)
 		{
 			if (data->map.content[i][j] != '1'
 				&& data->map.content[i][j] != '0'
 				&& data->map.content[i][j] != 'P'
 				&& data->map.content[i][j] != 'C'
 				&& data->map.content[i][j] != 'E')
-				handle_error(data, "INVALID SIMBOL", TRUE);
-			j++;
+				handle_error(data, "INVALID SYMBOL", TRUE);
 		}
-		i++;
 	}
 	map_walled(data);
 	map_player(data);

@@ -14,20 +14,17 @@
 
 int	handle_keypress(int keysym, t_mlx *data)
 {
-	if (keysym == XK_Escape)
+	if (keysym == 0xff1b)
 		exit_hook(data);
-
 	if (data->map.player_escape == TRUE)
 		return (0);
-	else if (keysym == XK_Up || keysym == XK_Down
-		|| keysym == XK_Left || keysym == XK_Right)
-	{
-			move(data, keysym);
-	}
+	else if (keysym == 0xff52 || keysym == 0xff54
+		|| keysym == 0xff51 || keysym == 0xff53)
+		move(data, keysym);
 	return (0);
 }
 
-int	draw_first_map(t_mlx *data)
+void	draw_first_map(t_mlx *data)
 {
 	int		column;
 	int		row;
@@ -54,7 +51,6 @@ int	draw_first_map(t_mlx *data)
 			render_asset(data, tile->img, coord.x, coord.y);
 		}
 	}
-	return (0);
 }
 
 int	start_mlx_and_window(t_mlx *data)
@@ -74,14 +70,18 @@ int	start_mlx_and_window(t_mlx *data)
 
 int	init_game(t_mlx *data)
 {
+	int	KeyPress;
+	int	KeyPressMask;
+
+	KeyPress = 0;
+	KeyPressMask = 0;
 	win_size(data);
 	print_map(data);
 	if (start_mlx_and_window(data) == ERROR)
 		handle_error(data, "COULDN'T FIND SCREEN\n", TRUE);
 	if (load_textures(data) == ERROR)
 		handle_error(data, "ERROR LOADING THE IMGs\n", TRUE);
-	if (draw_first_map(data) == ERROR)
-		handle_error(data, "ERROR CREATING FIRST MAP\n", TRUE);
+	draw_first_map(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);
