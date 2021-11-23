@@ -6,60 +6,63 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/12 17:18:56 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:26:09 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void	ft_eat(t_philo *philo)
+static int	ft_eat(t_philo *philo)
 {
 	if (!ft_take_forks(philo))
-		return ;
+		return (0);
 	else
 	{
 		ft_print(philo);
-		if (ft_eat_timeout(philo))
-			return ;
+		if (!ft_eat_timeout(philo))
+			return (0);
 		philo->n_meals--;
 		philo->state = SLEEP;
 		ft_free_forks(philo);
 	}
+	return (1);
 }
 
-static void	ft_sleep(t_philo *philo)
+static int	ft_sleep(t_philo *philo)
 {
 	ft_print(philo);
-	if (ft_sleep_timeout(philo))
-		return ;
+	if (!ft_sleep_timeout(philo))
+		return (1);
 	philo->state = THINK;
+	return (0);
 }
 
 static void	ft_think(t_philo *philo)
 {
-	if (philo->start_eating > 0)
+	if (philo->start_eating != 0)
 		ft_print(philo);
 	philo->state = EAT;
 }
 
-int	death_check(t_philo *philo, bool is_dead)
+int	death_check(t_philo *philo, int is_dead)
 {
 	uint64_t	now;
 
 	pthread_mutex_lock(philo->mutex_dead);
-	if (philo->is_dead)
+	if (philo->is_dead == FALSE)
 	{
 		pthread_mutex_unlock(philo->mutex_dead);
 		return (0);
 	}
 	now = ft_time();
 	if (is_dead == TRUE
-		|| (philo->t_eat > 0 && philo->t_die > (now - philo->start_time)))
+		|| (philo->start_eating != 0 && philo->t_die < (now - philo->start_eating)))
 	{
 		philo->state = DEAD;
 		philo->is_dead = 0;
 		pthread_mutex_unlock(philo->mutex_dead);
 		ft_print(philo);
+		return (0);
 	}
 	else
 		pthread_mutex_unlock(philo->mutex_dead);
@@ -71,12 +74,15 @@ void	*life_cycle(void *p)
 	t_philo *philo;
 
 	philo = (t_philo *)p;
-	while (death_check(philo, FALSE) && philo->n_meals > 0)
+	while (death_check(philo, FALSE) && philo->n_meals != 0)
 	{
 		if (philo->state == EAT)
 			ft_eat(philo);
 		else if (philo->state == SLEEP)
-			ft_sleep(philo);
+		{
+			if (ft_sleep(philo))
+				return (NULL);
+		}
 		else if (philo->state == THINK)
 			ft_think(philo);
 	}

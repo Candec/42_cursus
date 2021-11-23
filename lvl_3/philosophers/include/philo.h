@@ -38,16 +38,14 @@ typedef struct s_philo
 {
 	int				id;
 	int				state;
-	int				t_die;
-	int				t_eat;
-	int				t_sleep;
+	uint64_t		t_die;
+	uint64_t		t_eat;
+	uint64_t		t_sleep;
 	int				n_meals;
-	bool			is_eating;
-	bool			is_reasting;
-	bool			is_thinking;
-	bool			is_dead;
-	bool			fork_right;
-	bool			fork_left;
+	int				*is_dead;
+	int				*is_eating;
+	int				*fork_right;
+	int				*fork_left;
 	uint64_t		start_time;
 	uint64_t		start_eating;
 	pthread_mutex_t	*mutex_printer;
@@ -59,14 +57,14 @@ typedef struct s_philo
 typedef struct s_table
 {
 	int				thinkers;
-	int				t_die;
-	int				t_eat;
-	int				t_sleep;
-	int				t_think;
+	uint64_t		t_die;
+	uint64_t		t_eat;
+	uint64_t		t_sleep;
+	uint64_t		t_think;
 	int				n_meals;
-	bool			is_dead;
-	bool			is_eating;
+	int				is_dead;
 	int				*fork;
+	int				is_eating;
 	uint64_t		start_time;
 	t_philo			*philo;
 	pthread_t		*thread;
@@ -109,7 +107,7 @@ void		ft_free_forks(t_philo *philo);
 /*
 **	life.c
 */
-int			death_check(t_philo *philo, bool is_dead);
+int			death_check(t_philo *philo, int is_dead);
 void		*life_cycle(void *philo);
 
 #endif

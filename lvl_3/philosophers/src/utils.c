@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/12 17:19:56 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:26:07 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_eat_timeout(t_philo *philo)
 		usleep(10);
 		if ((now - philo->start_eating > philo->t_die))
 		{
-			death_check(philo, 1);
+			death_check(philo, TRUE);
 			return (0);
 		}
 		now = ft_time();
@@ -46,12 +46,13 @@ int	ft_sleep_timeout(t_philo *philo)
 
 	t_start_sleep = ft_time();
 	now = ft_time();
+
 	while (now - t_start_sleep < philo->t_sleep)
 	{
 		usleep(10);
 		if ((now - philo->start_eating > philo->t_die))
 		{
-			death_check(philo, 1);
+			death_check(philo, TRUE);
 			return (0);
 		}
 		now = ft_time();
@@ -86,10 +87,10 @@ int	ft_take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex_left);
 	pthread_mutex_lock(philo->mutex_right);
-	if (philo->mutex_left && philo->mutex_right)
+	if ((*philo->fork_left) && (*philo->fork_right))
 	{
-		philo->fork_left = FALSE;
-		philo->fork_right = FALSE;
+		(*philo->fork_left) = FALSE;
+		(*philo->fork_right) = FALSE;
 		pthread_mutex_unlock(philo->mutex_left);
 		pthread_mutex_unlock(philo->mutex_right);
 	}

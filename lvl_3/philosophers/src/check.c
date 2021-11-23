@@ -20,7 +20,10 @@ void	ft_init_thread(t_table *table)
 	thread = malloc(sizeof(pthread_t) * table->thinkers);
 	i = -1;
 	while (++i < table->thinkers)
+	{
+		printf("Thread number: %d\n", i);
 		pthread_create(&thread[i], NULL, &life_cycle, &table->philo[i]);
+	}
 	i = -1;
 	while (++i < table->thinkers)
 		pthread_join(thread[i], NULL);
@@ -29,8 +32,8 @@ void	ft_init_thread(t_table *table)
 
 void	ft_init_forks(t_table *table)
 {
-	int i;
-	int *forks;
+	int		i;
+	int		*forks;
 
 	i = -1;
 	forks = malloc(sizeof(int) * table->thinkers);
@@ -75,8 +78,8 @@ void	ft_init_thinkers(t_table *table)
 		table->philo[i].t_eat = table->t_eat;
 		table->philo[i].t_sleep = table->t_sleep;
 		table->philo[i].n_meals = table->n_meals;
-		table->philo[i].is_eating = table->is_eating;
-		table->philo[i].is_dead = table->is_dead;
+		table->philo[i].is_eating = &table->is_eating;
+		table->philo[i].is_dead = &table->is_dead;
 		table->philo[i].fork_left = &table->fork[i];
 		table->philo[i].fork_right = &table->fork[(i + 1) % table->thinkers];
 		table->philo[i].mutex_left = &table->philo_mutex[i];
@@ -86,6 +89,22 @@ void	ft_init_thinkers(t_table *table)
 		table->philo[i].state = THINK;
 		table->philo[i].start_time = table->start_time;
 		table->philo[i].start_eating = 0;
+
+
+		// //printf para ver inicialización
+		// printf("id: %d\nt_die: %ld\nt_eat: %ld\nt_sleep: %ld\nn_meals: %d\nis_eating: %d\nis_dead: %d\nfork_left: %ls\nfork_right: %ls\nstate: %d\nstart_time: %ld\nstart_eating: %ld\n\n\n",
+		// table->philo[i].id,
+		// table->philo[i].t_die, 
+		// table->philo[i].t_eat,
+		// table->philo[i].t_sleep,
+		// table->philo[i].n_meals,
+		// table->philo[i].is_eating[0],
+		// table->philo[i].is_dead[0],
+		// table->philo[i].fork_left,
+		// table->philo[i].fork_right,
+		// table->philo[i].state,
+		// table->philo[i].start_time,
+		// table->philo[i].start_eating);
 	}
 }
 
@@ -106,6 +125,9 @@ int	ft_init(t_table *table, int argc, char **argv)
 	}
 	ft_init_forks(table);
 	ft_init_mutex(table);
+	pthread_mutex_init(&table->mutex_printer, NULL);
+	pthread_mutex_init(&table->mutex_dead, NULL);
 	ft_init_thinkers(table);
 	ft_init_thread(table);
+	return (0);
 }
