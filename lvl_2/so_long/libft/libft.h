@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:48:17 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/17 13:31:50 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:55:41 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3000
+#  define BUFFER_SIZE 300
 # endif
 
 # ifndef ASCII_OFFSET_NUM
 #  define ASCII_OFFSET_NUM 48
+# endif
+
+# ifndef FD_MAX_COUNT
+#  define FD_MAX_COUNT 4096
 # endif
 
 typedef int	t_bool;
@@ -126,5 +130,15 @@ void			ft_str_array_del(char **str_arr);
 void			ft_str_array_array_del(char ***str_arr);
 t_bool			ft_strequal(char *s1, char *s2);
 char			*ft_strjoin_char(const char *s1, char c);
+int8_t			ft_set8(int8_t *a, int8_t b);
+int16_t			ft_set16(int16_t *a, int16_t b);
+int32_t			ft_set32(int32_t *a, int32_t b);
+int64_t			ft_set64(int64_t *a, int64_t b);
+int8_t			ft_ternary8(int flag, int8_t a, int8_t b);
+int16_t			ft_ternary16(int flag, int16_t a, int16_t b);
+int32_t			ft_ternary32(int flag, int32_t a, int32_t b);
+int64_t			ft_ternary64(int flag, int64_t a, int64_t b);
+void			*ft_malloc(size_t size);
+void			ft_free(void *ptr);
 
 #endif

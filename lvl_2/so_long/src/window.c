@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:00:01 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/20 19:31:09 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:54:03 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	handle_keypress(int keysym, t_mlx *data)
 {
-	if (keysym == 0xff1b)
+	if (keysym == 53)
 		exit_hook(data);
 	if (data->map.player_escape == TRUE)
 		return (0);
-	else if (keysym == 0xff52 || keysym == 0xff54
-		|| keysym == 0xff51 || keysym == 0xff53)
+	else if (keysym == 13 || keysym == 1
+		|| keysym == 2 || keysym == 0)
 		move(data, keysym);
 	return (0);
 }
@@ -32,10 +32,10 @@ void	draw_first_map(t_mlx *data)
 	t_coord	coord;
 
 	row = -1;
-	while (++row <= data->map.height)
+	while (++row < data->map.height)
 	{
 		column = -1;
-		while (++column <= data->map.width)
+		while (++column < data->map.width)
 		{
 			calc_coord(column, row, &coord);
 			if (data->map.content[row][column] == '1')
@@ -70,11 +70,6 @@ int	start_mlx_and_window(t_mlx *data)
 
 int	init_game(t_mlx *data)
 {
-	int	KeyPress;
-	int	KeyPressMask;
-
-	KeyPress = 0;
-	KeyPressMask = 0;
 	win_size(data);
 	print_map(data);
 	if (start_mlx_and_window(data) == ERROR)
@@ -82,7 +77,8 @@ int	init_game(t_mlx *data)
 	if (load_textures(data) == ERROR)
 		handle_error(data, "ERROR LOADING THE IMGs\n", TRUE);
 	draw_first_map(data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win_ptr, 02, 1L << 2, &handle_keypress, data);
+	mlx_hook(data->win_ptr, 17, (1L << 17), &exit_hook, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);
 }

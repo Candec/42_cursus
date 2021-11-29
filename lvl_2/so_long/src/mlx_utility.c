@@ -26,7 +26,7 @@ void	render_asset(t_mlx *data, void *img_ptr, int x, int y)
 void	win_size(t_mlx *data)
 {
 	data->win_width = ASSET_SIZE * data->map.width;
-	data->win_height = ASSET_SIZE * (1 + data->map.height);
+	data->win_height = ASSET_SIZE * data->map.height;
 }
 
 int	move_is_valid(t_mlx *data, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 18:56:55 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/10/20 17:44:32 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:38:06 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +114,13 @@ void	move_right(t_mlx *data)
 
 void	move(t_mlx *data, int key)
 {
-	if (key == 0xff52)
+	if (key == 13)
 		move_up(data);
-	else if (key == 0xff54)
+	else if (key == 1)
 		move_down(data);
-	else if (key == 0xff51)
+	else if (key == 0)
 		move_left(data);
-	else if (key == 0xff53)
+	else if (key == 2)
 		move_right(data);
-	printf("x: %d - y: %d\n""collecables: %d\ncollected: %d\nNum of steps: %d\n",
-		data->map.p_x, data->map.p_y, data->map.collectable,
-		data->map.collected, data->map.steps);
 	print_map(data);
 }

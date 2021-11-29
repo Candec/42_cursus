@@ -14,8 +14,6 @@
 # define SO_LONG
 
 # include <mlx.h>
-// # include <X11/X.h>
-// # include <X11/keysym.h>
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -26,7 +24,12 @@
 # include <stdbool.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+
+# if __Linux__
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "../minilibx/mlx.h"
+# endif
 
 /*
 ** Definitons

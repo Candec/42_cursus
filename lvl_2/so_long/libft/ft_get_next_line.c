@@ -1,85 +1,93 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/05/17 11:06:06 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:55:14 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-static void	final_line(char **content, char **line)
-{
-	int	i;
 
-	i = 0;
-	*line = ft_strdup(content[i]);
-	free(content[i]);
-	content[i] = 0;
+static char	*strjoin_gnl(char const *s1, char const *s2)
+{
+	char	*ret;
+	size_t	size1;
+	size_t	size2;
+
+	if (!s2)
+		return (NULL);
+	if (!s1)
+		size1 = 0;
+	else
+		size1 = ft_strlen(s1);
+	size2 = ft_strlen(s2);
+	if (!ft_set64((int64_t *)&ret, (int64_t)ft_malloc(size1 + size2 + 1)))
+		return (NULL);
+	ft_memcpy(ret, s1, size1);
+	ft_memcpy(ret + size1, s2, size2 + 1);
+	return (ret);
 }
 
-static int	save_line(char **content, char **line)
+static char	*rem_line(char **saved)
 {
-	char	*tmp;
-	int		i;
+	size_t	end;
+	char	*ret;
+	char	*temp;
 
-	i = 0;
-	while ((*content)[i] != '\0' && (*content)[i] != '\n')
-		i++;
-	if (ft_strchr(*content, '\n'))
-	{
-		*line = ft_substr(*content, 0, i);
-		tmp = ft_strdup(ft_strchr(*content, '\n') + 1);
-		free(*content);
-		*content = tmp;
-		return (1);
-	}
+	if (!*saved)
+		return (ft_substr("", 0, 0));
+	if (ft_strchr(*saved, '\n'))
+		end = ft_strchr(*saved, '\n') - *saved;
 	else
-		return (0);
+		end = (size_t) - 1;
+	ret = ft_substr(*saved, 0, end);
+	if (end != (size_t) - 1)
+		temp = ft_substr(*saved, end + 1, (size_t) - 1);
+	else
+		temp = NULL;
+	ft_free(*saved);
+	*saved = temp;
+	return (ret);
 }
 
-static void	store(char **content, char *bf)
+static int	get_line(int fd, char **saved, char **line)
 {
-	char	*tmp;
+	char	*buff;
+	int64_t	aux;
+	char	*temp;
 
-	tmp = 0;
-	if (!(*content))
-		*content = ft_strdup(bf);
-	else
+	aux = 1;
+	while ((!saved[fd] || !ft_strchr(saved[fd], '\n')) && aux)
 	{
-		tmp = *content;
-		*content = ft_strjoin(tmp, bf);
-		free(tmp);
+		buff = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (ft_set64((int64_t *)&aux, (int64_t)read(fd, buff, BUFFER_SIZE)) > 0)
+		{
+			buff[aux] = '\0';
+			temp = strjoin_gnl(saved[fd], buff);
+			ft_free(saved[fd]);
+			saved[fd] = temp;
+		}
+		else if (aux == -1)
+		{
+			ft_free(buff);
+			*line = NULL;
+			return (-1);
+		}
+		ft_free(buff);
 	}
+	*line = rem_line(&(saved[fd]));
+	return ((saved[fd] && ft_strlen(saved[fd]) != 0) || aux);
 }
 
 int	ft_get_next_line(int fd, char **line)
 {
-	static char	*content[100];
-	ssize_t		r;
-	char		bf[BUFFER_SIZE + 1];
+	static char	*saved[FD_MAX_COUNT];
 
-	if (read(fd, 0, 0) == -1 || fd < 0 || !line || BUFFER_SIZE < 1)
+	if (fd < 0 || fd == 1 || fd == 2 || fd >= FD_MAX_COUNT || !line)
 		return (-1);
-	if (content[fd] && save_line(&content[fd], line))
-		return (1);
-	r = read(fd, bf, BUFFER_SIZE);
-	while (r > 0)
-	{
-		bf[r] = '\0';
-		store(&content[fd], bf);
-		if (save_line(&content[fd], line))
-			return (1);
-		r = read(fd, bf, BUFFER_SIZE);
-	}
-	if (content[fd] && !ft_strchr(content[fd], '\n'))
-	{
-		final_line(&content[fd], line);
-		return (0);
-	}
-	*line = ft_strdup("");
-	return (0);
+	return (get_line(fd, saved, line));
 }
