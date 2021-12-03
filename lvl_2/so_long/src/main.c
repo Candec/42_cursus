@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 13:03:49 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/29 17:41:05 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:30:58 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char *argv[])
 	t_mlx	data;
 
 	if (argc != 2)
-		handle_error(&data, "ARGUMENTS\n", TRUE);
+		handle_error(&data, "ARGUMENTS\n", FALSE);
 	init_map(&data, argv[1]);
 	map_size(&data);
 	map_alloc(&data);
