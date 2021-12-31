@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/22 19:26:09 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:58:19 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,21 @@ void	*life_cycle(void *p)
 	t_philo *philo;
 
 	philo = (t_philo *)p;
+	printf("number of meals: %d\n ", philo->n_meals);
 	while (death_check(philo, FALSE) && philo->n_meals != 0)
 	{
 		if (philo->state == EAT)
+		{
 			ft_eat(philo);
+		}
 		else if (philo->state == SLEEP)
 		{
+			printf("considering sleeping\n");
 			if (ft_sleep(philo))
 				return (NULL);
 		}
 		else if (philo->state == THINK)
+			printf("considering thinking\n");
 			ft_think(philo);
 	}
 	return (NULL);

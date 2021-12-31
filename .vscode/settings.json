@@ -3,6 +3,7 @@
         "sstream": "c",
         "push_swap.h": "c",
         "algorithm": "c",
-        "so_long.h": "c"
+        "so_long.h": "c",
+        "pthread.h": "c"
     }
 }

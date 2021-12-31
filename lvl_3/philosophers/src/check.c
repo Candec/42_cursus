@@ -21,12 +21,16 @@ void	ft_init_thread(t_table *table)
 	i = -1;
 	while (++i < table->thinkers)
 	{
-		printf("Thread number: %d\n", i);
+		printf("i: %d < n: %d\n", i, table->thinkers);
 		pthread_create(&thread[i], NULL, &life_cycle, &table->philo[i]);
 	}
+	write(1, "HERE\n", 6);
 	i = -1;
 	while (++i < table->thinkers)
+	{
 		pthread_join(thread[i], NULL);
+
+	}
 	table->thread = thread;
 }
 
