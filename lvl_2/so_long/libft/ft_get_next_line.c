@@ -6,88 +6,57 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 10:48:14 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/29 17:55:14 by jibanez-         ###   ########.fr       */
+/*   Updated: 2021/12/03 10:15:33 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*strjoin_gnl(char const *s1, char const *s2)
+static void	copies_memory(char *src, char *dest, int n, int clean)
 {
-	char	*ret;
-	size_t	size1;
-	size_t	size2;
-
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		size1 = 0;
-	else
-		size1 = ft_strlen(s1);
-	size2 = ft_strlen(s2);
-	if (!ft_set64((int64_t *)&ret, (int64_t)ft_malloc(size1 + size2 + 1)))
-		return (NULL);
-	ft_memcpy(ret, s1, size1);
-	ft_memcpy(ret + size1, s2, size2 + 1);
-	return (ret);
+	while (*src && n--)
+		*(dest++) = *(src++);
+	*dest++ = '\0';
+	if (clean)
+		while (*dest)
+			*dest++ = '\0';
 }
 
-static char	*rem_line(char **saved)
+static int	reads_content(int fd, char **line, char *buffer)
 {
-	size_t	end;
-	char	*ret;
-	char	*temp;
+	int		length;
+	int		read_res;
+	char	*begg_buffer;
 
-	if (!*saved)
-		return (ft_substr("", 0, 0));
-	if (ft_strchr(*saved, '\n'))
-		end = ft_strchr(*saved, '\n') - *saved;
-	else
-		end = (size_t) - 1;
-	ret = ft_substr(*saved, 0, end);
-	if (end != (size_t) - 1)
-		temp = ft_substr(*saved, end + 1, (size_t) - 1);
-	else
-		temp = NULL;
-	ft_free(*saved);
-	*saved = temp;
-	return (ret);
-}
-
-static int	get_line(int fd, char **saved, char **line)
-{
-	char	*buff;
-	int64_t	aux;
-	char	*temp;
-
-	aux = 1;
-	while ((!saved[fd] || !ft_strchr(saved[fd], '\n')) && aux)
+	begg_buffer = buffer;
+	while (1)
 	{
-		buff = ft_malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (ft_set64((int64_t *)&aux, (int64_t)read(fd, buff, BUFFER_SIZE)) > 0)
+		if (!(*buffer))
+			read_res = read(fd, buffer, BUFFER_SIZE);
+		while (*buffer && *buffer != '\n')
+			buffer++;
+		if ((*buffer && *buffer == '\n') || read_res == 0)
 		{
-			buff[aux] = '\0';
-			temp = strjoin_gnl(saved[fd], buff);
-			ft_free(saved[fd]);
-			saved[fd] = temp;
+			length = buffer - begg_buffer;
+			*line = malloc(length + 1);
+			if (!(*line))
+				return (-1);
+			copies_memory(begg_buffer, *line, length, 0);
+			copies_memory(++buffer, begg_buffer, 1000, 1);
+			if (read_res != 0)
+				return (1);
+			else
+				return (0);
 		}
-		else if (aux == -1)
-		{
-			ft_free(buff);
-			*line = NULL;
-			return (-1);
-		}
-		ft_free(buff);
 	}
-	*line = rem_line(&(saved[fd]));
-	return ((saved[fd] && ft_strlen(saved[fd]) != 0) || aux);
 }
 
 int	ft_get_next_line(int fd, char **line)
 {
-	static char	*saved[FD_MAX_COUNT];
+	static char	buffer[100][4096];
 
-	if (fd < 0 || fd == 1 || fd == 2 || fd >= FD_MAX_COUNT || !line)
+	if (!line || read(fd, 0, 0) == -1 || BUFFER_SIZE <= 0)
 		return (-1);
-	return (get_line(fd, saved, line));
+	*line = NULL;
+	return (reads_content(fd, line, buffer[fd]));
 }
