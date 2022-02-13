@@ -23,6 +23,7 @@
 
 # define ERROR -1
 # define SUCCESS 0
+# define FAILURE 1
 # define FALSE 0
 # define TRUE 1
 
@@ -42,7 +43,7 @@ typedef struct s_philo
 	uint64_t		t_eat;
 	uint64_t		t_sleep;
 	int				n_meals;
-	int				*is_dead;
+	int				*is_alive;
 	int				*is_eating;
 	int				*fork_right;
 	int				*fork_left;
@@ -62,13 +63,13 @@ typedef struct s_table
 	uint64_t		t_sleep;
 	uint64_t		t_think;
 	int				n_meals;
-	int				is_dead;
+	int				is_alive;
 	int				*fork;
 	int				is_eating;
 	uint64_t		start_time;
 	t_philo			*philo;
 	pthread_t		*thread;
-	pthread_mutex_t	*philo_mutex;
+	pthread_mutex_t	*mutex;
 	pthread_mutex_t	mutex_printer;
 	pthread_mutex_t	mutex_dead;
 }					t_table;
@@ -76,8 +77,9 @@ typedef struct s_table
 /*
 ** philo.c
 */
+uint64_t	ft_time(void);
+void		ft_print(t_philo *philo);
 int			ft_check(t_table *table, int argc, char **argv);
-
 
 /*
 ** check.c
@@ -86,7 +88,7 @@ void		ft_init_forks(t_table *table);
 void		ft_init_mutex(t_table *table);
 void		ft_init_thinkers(t_table *table);
 void		ft_init_thread(t_table *table);
-int			ft_init(t_table *table, int argc, char **argv);
+int			ft_init(t_table *table, char **argv);
 
 /*
 ** ft_atoi.c
@@ -96,18 +98,23 @@ int			ft_atoi(const char *str);
 /*
 **	utils.c
 */
-uint64_t	ft_time(void);
 int			ft_eat_timeout(t_philo *philo);
 int			ft_sleep_timeout(t_philo *philo);
-void		ft_print(t_philo *philo);
 int			ft_take_forks(t_philo *philo);
 void		ft_free_forks(t_philo *philo);
-
 
 /*
 **	life.c
 */
 int			death_check(t_philo *philo, int is_dead);
 void		*life_cycle(void *philo);
+
+/*
+**	Paralel_life.c
+*/
+// void	ft_printer(t_philo *philo);
+int			ft_dead(t_philo *philo, int diff);
+int			ft_can_eat(t_philo *philo);
+void		*thread_life(void *philo_struct);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/12/02 11:58:19 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/12 19:09:33 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ int	death_check(t_philo *philo, int is_dead)
 	uint64_t	now;
 
 	pthread_mutex_lock(philo->mutex_dead);
-	if (philo->is_dead == FALSE)
+	if (*philo->is_alive == FALSE)
 	{
 		pthread_mutex_unlock(philo->mutex_dead);
 		return (0);
 	}
 	now = ft_time();
 	if (is_dead == TRUE
-		|| (philo->start_eating != 0 && philo->t_die < (now - philo->start_eating)))
+		|| (philo->start_eating != 0
+			&& philo->t_die < (now - philo->start_eating)))
 	{
 		philo->state = DEAD;
-		philo->is_dead = 0;
+		*philo->is_alive = 0;
 		pthread_mutex_unlock(philo->mutex_dead);
 		ft_print(philo);
 		return (0);
@@ -71,25 +72,25 @@ int	death_check(t_philo *philo, int is_dead)
 
 void	*life_cycle(void *p)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	printf("number of meals: %d\n ", philo->n_meals);
 	while (death_check(philo, FALSE) && philo->n_meals != 0)
 	{
 		if (philo->state == EAT)
 		{
-			ft_eat(philo);
+			if (ft_eat(philo))
+				continue ;
 		}
 		else if (philo->state == SLEEP)
 		{
-			printf("considering sleeping\n");
 			if (ft_sleep(philo))
 				return (NULL);
 		}
 		else if (philo->state == THINK)
-			printf("considering thinking\n");
+		{
 			ft_think(philo);
+		}
 	}
 	return (NULL);
 }

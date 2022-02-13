@@ -6,19 +6,11 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/11/22 19:26:07 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/13 00:29:00 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-uint64_t	ft_time(void)
-{
-	struct timeval	now;
-
-	gettimeofday(&now, NULL);
-	return (now.tv_sec * 1000 + now.tv_usec / 1000);
-}
 
 int	ft_eat_timeout(t_philo *philo)
 {
@@ -46,7 +38,6 @@ int	ft_sleep_timeout(t_philo *philo)
 
 	t_start_sleep = ft_time();
 	now = ft_time();
-
 	while (now - t_start_sleep < philo->t_sleep)
 	{
 		usleep(10);
@@ -107,8 +98,8 @@ void	ft_free_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex_left);
 	pthread_mutex_lock(philo->mutex_right);
-	philo->fork_left = FALSE;
-	philo->fork_right = FALSE;
+	*philo->fork_left = TRUE;
+	*philo->fork_right = TRUE;
 	pthread_mutex_unlock(philo->mutex_left);
 	pthread_mutex_unlock(philo->mutex_right);
 }
