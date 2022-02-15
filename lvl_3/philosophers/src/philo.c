@@ -12,6 +12,23 @@
 
 #include "../include/philo.h"
 
+int	ft_parse(int argc, char **argv)
+{
+	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0
+		|| ft_atoi(argv[3]) <= 0 || ft_atoi(argv[4]) <= 0)
+		return (ERROR);
+	if (argc == 6 && ft_atoi(argv[5]) <= 0)
+		return (ERROR);
+	if (ft_atoi(argv[1]) == 1)
+	{
+		printf("0 1 has taken a fork\n");
+		usleep(ft_atoi(argv[2]));
+		printf("%d 1 died\n", ft_atoi(argv[2]));
+		return (EXCEPTION);
+	}
+	return (SUCCESS);
+}
+
 uint64_t	ft_time(void)
 {
 	struct timeval	now;
@@ -24,14 +41,22 @@ void	ft_exit(t_table *table)
 {
 	int	i;
 
+	if (table->fork)
+		free(table->fork);
+	if (table->philo)
+		free(table->philo);
+	if (table->thread)
+		free(table->thread);
 	i = -1;
-	free(table->fork);
-	free(table->philo);
-	free(table->thread);
 	while (++i < table->thinkers)
-		pthread_mutex_destroy(&table->mutex[i]);
-	free(table->mutex);
-	free(table);
+	{
+		if (&table->mutex[i])
+			pthread_mutex_destroy(&table->mutex[i]);
+	}
+	if (table->mutex)
+		free(table->mutex);
+	if (table)
+		free(table);
 }
 
 int	ft_check(t_table *table, int argc, char **argv)
@@ -55,24 +80,23 @@ int	main(int argc, char *argv[])
 
 	if (argc == 5 || argc == 6)
 	{
+		if (ft_parse(argc, argv) == ERROR)
+		{
+			write(1, "INPUT ERROR\n", 13);
+			return (ERROR);
+		}
+		else if (ft_parse(argc, argv) == EXCEPTION)
+			return (SUCCESS);
 		table = malloc(sizeof(t_table));
 		if (!table)
 		{
 			write(1, "MALLOC PROBLEM\n", 16);
 			return (ERROR);
 		}
-		if (ft_atoi(argv[1]) == 1)
-		{
-			printf("0 1 has taken a fork\n");
-			usleep(ft_atoi(argv[2]));
-			printf("%d 1 died\n", ft_atoi(argv[2]));
-			return (SUCCESS);
-		}
 		if (!ft_check(table, argc, argv))
 			ft_exit(table);
 		return (SUCCESS);
 	}
-	else
-		write(1, "INVALID NUMBER OF ARGUMENTS\n", 29);
+	write(1, "INVALID NUMBER OF ARGUMENTS\n", 29);
 	return (ERROR);
 }

@@ -101,10 +101,7 @@ int	ft_init(t_table *table, char **argv)
 	table->start_time = ft_time();
 	if (table->thinkers == 0 || table->t_die == 0 || table->t_eat == 0
 		|| table->t_sleep == 0 || table->n_meals == 0)
-	{
-		free(table);
 		return (ERROR);
-	}
 	ft_init_forks(table);
 	ft_init_mutex(table);
 	pthread_mutex_init(&table->mutex_printer, NULL);

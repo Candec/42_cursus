@@ -23,6 +23,7 @@
 
 # define ERROR -1
 # define SUCCESS 0
+# define EXCEPTION 7
 # define FAILURE 1
 # define FALSE 0
 # define TRUE 1
@@ -77,6 +78,7 @@ typedef struct s_table
 /*
 ** philo.c
 */
+int			ft_parse(int argc, char **argv);
 uint64_t	ft_time(void);
 void		ft_print(t_philo *philo);
 int			ft_check(t_table *table, int argc, char **argv);
