@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/13 00:29:00 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:50:40 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ void	ft_print(t_philo *philo)
 	pthread_mutex_lock(philo->mutex_printer);
 	delta_t = now - philo->start_time;
 	if (philo->state == DEAD)
-		printf("%lu %d died\n", delta_t, philo->id);
+		printf("%llu %d died\n", delta_t, philo->id);
 	else if (philo->state == EAT)
 	{
-		printf("%lu %d has taken a fork\n", delta_t, philo->id);
-		printf("%lu %d has taken a fork\n", delta_t, philo->id);
-		printf("%lu %d is eating\n", delta_t, philo->id);
+		printf("%llu %d has taken a fork\n", delta_t, philo->id);
+		printf("%llu %d has taken a fork\n", delta_t, philo->id);
+		printf("%llu %d is eating\n", delta_t, philo->id);
 	}
 	else if (philo->state == SLEEP)
-		printf("%lu %d is sleeping\n", delta_t, philo->id);
+		printf("%llu %d is sleeping\n", delta_t, philo->id);
 	else if (philo->state == THINK)
-		printf("%lu %d is thinking\n", delta_t, philo->id);
+		printf("%llu %d is thinking\n", delta_t, philo->id);
 	pthread_mutex_unlock(philo->mutex_printer);
 }
 
@@ -89,9 +89,9 @@ int	ft_take_forks(t_philo *philo)
 	{
 		pthread_mutex_unlock(philo->mutex_left);
 		pthread_mutex_unlock(philo->mutex_right);
-		return (0);
+		return (FALSE);
 	}
-	return (1);
+	return (TRUE);
 }
 
 void	ft_free_forks(t_philo *philo)

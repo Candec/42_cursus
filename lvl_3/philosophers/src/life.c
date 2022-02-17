@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/12 19:09:33 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:55:31 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,14 @@ void	*life_cycle(void *p)
 			if (ft_eat(philo))
 				continue ;
 		}
-		else if (philo->state == SLEEP)
-		{
-			if (ft_sleep(philo))
-				return (NULL);
-		}
 		else if (philo->state == THINK)
 		{
 			ft_think(philo);
+		}
+		else if (philo->state == SLEEP)
+		{
+			if (ft_sleep(philo))
+				break ;
 		}
 	}
 	return (NULL);

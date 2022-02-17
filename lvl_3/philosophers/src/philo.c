@@ -77,15 +77,17 @@ int	ft_check(t_table *table, int argc, char **argv)
 int	main(int argc, char *argv[])
 {
 	t_table	*table;
+	int		ret;
 
 	if (argc == 5 || argc == 6)
 	{
-		if (ft_parse(argc, argv) == ERROR)
+		ret = ft_parse(argc, argv);
+		if (ret == ERROR)
 		{
 			write(1, "INPUT ERROR\n", 13);
 			return (ERROR);
 		}
-		else if (ft_parse(argc, argv) == EXCEPTION)
+		else if (ret == EXCEPTION)
 			return (SUCCESS);
 		table = malloc(sizeof(t_table));
 		if (!table)
