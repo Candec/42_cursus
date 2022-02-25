@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/17 22:50:40 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:22:57 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,17 @@ int	ft_eat_timeout(t_philo *philo)
 
 int	ft_sleep_timeout(t_philo *philo)
 {
-	uint64_t	now;
 	uint64_t	t_start_sleep;
 
 	t_start_sleep = ft_time();
-	now = ft_time();
-	while (now - t_start_sleep < philo->t_sleep)
+	while (ft_time() - t_start_sleep < philo->t_sleep)
 	{
 		usleep(10);
-		if ((now - philo->start_eating > philo->t_die))
+		if ((ft_time() - philo->start_eating > philo->t_die))
 		{
 			death_check(philo, TRUE);
 			return (0);
 		}
-		now = ft_time();
 	}
 	return (1);
 }
@@ -60,17 +57,17 @@ void	ft_print(t_philo *philo)
 	pthread_mutex_lock(philo->mutex_printer);
 	delta_t = now - philo->start_time;
 	if (philo->state == DEAD)
-		printf("%llu %d died\n", delta_t, philo->id);
+		printf("%lu %d died\n", delta_t, philo->id);
 	else if (philo->state == EAT)
 	{
-		printf("%llu %d has taken a fork\n", delta_t, philo->id);
-		printf("%llu %d has taken a fork\n", delta_t, philo->id);
-		printf("%llu %d is eating\n", delta_t, philo->id);
+		printf("%lu %d has taken a fork\n", delta_t, philo->id);
+		printf("%lu %d has taken a fork\n", delta_t, philo->id);
+		printf("%lu %d is eating\n", delta_t, philo->id);
 	}
 	else if (philo->state == SLEEP)
-		printf("%llu %d is sleeping\n", delta_t, philo->id);
+		printf("%lu %d is sleeping\n", delta_t, philo->id);
 	else if (philo->state == THINK)
-		printf("%llu %d is thinking\n", delta_t, philo->id);
+		printf("%lu %d is thinking\n", delta_t, philo->id);
 	pthread_mutex_unlock(philo->mutex_printer);
 }
 

@@ -40,7 +40,7 @@ void	ft_init_forks(t_table *table)
 		return ;
 	}
 	while (++i < table->thinkers)
-		forks[i] = 1;
+		forks[i] = TRUE;
 	table->fork = forks;
 }
 
@@ -74,6 +74,7 @@ void	ft_init_thinkers(t_table *table)
 		table->philo[i].id = i + 1;
 		table->philo[i].t_die = table->t_die;
 		table->philo[i].t_eat = table->t_eat;
+		table->philo[i].last_meal_t = ft_time();
 		table->philo[i].t_sleep = table->t_sleep;
 		table->philo[i].n_meals = table->n_meals;
 		table->philo[i].is_eating = &table->is_eating;

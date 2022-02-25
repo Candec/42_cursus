@@ -1,6 +1,7 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g
+CFLAGS = -Wall -Wextra -Werror -pthread -g 
+# -fsanitize=thread
 AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src
@@ -13,6 +14,7 @@ SRC = check.c \
 	life.c \
 	philo.c \
 	utils.c \
+	parallel_life.c \
 
 all: $(NAME)
 

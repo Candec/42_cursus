@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/17 22:55:31 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:18:38 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	ft_eat(t_philo *philo)
 		return (0);
 	else
 	{
-		ft_print(philo);
 		if (!ft_eat_timeout(philo))
 			return (0);
+		ft_print(philo);
 		philo->n_meals--;
 		philo->state = SLEEP;
 		ft_free_forks(philo);
@@ -30,9 +30,9 @@ static int	ft_eat(t_philo *philo)
 
 static int	ft_sleep(t_philo *philo)
 {
-	ft_print(philo);
 	if (!ft_sleep_timeout(philo))
 		return (1);
+	ft_print(philo);
 	philo->state = THINK;
 	return (0);
 }
@@ -52,7 +52,7 @@ int	death_check(t_philo *philo, int is_dead)
 	if (*philo->is_alive == FALSE)
 	{
 		pthread_mutex_unlock(philo->mutex_dead);
-		return (0);
+		return (1);
 	}
 	now = ft_time();
 	if (is_dead == TRUE
@@ -60,7 +60,7 @@ int	death_check(t_philo *philo, int is_dead)
 			&& philo->t_die < (now - philo->start_eating)))
 	{
 		philo->state = DEAD;
-		*philo->is_alive = 0;
+		*philo->is_alive = FALSE;
 		pthread_mutex_unlock(philo->mutex_dead);
 		ft_print(philo);
 		return (0);
@@ -82,15 +82,13 @@ void	*life_cycle(void *p)
 			if (ft_eat(philo))
 				continue ;
 		}
-		else if (philo->state == THINK)
-		{
-			ft_think(philo);
-		}
 		else if (philo->state == SLEEP)
 		{
 			if (ft_sleep(philo))
 				break ;
 		}
+		else if (philo->state == THINK)
+			ft_think(philo);
 	}
-	return (NULL);
+	return (p);
 }

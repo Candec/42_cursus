@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <stdint.h>
 
+# define ONE_SEC 1000000
 # define ERROR -1
 # define SUCCESS 0
 # define EXCEPTION 7
@@ -30,10 +31,11 @@
 
 enum
 {
-	DEAD,
+	FORK,
 	EAT,
 	SLEEP,
-	THINK
+	THINK,
+	DEAD
 };
 
 typedef struct s_philo
@@ -50,6 +52,7 @@ typedef struct s_philo
 	int				*fork_left;
 	uint64_t		start_time;
 	uint64_t		start_eating;
+	uint64_t		last_meal_t;
 	pthread_mutex_t	*mutex_printer;
 	pthread_mutex_t	*mutex_dead;
 	pthread_mutex_t	*mutex_right;
@@ -114,9 +117,24 @@ void		*life_cycle(void *philo);
 /*
 **	Paralel_life.c
 */
-// void	ft_printer(t_philo *philo);
-int			ft_dead(t_philo *philo, int diff);
-int			ft_can_eat(t_philo *philo);
+void	ft_print2(t_philo *philo);
+void ft_hold_time(uint64_t start, uint64_t action_time);
+uint64_t	ft_delta_time(uint64_t first_time, uint64_t last_time);
+void	ft_try_eat(t_philo *philo);
+void	philo_died(t_philo *philo);
+void *parallel_life(void *p);
+int	philo_starved(t_philo *philo);
+void	ft_try_sleep(t_philo *philo);
+uint64_t	ft_timeout2(t_philo *philo, uint64_t wait_time);
+void	ft_try_think(t_philo *philo);
+int	ft_take_forks2(t_philo *philo);
+void	ft_try_take_a_fork(t_philo *philo);
+// void	ft_try_take_a_fork(pthread_mutex_t *mutex, int *fork);
+
+
+
+// int			ft_dead(t_philo *philo, int diff);
+// int			ft_can_eat(t_philo *philo);
 void		*thread_life(void *philo_struct);
 
 #endif
