@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:22:57 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:24:02 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_eat_timeout(t_philo *philo)
 	uint64_t	now;
 
 	philo->start_eating = ft_time();
+	ft_print(philo);
 	now = ft_time();
 	while (now - philo->start_eating < philo->t_eat)
 	{
@@ -36,6 +37,8 @@ int	ft_sleep_timeout(t_philo *philo)
 	uint64_t	t_start_sleep;
 
 	t_start_sleep = ft_time();
+	ft_print(philo);
+	ft_free_forks(philo);
 	while (ft_time() - t_start_sleep < philo->t_sleep)
 	{
 		usleep(10);
@@ -77,10 +80,11 @@ int	ft_take_forks(t_philo *philo)
 	pthread_mutex_lock(philo->mutex_right);
 	if ((*philo->fork_left) && (*philo->fork_right))
 	{
-		(*philo->fork_left) = FALSE;
 		(*philo->fork_right) = FALSE;
+		(*philo->fork_left) = FALSE;
 		pthread_mutex_unlock(philo->mutex_left);
 		pthread_mutex_unlock(philo->mutex_right);
+		return (TRUE);
 	}
 	else
 	{
@@ -88,7 +92,6 @@ int	ft_take_forks(t_philo *philo)
 		pthread_mutex_unlock(philo->mutex_right);
 		return (FALSE);
 	}
-	return (TRUE);
 }
 
 void	ft_free_forks(t_philo *philo)

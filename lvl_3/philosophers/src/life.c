@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:18:38 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:27:52 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ static int	ft_eat(t_philo *philo)
 	{
 		if (!ft_eat_timeout(philo))
 			return (0);
-		ft_print(philo);
 		philo->n_meals--;
 		philo->state = SLEEP;
-		ft_free_forks(philo);
 	}
 	return (1);
 }
@@ -32,7 +30,6 @@ static int	ft_sleep(t_philo *philo)
 {
 	if (!ft_sleep_timeout(philo))
 		return (1);
-	ft_print(philo);
 	philo->state = THINK;
 	return (0);
 }
@@ -61,8 +58,8 @@ int	death_check(t_philo *philo, int is_dead)
 	{
 		philo->state = DEAD;
 		*philo->is_alive = FALSE;
-		pthread_mutex_unlock(philo->mutex_dead);
 		ft_print(philo);
+		pthread_mutex_unlock(philo->mutex_dead);
 		return (0);
 	}
 	else
@@ -75,7 +72,8 @@ void	*life_cycle(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
-	while (death_check(philo, FALSE) && philo->n_meals != 0)
+	while (death_check(philo, FALSE) && philo->n_meals != 0
+		&& *philo->is_alive == TRUE)
 	{
 		if (philo->state == EAT)
 		{
@@ -90,5 +88,6 @@ void	*life_cycle(void *p)
 		else if (philo->state == THINK)
 			ft_think(philo);
 	}
+	ft_free_forks(philo);
 	return (p);
 }

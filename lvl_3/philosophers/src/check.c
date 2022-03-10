@@ -20,7 +20,7 @@ void	ft_init_thread(t_table *table)
 	thread = malloc(sizeof(pthread_t) * table->thinkers);
 	i = -1;
 	while (++i < table->thinkers)
-		pthread_create(&thread[i], NULL, &life_cycle, &table->philo[i]);
+		pthread_create(&thread[i], NULL, &parallel_life, &table->philo[i]);
 	i = -1;
 	while (++i < table->thinkers)
 		pthread_join(thread[i], NULL);
@@ -87,7 +87,6 @@ void	ft_init_thinkers(t_table *table)
 		table->philo[i].mutex_dead = &table->mutex_dead;
 		table->philo[i].state = THINK;
 		table->philo[i].start_time = table->start_time;
-		table->philo[i].start_eating = 0;
 	}
 }
 

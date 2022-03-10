@@ -6,18 +6,19 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/02/25 16:10:31 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:59:58 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void *parallel_life(void *p)
+void	*parallel_life(void *p)
 {
 	t_philo *philo;
 
 	philo = (t_philo *)p;
-	while(philo->state != DEAD && philo->n_meals != 0)
+	while(philo->state != DEAD && philo->n_meals != 0
+		&& *philo->is_alive == TRUE)
 	{
 		if (philo_starved(philo))
 			philo_died(philo);
@@ -53,7 +54,7 @@ void	ft_try_eat(t_philo *philo)
 	}
 }
 
-void ft_hold_time(uint64_t start, uint64_t action_time)
+void	ft_hold_time(uint64_t start, uint64_t action_time)
 {
 	// usleep(action_time);
 	while ((ft_time() - start) < action_time)
